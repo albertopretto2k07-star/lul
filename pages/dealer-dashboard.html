@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="LUXMARKET Dealer Dashboard — manage your luxury listings, track analytics, and grow your business.">
+  <title>Dealer Dashboard — LUXMARKET</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="stylesheet" href="../css/animations.css">
+</head>
+<body>
+
+  <!-- COOKIE CONSENT BANNER -->
+  <div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Cookie consent">
+    <div class="cookie-banner__inner">
+      <div class="cookie-banner__content">
+        <h3 data-i18n="cookie.title">We Value Your Privacy</h3>
+        <p data-i18n="cookie.description">This website uses essential technical cookies to ensure proper functionality, and optional analytics cookies to help us understand how visitors use our platform.</p>
+        <div class="cookie-banner__customize" id="cookie-customize" hidden>
+          <label class="cookie-toggle"><input type="checkbox" checked disabled> Essential (Required)</label>
+          <label class="cookie-toggle"><input type="checkbox" id="cookie-analytics"> Analytics</label>
+          <label class="cookie-toggle"><input type="checkbox" id="cookie-marketing"> Marketing</label>
+        </div>
+      </div>
+      <div class="cookie-banner__actions">
+        <button class="btn btn-outline" id="cookie-essential" data-i18n="cookie.essential">Essential Only</button>
+        <button class="btn btn-outline" id="cookie-customize-btn" data-i18n="cookie.customize">Customize</button>
+        <button class="btn btn-gold" id="cookie-accept" data-i18n="cookie.accept">Accept All</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-top">
+      <a href="../index.html" class="logo" aria-label="Home">
+        <span class="logo-text">LUX<span class="logo-accent">MARKET</span></span>
+      </a>
+      <div class="header-actions">
+        <div class="language-switcher" id="lang-switcher">
+          <button class="lang-toggle" aria-expanded="false" aria-haspopup="true">
+            <span class="lang-code">EN</span>
+            <svg class="chevron" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <ul class="lang-dropdown" role="menu">
+            <li><button role="menuitem" data-lang="en"><span class="lang-code">EN</span> English</button></li>
+            <li><button role="menuitem" data-lang="it"><span class="lang-code">IT</span> Italiano</button></li>
+            <li><button role="menuitem" data-lang="fr"><span class="lang-code">FR</span> Français</button></li>
+            <li><button role="menuitem" data-lang="de"><span class="lang-code">DE</span> Deutsch</button></li>
+          </ul>
+        </div>
+        <a href="#" class="btn btn-outline">Sign Out</a>
+      </div>
+      <button class="mobile-menu-btn" aria-label="Toggle menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- DASHBOARD LAYOUT -->
+  <div class="dashboard-layout container">
+
+    <!-- Sidebar Navigation -->
+    <aside class="dashboard-sidebar">
+      <nav aria-label="Dashboard navigation">
+        <ul class="dashboard-nav">
+          <li><a href="#overview" class="dashboard-nav__link active">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+            Overview
+          </a></li>
+          <li><a href="#listings" class="dashboard-nav__link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            My Listings
+          </a></li>
+          <li><a href="#analytics" class="dashboard-nav__link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            Analytics
+          </a></li>
+          <li><a href="#messages" class="dashboard-nav__link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            Messages
+            <span class="dashboard-nav__badge">3</span>
+          </a></li>
+          <li><a href="#referrals" class="dashboard-nav__link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            Referrals
+          </a></li>
+          <li><a href="#settings" class="dashboard-nav__link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+            Settings
+          </a></li>
+        </ul>
+      </nav>
+
+      <div class="dashboard-plan-badge">
+        <span class="plan-tier">Premium Plan</span>
+        <a href="dealer-plans.html" class="plan-upgrade">Upgrade to Elite+</a>
+      </div>
+    </aside>
+
+    <!-- Main Dashboard Content -->
+    <main class="dashboard-main">
+
+      <!-- Welcome Header -->
+      <div class="dashboard-header" data-animate="fade-up">
+        <div>
+          <h1 data-i18n="dashboard.title">Dashboard</h1>
+          <p class="dashboard-header__subtitle">Welcome back, Monaco Prestige Motors</p>
+        </div>
+        <a href="#" class="btn btn-gold">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Add New Listing
+        </a>
+      </div>
+
+      <!-- Stats Cards -->
+      <div class="stats-grid" data-animate="fade-up">
+        <div class="stat-card">
+          <div class="stat-card__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-secondary)" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
+          <div class="stat-card__content">
+            <span class="stat-card__value" data-i18n="dashboard.total_listings">47</span>
+            <span class="stat-card__label">Total Listings</span>
+          </div>
+          <span class="stat-card__trend stat-card__trend--up">+3 this month</span>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-secondary)" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <div class="stat-card__content">
+            <span class="stat-card__value" data-i18n="dashboard.total_views">12,847</span>
+            <span class="stat-card__label">Total Views</span>
+          </div>
+          <span class="stat-card__trend stat-card__trend--up">+18% vs last month</span>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-secondary)" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          </div>
+          <div class="stat-card__content">
+            <span class="stat-card__value" data-i18n="dashboard.total_inquiries">89</span>
+            <span class="stat-card__label">Total Inquiries</span>
+          </div>
+          <span class="stat-card__trend stat-card__trend--up">+24% vs last month</span>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-secondary)" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <div class="stat-card__content">
+            <span class="stat-card__value" data-i18n="dashboard.conversion_rate">3.2%</span>
+            <span class="stat-card__label">Conversion Rate</span>
+          </div>
+          <span class="stat-card__trend stat-card__trend--up">+0.4% vs last month</span>
+        </div>
+      </div>
+
+      <!-- Charts Row -->
+      <div class="charts-row" data-animate="fade-up">
+        <div class="chart-card chart-card--wide">
+          <h3 data-i18n="dashboard.views_over_time">Views Over Time</h3>
+          <div class="chart-placeholder">
+            <div class="chart-bars">
+              <div class="chart-bar" style="height: 40%"><span>Mon</span></div>
+              <div class="chart-bar" style="height: 65%"><span>Tue</span></div>
+              <div class="chart-bar" style="height: 55%"><span>Wed</span></div>
+              <div class="chart-bar" style="height: 80%"><span>Thu</span></div>
+              <div class="chart-bar" style="height: 72%"><span>Fri</span></div>
+              <div class="chart-bar" style="height: 90%"><span>Sat</span></div>
+              <div class="chart-bar" style="height: 85%"><span>Sun</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <h3 data-i18n="dashboard.traffic_sources">Traffic Sources</h3>
+          <div class="chart-placeholder">
+            <div class="donut-chart">
+              <div class="donut-legend">
+                <div class="donut-legend__item">
+                  <span class="donut-swatch" style="background: var(--color-secondary)"></span>
+                  Direct — 42%
+                </div>
+                <div class="donut-legend__item">
+                  <span class="donut-swatch" style="background: var(--color-primary)"></span>
+                  Search — 31%
+                </div>
+                <div class="donut-legend__item">
+                  <span class="donut-swatch" style="background: var(--color-success)"></span>
+                  Social — 18%
+                </div>
+                <div class="donut-legend__item">
+                  <span class="donut-swatch" style="background: var(--color-text-muted)"></span>
+                  Referral — 9%
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Listings -->
+      <section class="dashboard-section" data-animate="fade-up">
+        <div class="dashboard-section__header">
+          <h3 data-i18n="dashboard.your_listings">Your Listings</h3>
+          <a href="#" class="btn btn-outline btn--sm" data-i18n="dashboard.manage">Manage Listings</a>
+        </div>
+
+        <div class="listings-table-wrap">
+          <table class="listings-table">
+            <thead>
+              <tr>
+                <th>Listing</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Views</th>
+                <th>Inquiries</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="listing-row">
+                    <div class="listing-row__thumb image-placeholder image-placeholder--xs"></div>
+                    <span>2024 Ferrari SF90 Stradale</span>
+                  </div>
+                </td>
+                <td>Cars</td>
+                <td>$892,000</td>
+                <td>1,247</td>
+                <td>12</td>
+                <td><span class="status-badge status-badge--active">Active</span></td>
+                <td>
+                  <button class="btn-icon" aria-label="Edit listing">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="listing-row">
+                    <div class="listing-row__thumb image-placeholder image-placeholder--xs"></div>
+                    <span>Penthouse, Avenue Princesse Grace</span>
+                  </div>
+                </td>
+                <td>Real Estate</td>
+                <td>$28,500,000</td>
+                <td>3,891</td>
+                <td>24</td>
+                <td><span class="status-badge status-badge--active">Active</span></td>
+                <td>
+                  <button class="btn-icon" aria-label="Edit listing">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="listing-row">
+                    <div class="listing-row__thumb image-placeholder image-placeholder--xs"></div>
+                    <span>Benetti Oasis 40M</span>
+                  </div>
+                </td>
+                <td>Yachts</td>
+                <td>$18,200,000</td>
+                <td>2,103</td>
+                <td>8</td>
+                <td><span class="status-badge status-badge--featured">Featured</span></td>
+                <td>
+                  <button class="btn-icon" aria-label="Edit listing">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="listing-row">
+                    <div class="listing-row__thumb image-placeholder image-placeholder--xs"></div>
+                    <span>Patek Philippe Nautilus 5711/1A</span>
+                  </div>
+                </td>
+                <td>Watches</td>
+                <td>$185,000</td>
+                <td>892</td>
+                <td>15</td>
+                <td><span class="status-badge status-badge--active">Active</span></td>
+                <td>
+                  <button class="btn-icon" aria-label="Edit listing">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="listing-row">
+                    <div class="listing-row__thumb image-placeholder image-placeholder--xs"></div>
+                    <span>2023 Rolls-Royce Spectre</span>
+                  </div>
+                </td>
+                <td>Cars</td>
+                <td>$420,000</td>
+                <td>654</td>
+                <td>6</td>
+                <td><span class="status-badge status-badge--pending">Pending</span></td>
+                <td>
+                  <button class="btn-icon" aria-label="Edit listing">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Referral Program -->
+      <section class="dashboard-section" data-animate="fade-up">
+        <h3 data-i18n="dashboard.referrals">Referral Program</h3>
+        <p>Earn 10% commission on every dealer who signs up through your referral link.</p>
+        <div class="referral-link">
+          <input type="text" value="https://luxmarket.com/ref/monaco-prestige" readonly>
+          <button class="btn btn-outline">Copy Link</button>
+        </div>
+        <div class="referral-stats">
+          <div class="referral-stat">
+            <span class="referral-stat__value">12</span>
+            <span class="referral-stat__label">Referrals</span>
+          </div>
+          <div class="referral-stat">
+            <span class="referral-stat__value">$3,588</span>
+            <span class="referral-stat__label">Earned</span>
+          </div>
+          <div class="referral-stat">
+            <span class="referral-stat__value">$897</span>
+            <span class="referral-stat__label">Pending</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- API Integration -->
+      <section class="dashboard-section" data-animate="fade-up">
+        <h3 data-i18n="dashboard.api_integration">API Integration</h3>
+        <p>Connect your systems with our REST API. Available on Elite+ plans.</p>
+        <div class="api-key-display">
+          <label>API Key</label>
+          <div class="api-key-row">
+            <input type="password" value="lux_sk_live_a1b2c3d4e5f6g7h8i9j0" readonly>
+            <button class="btn btn-outline">Show</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3>LUX<span class="logo-accent">MARKET</span></h3>
+        <p data-i18n="footer.description">The world's premier marketplace for luxury goods. Connecting discerning buyers with verified dealers since 2024.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.categories">Categories</h4>
+        <ul>
+          <li><a href="category.html?cat=real-estate" data-i18n="nav.real_estate">Real Estate</a></li>
+          <li><a href="category.html?cat=cars" data-i18n="nav.cars">Cars</a></li>
+          <li><a href="category.html?cat=yachts" data-i18n="nav.yachts">Yachts</a></li>
+          <li><a href="category.html?cat=watches" data-i18n="nav.watches">Watches</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.for_dealers">For Dealers</h4>
+        <ul>
+          <li><a href="dealer-plans.html" data-i18n="footer.pricing">Pricing Plans</a></li>
+          <li><a href="dealer-dashboard.html" data-i18n="footer.dashboard">Dashboard</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.contact">Contact</h4>
+        <ul>
+          <li><a href="contact.html">Get in Touch</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 LUXMARKET. All rights reserved.</p>
+      <ul class="footer-legal">
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../js/cookies.js"></script>
+  <script src="../js/i18n.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>
