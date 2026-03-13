@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="LUXMARKET — The World's Luxury Marketplace. Discover exceptional properties, vehicles, and timepieces from verified dealers worldwide." />
+  <title>LUXMARKET — The World's Luxury Marketplace</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       COOKIE CONSENT BANNER
+  ============================================================ -->
+  <div id="cookie-banner" class="cookie-banner" role="dialog" aria-modal="true" aria-labelledby="cookie-title" hidden>
+    <div class="cookie-banner__inner">
+
+      <div class="cookie-banner__header">
+        <h2 id="cookie-title" class="cookie-banner__title" data-i18n="cookie.title"></h2>
+        <p class="cookie-banner__description" data-i18n="cookie.description"></p>
+      </div>
+
+      <!-- Customize panel (hidden by default) -->
+      <div class="cookie-banner__customize" id="cookie-customize-panel" hidden>
+        <div class="cookie-toggle-row">
+          <div class="cookie-toggle-info">
+            <span class="cookie-toggle-name" data-i18n="cookie.essential"></span>
+            <span class="cookie-toggle-desc" data-i18n="cookie.essentialDesc"></span>
+          </div>
+          <label class="cookie-toggle" aria-label="Essential cookies">
+            <input type="checkbox" id="cookie-essential" checked disabled />
+            <span class="cookie-toggle__track"></span>
+          </label>
+        </div>
+
+        <div class="cookie-toggle-row">
+          <div class="cookie-toggle-info">
+            <span class="cookie-toggle-name" data-i18n="cookie.analytics"></span>
+            <span class="cookie-toggle-desc" data-i18n="cookie.analyticsDesc"></span>
+          </div>
+          <label class="cookie-toggle" aria-label="Analytics cookies">
+            <input type="checkbox" id="cookie-analytics" />
+            <span class="cookie-toggle__track"></span>
+          </label>
+        </div>
+
+        <div class="cookie-toggle-row">
+          <div class="cookie-toggle-info">
+            <span class="cookie-toggle-name" data-i18n="cookie.marketing"></span>
+            <span class="cookie-toggle-desc" data-i18n="cookie.marketingDesc"></span>
+          </div>
+          <label class="cookie-toggle" aria-label="Marketing cookies">
+            <input type="checkbox" id="cookie-marketing" />
+            <span class="cookie-toggle__track"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="cookie-banner__actions">
+        <button class="btn btn-outline" id="cookie-btn-essential" data-i18n="cookie.essentialOnly"></button>
+        <button class="btn btn-ghost" id="cookie-btn-customize" data-i18n="cookie.customize"></button>
+        <button class="btn btn-gold" id="cookie-btn-accept" data-i18n="cookie.acceptAll"></button>
+      </div>
+
+    </div>
+  </div>
+  <!-- /COOKIE CONSENT BANNER -->
+
+
+  <!-- ============================================================
+       HEADER
+  ============================================================ -->
+  <header class="site-header" role="banner">
+
+    <!-- Header Top -->
+    <div class="header-top">
+      <div class="container header-top__inner">
+
+        <!-- Logo -->
+        <a href="/" class="logo" aria-label="LUXMARKET — Home">
+          LUX<span class="logo-accent">MARKET</span>
+        </a>
+
+        <!-- Right-side controls -->
+        <div class="header-top__controls">
+
+          <!-- Language Switcher -->
+          <div class="lang-switcher" role="navigation" aria-label="Language selector">
+            <button class="lang-switcher__btn" id="lang-switcher-btn" aria-haspopup="listbox" aria-expanded="false" aria-controls="lang-dropdown">
+              <span class="flag-icon flag-icon-gb" aria-hidden="true"></span>
+              <span class="lang-switcher__label">EN</span>
+              <!-- Chevron down -->
+              <svg class="lang-switcher__chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+
+            <ul class="lang-switcher__dropdown" id="lang-dropdown" role="listbox" aria-labelledby="lang-switcher-btn" hidden>
+              <li role="option">
+                <button class="lang-option" data-lang="en" data-i18n="lang.en">
+                  <span class="lang-code">EN</span>
+                  <span class="lang-name"></span>
+                </button>
+              </li>
+              <li role="option">
+                <button class="lang-option" data-lang="it" data-i18n="lang.it">
+                  <span class="lang-code">IT</span>
+                  <span class="lang-name"></span>
+                </button>
+              </li>
+              <li role="option">
+                <button class="lang-option" data-lang="fr" data-i18n="lang.fr">
+                  <span class="lang-code">FR</span>
+                  <span class="lang-name"></span>
+                </button>
+              </li>
+              <li role="option">
+                <button class="lang-option" data-lang="de" data-i18n="lang.de">
+                  <span class="lang-code">DE</span>
+                  <span class="lang-name"></span>
+                </button>
+              </li>
+              <li role="option">
+                <button class="lang-option" data-lang="es" data-i18n="lang.es">
+                  <span class="lang-code">ES</span>
+                  <span class="lang-name"></span>
+                </button>
+              </li>
+              <li role="option">
+                <button class="lang-option" data-lang="pt" data-i18n="lang.pt">
+                  <span class="lang-code">PT</span>
+                  <span class="lang-name"></span>
+                </button>
+              </li>
+              <li role="option">
+                <button class="lang-option" data-lang="ar" data-i18n="lang.ar">
+                  <span class="lang-code">AR</span>
+                  <span class="lang-name"></span>
+                </button>
+              </li>
+              <li role="option">
+                <button class="lang-option" data-lang="zh" data-i18n="lang.zh">
+                  <span class="lang-code">ZH</span>
+                  <span class="lang-name"></span>
+                </button>
+              </li>
+              <li role="option">
+                <button class="lang-option" data-lang="ja" data-i18n="lang.ja">
+                  <span class="lang-code">JA</span>
+                  <span class="lang-name"></span>
+                </button>
+              </li>
+              <li role="option">
+                <button class="lang-option" data-lang="ru" data-i18n="lang.ru">
+                  <span class="lang-code">RU</span>
+                  <span class="lang-name"></span>
+                </button>
+              </li>
+            </ul>
+          </div>
+          <!-- /Language Switcher -->
+
+          <!-- Auth / CTA buttons -->
+          <a href="pages/signin.html" class="btn btn-outline btn--sm" data-i18n="header.signIn"></a>
+          <a href="pages/list-item.html" class="btn btn-gold btn--sm" data-i18n="header.listItem"></a>
+
+          <!-- Mobile hamburger -->
+          <button class="mobile-menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+
+        </div>
+      </div>
+    </div>
+    <!-- /Header Top -->
+
+    <!-- Category Bar -->
+    <nav class="category-bar" aria-label="Browse by category" id="mobile-nav">
+      <div class="container">
+        <ul class="category-list" role="list">
+          <li>
+            <a href="pages/category.html?cat=real-estate" class="category-bar__link" data-i18n="cat.realEstate"></a>
+          </li>
+          <li>
+            <a href="pages/category.html?cat=cars" class="category-bar__link" data-i18n="cat.cars"></a>
+          </li>
+          <li>
+            <a href="pages/category.html?cat=yachts" class="category-bar__link" data-i18n="cat.yachts"></a>
+          </li>
+          <li>
+            <a href="pages/category.html?cat=jets" class="category-bar__link" data-i18n="cat.jets"></a>
+          </li>
+          <li>
+            <a href="pages/category.html?cat=watches" class="category-bar__link" data-i18n="cat.watches"></a>
+          </li>
+          <li>
+            <a href="pages/category.html?cat=jewelry" class="category-bar__link" data-i18n="cat.jewelry"></a>
+          </li>
+          <li>
+            <a href="pages/category.html?cat=motorcycles" class="category-bar__link" data-i18n="cat.motorcycles"></a>
+          </li>
+          <li>
+            <a href="pages/category.html?cat=helicopters" class="category-bar__link" data-i18n="cat.helicopters"></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- /Category Bar -->
+
+  </header>
+  <!-- /HEADER -->
+
+
+  <main id="main-content">
+
+    <!-- ============================================================
+         HERO
+    ============================================================ -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero__overlay" aria-hidden="true"></div>
+      <div class="container hero__inner">
+
+        <h1 id="hero-heading" class="hero__title" data-i18n="hero.title">
+          The World's Luxury Marketplace
+        </h1>
+        <p class="hero__subtitle" data-i18n="hero.subtitle">
+          Discover exceptional properties, vehicles, and timepieces from verified dealers worldwide.
+        </p>
+
+        <!-- Hero Search Form -->
+        <form class="hero-search" role="search" aria-label="Search listings" action="pages/search.html" method="get">
+          <div class="hero-search__fields">
+
+            <!-- Category select -->
+            <div class="hero-search__field hero-search__field--category">
+              <label for="search-category" class="sr-only" data-i18n="hero.search.categoryLabel"></label>
+              <select id="search-category" name="cat" class="hero-search__select">
+                <option value="" data-i18n="hero.search.allCategories"></option>
+                <option value="real-estate" data-i18n="cat.realEstate"></option>
+                <option value="cars" data-i18n="cat.cars"></option>
+                <option value="yachts" data-i18n="cat.yachts"></option>
+                <option value="jets" data-i18n="cat.jets"></option>
+                <option value="watches" data-i18n="cat.watches"></option>
+                <option value="jewelry" data-i18n="cat.jewelry"></option>
+                <option value="motorcycles" data-i18n="cat.motorcycles"></option>
+                <option value="helicopters" data-i18n="cat.helicopters"></option>
+              </select>
+            </div>
+
+            <!-- Keyword input -->
+            <div class="hero-search__field hero-search__field--keyword">
+              <label for="search-keyword" class="sr-only" data-i18n="hero.search.keywordLabel"></label>
+              <input
+                type="search"
+                id="search-keyword"
+                name="q"
+                class="hero-search__input"
+                data-i18n-placeholder="hero.search.keywordPlaceholder"
+                autocomplete="off"
+              />
+            </div>
+
+            <!-- Location input -->
+            <div class="hero-search__field hero-search__field--location">
+              <label for="search-location" class="sr-only" data-i18n="hero.search.locationLabel"></label>
+              <!-- Map pin icon -->
+              <svg class="hero-search__field-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 1C5.24 1 3 3.24 3 6C3 9.75 8 15 8 15C8 15 13 9.75 13 6C13 3.24 10.76 1 8 1ZM8 7.5C7.17 7.5 6.5 6.83 6.5 6C6.5 5.17 7.17 4.5 8 4.5C8.83 4.5 9.5 5.17 9.5 6C9.5 6.83 8.83 7.5 8 7.5Z" fill="currentColor"/>
+              </svg>
+              <input
+                type="text"
+                id="search-location"
+                name="location"
+                class="hero-search__input hero-search__input--location"
+                data-i18n-placeholder="hero.search.locationPlaceholder"
+                autocomplete="off"
+              />
+            </div>
+
+          </div>
+
+          <button type="submit" class="btn btn-gold hero-search__btn" data-i18n="hero.search.button"></button>
+        </form>
+        <!-- /Hero Search Form -->
+
+      </div>
+    </section>
+    <!-- /HERO -->
+
+
+    <!-- ============================================================
+         FEATURED CATEGORIES
+    ============================================================ -->
+    <section class="section featured-categories" aria-labelledby="categories-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="categories-heading" class="section__title" data-i18n="home.categoriesTitle">
+            Browse by Category
+          </h2>
+        </div>
+
+        <div class="category-grid" data-animate-stagger>
+
+          <!-- Real Estate -->
+          <a href="pages/category.html?cat=real-estate" class="category-card" data-animate-stagger-item>
+            <div class="category-card__image">
+              <div class="image-placeholder image-placeholder--category" aria-label="Real Estate category image">
+                <!-- Camera placeholder SVG -->
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16 8L13 12H6C4.9 12 4 12.9 4 14V30C4 31.1 4.9 32 6 32H34C35.1 32 36 31.1 36 30V14C36 12.9 35.1 12 34 12H27L24 8H16ZM20 28C16.69 28 14 25.31 14 22C14 18.69 16.69 16 20 16C23.31 16 26 18.69 26 22C26 25.31 23.31 28 20 28ZM20 18C17.79 18 16 19.79 16 22C16 24.21 17.79 26 20 26C22.21 26 24 24.21 24 22C24 19.79 22.21 18 20 18Z" fill="currentColor"/>
+                </svg>
+              </div>
+            </div>
+            <div class="category-card__overlay">
+              <span class="category-card__name" data-i18n="cat.realEstate"></span>
+              <span class="category-card__count" data-i18n="cat.realEstateCount"></span>
+            </div>
+          </a>
+
+          <!-- Cars -->
+          <a href="pages/category.html?cat=cars" class="category-card" data-animate-stagger-item>
+            <div class="category-card__image">
+              <div class="image-placeholder image-placeholder--category" aria-label="Cars category image">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16 8L13 12H6C4.9 12 4 12.9 4 14V30C4 31.1 4.9 32 6 32H34C35.1 32 36 31.1 36 30V14C36 12.9 35.1 12 34 12H27L24 8H16ZM20 28C16.69 28 14 25.31 14 22C14 18.69 16.69 16 20 16C23.31 16 26 18.69 26 22C26 25.31 23.31 28 20 28Z" fill="currentColor"/>
+                </svg>
+              </div>
+            </div>
+            <div class="category-card__overlay">
+              <span class="category-card__name" data-i18n="cat.cars"></span>
+              <span class="category-card__count" data-i18n="cat.carsCount"></span>
+            </div>
+          </a>
+
+          <!-- Yachts -->
+          <a href="pages/category.html?cat=yachts" class="category-card" data-animate-stagger-item>
+            <div class="category-card__image">
+              <div class="image-placeholder image-placeholder--category" aria-label="Yachts category image">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16 8L13 12H6C4.9 12 4 12.9 4 14V30C4 31.1 4.9 32 6 32H34C35.1 32 36 31.1 36 30V14C36 12.9 35.1 12 34 12H27L24 8H16ZM20 28C16.69 28 14 25.31 14 22C14 18.69 16.69 16 20 16C23.31 16 26 18.69 26 22C26 25.31 23.31 28 20 28Z" fill="currentColor"/>
+                </svg>
+              </div>
+            </div>
+            <div class="category-card__overlay">
+              <span class="category-card__name" data-i18n="cat.yachts"></span>
+              <span class="category-card__count" data-i18n="cat.yachtsCount"></span>
+            </div>
+          </a>
+
+          <!-- Jets -->
+          <a href="pages/category.html?cat=jets" class="category-card" data-animate-stagger-item>
+            <div class="category-card__image">
+              <div class="image-placeholder image-placeholder--category" aria-label="Jets category image">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16 8L13 12H6C4.9 12 4 12.9 4 14V30C4 31.1 4.9 32 6 32H34C35.1 32 36 31.1 36 30V14C36 12.9 35.1 12 34 12H27L24 8H16ZM20 28C16.69 28 14 25.31 14 22C14 18.69 16.69 16 20 16C23.31 16 26 18.69 26 22C26 25.31 23.31 28 20 28Z" fill="currentColor"/>
+                </svg>
+              </div>
+            </div>
+            <div class="category-card__overlay">
+              <span class="category-card__name" data-i18n="cat.jets"></span>
+              <span class="category-card__count" data-i18n="cat.jetsCount"></span>
+            </div>
+          </a>
+
+          <!-- Watches -->
+          <a href="pages/category.html?cat=watches" class="category-card" data-animate-stagger-item>
+            <div class="category-card__image">
+              <div class="image-placeholder image-placeholder--category" aria-label="Watches category image">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16 8L13 12H6C4.9 12 4 12.9 4 14V30C4 31.1 4.9 32 6 32H34C35.1 32 36 31.1 36 30V14C36 12.9 35.1 12 34 12H27L24 8H16ZM20 28C16.69 28 14 25.31 14 22C14 18.69 16.69 16 20 16C23.31 16 26 18.69 26 22C26 25.31 23.31 28 20 28Z" fill="currentColor"/>
+                </svg>
+              </div>
+            </div>
+            <div class="category-card__overlay">
+              <span class="category-card__name" data-i18n="cat.watches"></span>
+              <span class="category-card__count" data-i18n="cat.watchesCount"></span>
+            </div>
+          </a>
+
+          <!-- Jewelry -->
+          <a href="pages/category.html?cat=jewelry" class="category-card" data-animate-stagger-item>
+            <div class="category-card__image">
+              <div class="image-placeholder image-placeholder--category" aria-label="Jewelry category image">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16 8L13 12H6C4.9 12 4 12.9 4 14V30C4 31.1 4.9 32 6 32H34C35.1 32 36 31.1 36 30V14C36 12.9 35.1 12 34 12H27L24 8H16ZM20 28C16.69 28 14 25.31 14 22C14 18.69 16.69 16 20 16C23.31 16 26 18.69 26 22C26 25.31 23.31 28 20 28Z" fill="currentColor"/>
+                </svg>
+              </div>
+            </div>
+            <div class="category-card__overlay">
+              <span class="category-card__name" data-i18n="cat.jewelry"></span>
+              <span class="category-card__count" data-i18n="cat.jewelryCount"></span>
+            </div>
+          </a>
+
+          <!-- Motorcycles -->
+          <a href="pages/category.html?cat=motorcycles" class="category-card" data-animate-stagger-item>
+            <div class="category-card__image">
+              <div class="image-placeholder image-placeholder--category" aria-label="Motorcycles category image">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16 8L13 12H6C4.9 12 4 12.9 4 14V30C4 31.1 4.9 32 6 32H34C35.1 32 36 31.1 36 30V14C36 12.9 35.1 12 34 12H27L24 8H16ZM20 28C16.69 28 14 25.31 14 22C14 18.69 16.69 16 20 16C23.31 16 26 18.69 26 22C26 25.31 23.31 28 20 28Z" fill="currentColor"/>
+                </svg>
+              </div>
+            </div>
+            <div class="category-card__overlay">
+              <span class="category-card__name" data-i18n="cat.motorcycles"></span>
+              <span class="category-card__count" data-i18n="cat.motorcyclesCount"></span>
+            </div>
+          </a>
+
+          <!-- Helicopters -->
+          <a href="pages/category.html?cat=helicopters" class="category-card" data-animate-stagger-item>
+            <div class="category-card__image">
+              <div class="image-placeholder image-placeholder--category" aria-label="Helicopters category image">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16 8L13 12H6C4.9 12 4 12.9 4 14V30C4 31.1 4.9 32 6 32H34C35.1 32 36 31.1 36 30V14C36 12.9 35.1 12 34 12H27L24 8H16ZM20 28C16.69 28 14 25.31 14 22C14 18.69 16.69 16 20 16C23.31 16 26 18.69 26 22C26 25.31 23.31 28 20 28Z" fill="currentColor"/>
+                </svg>
+              </div>
+            </div>
+            <div class="category-card__overlay">
+              <span class="category-card__name" data-i18n="cat.helicopters"></span>
+              <span class="category-card__count" data-i18n="cat.helicoptersCount"></span>
+            </div>
+          </a>
+
+        </div>
+        <!-- /category-grid -->
+
+      </div>
+    </section>
+    <!-- /FEATURED CATEGORIES -->
+
+
+    <!-- ============================================================
+         FEATURED LISTINGS
+    ============================================================ -->
+    <section class="section featured-listings" aria-labelledby="listings-heading">
+      <div class="container">
+
+        <div class="section__header">
+          <h2 id="listings-heading" class="section__title" data-i18n="home.listingsTitle">
+            Featured Listings
+          </h2>
+        </div>
+
+        <div class="listings-grid">
+
+          <!-- Listing Card 1 -->
+          <article class="listing-card" data-animate>
+            <div class="listing-card__image">
+              <div class="image-placeholder" aria-label="Listing image unavailable">
+                <!-- Camera icon -->
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13 6L10.5 10H4C2.9 10 2 10.9 2 12V26C2 27.1 2.9 28 4 28H28C29.1 28 30 27.1 30 26V12C30 10.9 29.1 10 28 10H21.5L19 6H13ZM16 24C12.69 24 10 21.31 10 18C10 14.69 12.69 12 16 12C19.31 12 22 14.69 22 18C22 21.31 19.31 24 16 24ZM16 14C13.79 14 12 15.79 12 18C12 20.21 13.79 22 16 22C18.21 22 20 20.21 20 18C20 15.79 18.21 14 16 14Z" fill="currentColor"/>
+                </svg>
+                <span class="image-placeholder__label" data-i18n="listing.noImage">No Image</span>
+              </div>
+              <span class="listing-card__badge listing-card__badge--featured" data-i18n="listing.badge.featured">Featured</span>
+            </div>
+            <div class="listing-card__body">
+              <p class="listing-card__price" data-i18n="listing.1.price"></p>
+              <h3 class="listing-card__title" data-i18n="listing.1.title"></h3>
+              <p class="listing-card__location">
+                <!-- Map pin icon -->
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 1C4.79 1 3 2.79 3 5C3 8.25 7 13 7 13C7 13 11 8.25 11 5C11 2.79 9.21 1 7 1ZM7 6.5C6.17 6.5 5.5 5.83 5.5 5C5.5 4.17 6.17 3.5 7 3.5C7.83 3.5 8.5 4.17 8.5 5C8.5 5.83 7.83 6.5 7 6.5Z" fill="currentColor"/>
+                </svg>
+                <span data-i18n="listing.1.location"></span>
+              </p>
+              <ul class="listing-card__meta" aria-label="Listing specifications">
+                <li class="listing-card__meta-item" data-i18n="listing.1.spec1"></li>
+                <li class="listing-card__meta-item" data-i18n="listing.1.spec2"></li>
+                <li class="listing-card__meta-item" data-i18n="listing.1.spec3"></li>
+              </ul>
+            </div>
+            <div class="listing-card__actions">
+              <button class="btn-icon btn-icon--save" aria-label="Save listing" data-listing-id="1">
+                <!-- Heart icon -->
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 17.5C10 17.5 2 12.5 2 6.5C2 4.01 4.01 2 6.5 2C7.96 2 9.25 2.7 10 3.76C10.75 2.7 12.04 2 13.5 2C15.99 2 18 4.01 18 6.5C18 12.5 10 17.5 10 17.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                </svg>
+                <span class="sr-only" data-i18n="listing.action.save"></span>
+              </button>
+              <button class="btn btn-ghost btn--xs" data-listing-id="1" data-i18n="listing.action.compare"></button>
+            </div>
+          </article>
+
+          <!-- Listing Card 2 -->
+          <article class="listing-card" data-animate>
+            <div class="listing-card__image">
+              <div class="image-placeholder" aria-label="Listing image unavailable">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13 6L10.5 10H4C2.9 10 2 10.9 2 12V26C2 27.1 2.9 28 4 28H28C29.1 28 30 27.1 30 26V12C30 10.9 29.1 10 28 10H21.5L19 6H13ZM16 24C12.69 24 10 21.31 10 18C10 14.69 12.69 12 16 12C19.31 12 22 14.69 22 18C22 21.31 19.31 24 16 24ZM16 14C13.79 14 12 15.79 12 18C12 20.21 13.79 22 16 22C18.21 22 20 20.21 20 18C20 15.79 18.21 14 16 14Z" fill="currentColor"/>
+                </svg>
+                <span class="image-placeholder__label" data-i18n="listing.noImage">No Image</span>
+              </div>
+              <span class="listing-card__badge listing-card__badge--new" data-i18n="listing.badge.new">New</span>
+            </div>
+            <div class="listing-card__body">
+              <p class="listing-card__price" data-i18n="listing.2.price"></p>
+              <h3 class="listing-card__title" data-i18n="listing.2.title"></h3>
+              <p class="listing-card__location">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 1C4.79 1 3 2.79 3 5C3 8.25 7 13 7 13C7 13 11 8.25 11 5C11 2.79 9.21 1 7 1ZM7 6.5C6.17 6.5 5.5 5.83 5.5 5C5.5 4.17 6.17 3.5 7 3.5C7.83 3.5 8.5 4.17 8.5 5C8.5 5.83 7.83 6.5 7 6.5Z" fill="currentColor"/>
+                </svg>
+                <span data-i18n="listing.2.location"></span>
+              </p>
+              <ul class="listing-card__meta" aria-label="Listing specifications">
+                <li class="listing-card__meta-item" data-i18n="listing.2.spec1"></li>
+                <li class="listing-card__meta-item" data-i18n="listing.2.spec2"></li>
+                <li class="listing-card__meta-item" data-i18n="listing.2.spec3"></li>
+              </ul>
+            </div>
+            <div class="listing-card__actions">
+              <button class="btn-icon btn-icon--save" aria-label="Save listing" data-listing-id="2">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 17.5C10 17.5 2 12.5 2 6.5C2 4.01 4.01 2 6.5 2C7.96 2 9.25 2.7 10 3.76C10.75 2.7 12.04 2 13.5 2C15.99 2 18 4.01 18 6.5C18 12.5 10 17.5 10 17.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                </svg>
+                <span class="sr-only" data-i18n="listing.action.save"></span>
+              </button>
+              <button class="btn btn-ghost btn--xs" data-listing-id="2" data-i18n="listing.action.compare"></button>
+            </div>
+          </article>
+
+          <!-- Listing Card 3 -->
+          <article class="listing-card" data-animate>
+            <div class="listing-card__image">
+              <div class="image-placeholder" aria-label="Listing image unavailable">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13 6L10.5 10H4C2.9 10 2 10.9 2 12V26C2 27.1 2.9 28 4 28H28C29.1 28 30 27.1 30 26V12C30 10.9 29.1 10 28 10H21.5L19 6H13ZM16 24C12.69 24 10 21.31 10 18C10 14.69 12.69 12 16 12C19.31 12 22 14.69 22 18C22 21.31 19.31 24 16 24ZM16 14C13.79 14 12 15.79 12 18C12 20.21 13.79 22 16 22C18.21 22 20 20.21 20 18C20 15.79 18.21 14 16 14Z" fill="currentColor"/>
+                </svg>
+                <span class="image-placeholder__label" data-i18n="listing.noImage">No Image</span>
+              </div>
+              <span class="listing-card__badge listing-card__badge--reduced" data-i18n="listing.badge.reduced">Reduced</span>
+            </div>
+            <div class="listing-card__body">
+              <p class="listing-card__price" data-i18n="listing.3.price"></p>
+              <h3 class="listing-card__title" data-i18n="listing.3.title"></h3>
+              <p class="listing-card__location">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 1C4.79 1 3 2.79 3 5C3 8.25 7 13 7 13C7 13 11 8.25 11 5C11 2.79 9.21 1 7 1ZM7 6.5C6.17 6.5 5.5 5.83 5.5 5C5.5 4.17 6.17 3.5 7 3.5C7.83 3.5 8.5 4.17 8.5 5C8.5 5.83 7.83 6.5 7 6.5Z" fill="currentColor"/>
+                </svg>
+                <span data-i18n="listing.3.location"></span>
+              </p>
+              <ul class="listing-card__meta" aria-label="Listing specifications">
+                <li class="listing-card__meta-item" data-i18n="listing.3.spec1"></li>
+                <li class="listing-card__meta-item" data-i18n="listing.3.spec2"></li>
+                <li class="listing-card__meta-item" data-i18n="listing.3.spec3"></li>
+              </ul>
+            </div>
+            <div class="listing-card__actions">
+              <button class="btn-icon btn-icon--save" aria-label="Save listing" data-listing-id="3">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 17.5C10 17.5 2 12.5 2 6.5C2 4.01 4.01 2 6.5 2C7.96 2 9.25 2.7 10 3.76C10.75 2.7 12.04 2 13.5 2C15.99 2 18 4.01 18 6.5C18 12.5 10 17.5 10 17.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                </svg>
+                <span class="sr-only" data-i18n="listing.action.save"></span>
+              </button>
+              <button class="btn btn-ghost btn--xs" data-listing-id="3" data-i18n="listing.action.compare"></button>
+            </div>
+          </article>
+
+          <!-- Listing Card 4 -->
+          <article class="listing-card" data-animate>
+            <div class="listing-card__image">
+              <div class="image-placeholder" aria-label="Listing image unavailable">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13 6L10.5 10H4C2.9 10 2 10.9 2 12V26C2 27.1 2.9 28 4 28H28C29.1 28 30 27.1 30 26V12C30 10.9 29.1 10 28 10H21.5L19 6H13ZM16 24C12.69 24 10 21.31 10 18C10 14.69 12.69 12 16 12C19.31 12 22 14.69 22 18C22 21.31 19.31 24 16 24ZM16 14C13.79 14 12 15.79 12 18C12 20.21 13.79 22 16 22C18.21 22 20 20.21 20 18C20 15.79 18.21 14 16 14Z" fill="currentColor"/>
+                </svg>
+                <span class="image-placeholder__label" data-i18n="listing.noImage">No Image</span>
+              </div>
+              <span class="listing-card__badge listing-card__badge--featured" data-i18n="listing.badge.featured">Featured</span>
+            </div>
+            <div class="listing-card__body">
+              <p class="listing-card__price" data-i18n="listing.4.price"></p>
+              <h3 class="listing-card__title" data-i18n="listing.4.title"></h3>
+              <p class="listing-card__location">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 1C4.79 1 3 2.79 3 5C3 8.25 7 13 7 13C7 13 11 8.25 11 5C11 2.79 9.21 1 7 1ZM7 6.5C6.17 6.5 5.5 5.83 5.5 5C5.5 4.17 6.17 3.5 7 3.5C7.83 3.5 8.5 4.17 8.5 5C8.5 5.83 7.83 6.5 7 6.5Z" fill="currentColor"/>
+                </svg>
+                <span data-i18n="listing.4.location"></span>
+              </p>
+              <ul class="listing-card__meta" aria-label="Listing specifications">
+                <li class="listing-card__meta-item" data-i18n="listing.4.spec1"></li>
+                <li class="listing-card__meta-item" data-i18n="listing.4.spec2"></li>
+                <li class="listing-card__meta-item" data-i18n="listing.4.spec3"></li>
+              </ul>
+            </div>
+            <div class="listing-card__actions">
+              <button class="btn-icon btn-icon--save" aria-label="Save listing" data-listing-id="4">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 17.5C10 17.5 2 12.5 2 6.5C2 4.01 4.01 2 6.5 2C7.96 2 9.25 2.7 10 3.76C10.75 2.7 12.04 2 13.5 2C15.99 2 18 4.01 18 6.5C18 12.5 10 17.5 10 17.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                </svg>
+                <span class="sr-only" data-i18n="listing.action.save"></span>
+              </button>
+              <button class="btn btn-ghost btn--xs" data-listing-id="4" data-i18n="listing.action.compare"></button>
+            </div>
+          </article>
+
+          <!-- Listing Card 5 -->
+          <article class="listing-card" data-animate>
+            <div class="listing-card__image">
+              <div class="image-placeholder" aria-label="Listing image unavailable">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13 6L10.5 10H4C2.9 10 2 10.9 2 12V26C2 27.1 2.9 28 4 28H28C29.1 28 30 27.1 30 26V12C30 10.9 29.1 10 28 10H21.5L19 6H13ZM16 24C12.69 24 10 21.31 10 18C10 14.69 12.69 12 16 12C19.31 12 22 14.69 22 18C22 21.31 19.31 24 16 24ZM16 14C13.79 14 12 15.79 12 18C12 20.21 13.79 22 16 22C18.21 22 20 20.21 20 18C20 15.79 18.21 14 16 14Z" fill="currentColor"/>
+                </svg>
+                <span class="image-placeholder__label" data-i18n="listing.noImage">No Image</span>
+              </div>
+              <span class="listing-card__badge listing-card__badge--new" data-i18n="listing.badge.new">New</span>
+            </div>
+            <div class="listing-card__body">
+              <p class="listing-card__price" data-i18n="listing.5.price"></p>
+              <h3 class="listing-card__title" data-i18n="listing.5.title"></h3>
+              <p class="listing-card__location">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 1C4.79 1 3 2.79 3 5C3 8.25 7 13 7 13C7 13 11 8.25 11 5C11 2.79 9.21 1 7 1ZM7 6.5C6.17 6.5 5.5 5.83 5.5 5C5.5 4.17 6.17 3.5 7 3.5C7.83 3.5 8.5 4.17 8.5 5C8.5 5.83 7.83 6.5 7 6.5Z" fill="currentColor"/>
+                </svg>
+                <span data-i18n="listing.5.location"></span>
+              </p>
+              <ul class="listing-card__meta" aria-label="Listing specifications">
+                <li class="listing-card__meta-item" data-i18n="listing.5.spec1"></li>
+                <li class="listing-card__meta-item" data-i18n="listing.5.spec2"></li>
+                <li class="listing-card__meta-item" data-i18n="listing.5.spec3"></li>
+              </ul>
+            </div>
+            <div class="listing-card__actions">
+              <button class="btn-icon btn-icon--save" aria-label="Save listing" data-listing-id="5">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 17.5C10 17.5 2 12.5 2 6.5C2 4.01 4.01 2 6.5 2C7.96 2 9.25 2.7 10 3.76C10.75 2.7 12.04 2 13.5 2C15.99 2 18 4.01 18 6.5C18 12.5 10 17.5 10 17.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                </svg>
+                <span class="sr-only" data-i18n="listing.action.save"></span>
+              </button>
+              <button class="btn btn-ghost btn--xs" data-listing-id="5" data-i18n="listing.action.compare"></button>
+            </div>
+          </article>
+
+          <!-- Listing Card 6 -->
+          <article class="listing-card" data-animate>
+            <div class="listing-card__image">
+              <div class="image-placeholder" aria-label="Listing image unavailable">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13 6L10.5 10H4C2.9 10 2 10.9 2 12V26C2 27.1 2.9 28 4 28H28C29.1 28 30 27.1 30 26V12C30 10.9 29.1 10 28 10H21.5L19 6H13ZM16 24C12.69 24 10 21.31 10 18C10 14.69 12.69 12 16 12C19.31 12 22 14.69 22 18C22 21.31 19.31 24 16 24ZM16 14C13.79 14 12 15.79 12 18C12 20.21 13.79 22 16 22C18.21 22 20 20.21 20 18C20 15.79 18.21 14 16 14Z" fill="currentColor"/>
+                </svg>
+                <span class="image-placeholder__label" data-i18n="listing.noImage">No Image</span>
+              </div>
+              <span class="listing-card__badge listing-card__badge--reduced" data-i18n="listing.badge.reduced">Reduced</span>
+            </div>
+            <div class="listing-card__body">
+              <p class="listing-card__price" data-i18n="listing.6.price"></p>
+              <h3 class="listing-card__title" data-i18n="listing.6.title"></h3>
+              <p class="listing-card__location">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 1C4.79 1 3 2.79 3 5C3 8.25 7 13 7 13C7 13 11 8.25 11 5C11 2.79 9.21 1 7 1ZM7 6.5C6.17 6.5 5.5 5.83 5.5 5C5.5 4.17 6.17 3.5 7 3.5C7.83 3.5 8.5 4.17 8.5 5C8.5 5.83 7.83 6.5 7 6.5Z" fill="currentColor"/>
+                </svg>
+                <span data-i18n="listing.6.location"></span>
+              </p>
+              <ul class="listing-card__meta" aria-label="Listing specifications">
+                <li class="listing-card__meta-item" data-i18n="listing.6.spec1"></li>
+                <li class="listing-card__meta-item" data-i18n="listing.6.spec2"></li>
+                <li class="listing-card__meta-item" data-i18n="listing.6.spec3"></li>
+              </ul>
+            </div>
+            <div class="listing-card__actions">
+              <button class="btn-icon btn-icon--save" aria-label="Save listing" data-listing-id="6">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 17.5C10 17.5 2 12.5 2 6.5C2 4.01 4.01 2 6.5 2C7.96 2 9.25 2.7 10 3.76C10.75 2.7 12.04 2 13.5 2C15.99 2 18 4.01 18 6.5C18 12.5 10 17.5 10 17.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                </svg>
+                <span class="sr-only" data-i18n="listing.action.save"></span>
+              </button>
+              <button class="btn btn-ghost btn--xs" data-listing-id="6" data-i18n="listing.action.compare"></button>
+            </div>
+          </article>
+
+        </div>
+        <!-- /listings-grid -->
+
+        <div class="section__cta">
+          <a href="pages/search.html" class="btn btn-outline" data-i18n="home.viewAllListings"></a>
+        </div>
+
+      </div>
+    </section>
+    <!-- /FEATURED LISTINGS -->
+
+
+    <!-- ============================================================
+         DEALER CTA
+    ============================================================ -->
+    <section class="section dealer-cta" aria-labelledby="dealer-cta-heading">
+      <div class="container dealer-cta__inner">
+        <div class="dealer-cta__content">
+          <h2 id="dealer-cta-heading" class="section__title dealer-cta__title" data-i18n="dealer.ctaTitle">
+            Are You a Dealer?
+          </h2>
+          <p class="dealer-cta__description" data-i18n="dealer.ctaDescription">
+            Join the world's most prestigious luxury marketplace...
+          </p>
+        </div>
+        <div class="dealer-cta__action">
+          <a href="pages/dealer-plans.html" class="btn btn-gold" data-i18n="dealer.ctaButton"></a>
+        </div>
+      </div>
+    </section>
+    <!-- /DEALER CTA -->
+
+  </main>
+
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <!-- Column 1: About -->
+        <div class="footer-col footer-col--about">
+          <a href="/" class="footer-logo" aria-label="LUXMARKET — Home">
+            LUX<span class="logo-accent">MARKET</span>
+          </a>
+          <p class="footer-about" data-i18n="footer.about"></p>
+          <div class="footer-social" aria-label="Social media links">
+            <a href="#" class="footer-social__link" aria-label="Instagram" rel="noopener noreferrer" target="_blank" data-i18n-aria="footer.social.instagram">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="2" width="14" height="14" rx="4" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="9" cy="9" r="3" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="13" cy="5" r="0.75" fill="currentColor"/>
+              </svg>
+            </a>
+            <a href="#" class="footer-social__link" aria-label="LinkedIn" rel="noopener noreferrer" target="_blank" data-i18n-aria="footer.social.linkedin">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="2" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M5.5 7.5V12.5M5.5 5.5V5.51M8.5 12.5V10C8.5 8.9 9.4 8 10.5 8C11.6 8 12.5 8.9 12.5 10V12.5M8.5 7.5V12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Column 2: Categories -->
+        <div class="footer-col">
+          <h3 class="footer-col__heading" data-i18n="footer.categoriesHeading"></h3>
+          <ul class="footer-links" role="list">
+            <li><a href="pages/category.html?cat=real-estate" class="footer-links__item" data-i18n="cat.realEstate"></a></li>
+            <li><a href="pages/category.html?cat=cars" class="footer-links__item" data-i18n="cat.cars"></a></li>
+            <li><a href="pages/category.html?cat=yachts" class="footer-links__item" data-i18n="cat.yachts"></a></li>
+            <li><a href="pages/category.html?cat=jets" class="footer-links__item" data-i18n="cat.jets"></a></li>
+            <li><a href="pages/category.html?cat=watches" class="footer-links__item" data-i18n="cat.watches"></a></li>
+            <li><a href="pages/category.html?cat=jewelry" class="footer-links__item" data-i18n="cat.jewelry"></a></li>
+            <li><a href="pages/category.html?cat=motorcycles" class="footer-links__item" data-i18n="cat.motorcycles"></a></li>
+            <li><a href="pages/category.html?cat=helicopters" class="footer-links__item" data-i18n="cat.helicopters"></a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: For Dealers -->
+        <div class="footer-col">
+          <h3 class="footer-col__heading" data-i18n="footer.dealersHeading"></h3>
+          <ul class="footer-links" role="list">
+            <li><a href="pages/dealer-plans.html" class="footer-links__item" data-i18n="footer.dealers.plans"></a></li>
+            <li><a href="pages/list-item.html" class="footer-links__item" data-i18n="footer.dealers.listItem"></a></li>
+            <li><a href="pages/dealer-dashboard.html" class="footer-links__item" data-i18n="footer.dealers.dashboard"></a></li>
+            <li><a href="pages/dealer-faq.html" class="footer-links__item" data-i18n="footer.dealers.faq"></a></li>
+            <li><a href="pages/dealer-support.html" class="footer-links__item" data-i18n="footer.dealers.support"></a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Contact -->
+        <div class="footer-col">
+          <h3 class="footer-col__heading" data-i18n="footer.contactHeading"></h3>
+          <address class="footer-contact">
+            <p class="footer-contact__item" data-i18n="footer.contact.address"></p>
+            <a href="mailto:" class="footer-contact__item footer-contact__link" data-i18n="footer.contact.email"></a>
+            <a href="tel:" class="footer-contact__item footer-contact__link" data-i18n="footer.contact.phone"></a>
+          </address>
+        </div>
+
+      </div>
+      <!-- /footer-grid -->
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <p class="footer-bottom__copy" data-i18n="footer.copyright"></p>
+        <nav class="footer-bottom__legal" aria-label="Legal links">
+          <a href="pages/privacy.html" class="footer-bottom__legal-link" data-i18n="footer.legal.privacy"></a>
+          <a href="pages/terms.html" class="footer-bottom__legal-link" data-i18n="footer.legal.terms"></a>
+          <a href="pages/cookies-policy.html" class="footer-bottom__legal-link" data-i18n="footer.legal.cookies"></a>
+        </nav>
+      </div>
+      <!-- /Footer Bottom -->
+
+    </div>
+  </footer>
+  <!-- /FOOTER -->
+
+
+  <!-- Scripts -->
+  <script src="js/cookies.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>

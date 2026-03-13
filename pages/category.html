@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="category.page_title">Browse Listings — LUXMARKET</title>
+  <meta name="description" content="Browse luxury listings on LUXMARKET." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <link rel="stylesheet" href="../css/animations.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       COOKIE BANNER
+  ════════════════════════════════════════════ -->
+  <div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Cookie consent" aria-live="polite">
+    <div class="cookie-banner__inner">
+      <p class="cookie-banner__text" data-i18n="cookies.message">
+        We use cookies to enhance your browsing experience and deliver personalised content.
+        By continuing you agree to our
+        <a href="../privacy.html" data-i18n="cookies.privacy_link">Privacy Policy</a>.
+      </p>
+      <div class="cookie-banner__actions">
+        <button class="btn-outline cookie-banner__decline" id="cookie-decline" data-i18n="cookies.decline">Decline</button>
+        <button class="btn-gold cookie-banner__accept" id="cookie-accept" data-i18n="cookies.accept">Accept All</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       HEADER
+  ════════════════════════════════════════════ -->
+  <header class="site-header" role="banner">
+    <div class="site-header__inner container">
+
+      <!-- Logo -->
+      <a href="../index.html" class="site-header__logo" aria-label="LUXMARKET — return to homepage">
+        <span class="logo-mark">LUX</span><span class="logo-wordmark">MARKET</span>
+      </a>
+
+      <!-- Primary Navigation -->
+      <nav class="site-nav" aria-label="Primary navigation">
+        <ul class="site-nav__list" role="list">
+          <li class="site-nav__item">
+            <a href="category.html?cat=cars" class="site-nav__link" data-i18n="nav.cars">Cars</a>
+          </li>
+          <li class="site-nav__item">
+            <a href="category.html?cat=real-estate" class="site-nav__link" data-i18n="nav.real_estate">Real Estate</a>
+          </li>
+          <li class="site-nav__item">
+            <a href="category.html?cat=yachts" class="site-nav__link" data-i18n="nav.yachts">Yachts</a>
+          </li>
+          <li class="site-nav__item">
+            <a href="category.html?cat=watches" class="site-nav__link" data-i18n="nav.watches">Watches</a>
+          </li>
+          <li class="site-nav__item">
+            <a href="category.html?cat=art" class="site-nav__link" data-i18n="nav.art">Art</a>
+          </li>
+          <li class="site-nav__item">
+            <a href="category.html?cat=jewellery" class="site-nav__link" data-i18n="nav.jewellery">Jewellery</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="site-header__actions">
+        <!-- Language Selector -->
+        <div class="lang-selector" aria-label="Language selector">
+          <button class="lang-selector__toggle" aria-haspopup="listbox" aria-expanded="false" data-i18n="header.language">
+            EN
+            <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true" focusable="false">
+              <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <ul class="lang-selector__dropdown" role="listbox" aria-label="Select language">
+            <li role="option" aria-selected="true" data-lang="en">English</li>
+            <li role="option" aria-selected="false" data-lang="fr">Français</li>
+            <li role="option" aria-selected="false" data-lang="de">Deutsch</li>
+            <li role="option" aria-selected="false" data-lang="ar">العربية</li>
+            <li role="option" aria-selected="false" data-lang="zh">中文</li>
+          </ul>
+        </div>
+
+        <a href="../login.html" class="btn-outline btn--sm" data-i18n="header.sign_in">Sign In</a>
+        <a href="../sell.html" class="btn-gold btn--sm" data-i18n="header.list_item">List an Item</a>
+
+        <!-- Mobile menu toggle -->
+        <button class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="mobile-menu-toggle__bar"></span>
+          <span class="mobile-menu-toggle__bar"></span>
+          <span class="mobile-menu-toggle__bar"></span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+      <nav aria-label="Mobile navigation">
+        <ul class="mobile-menu__list" role="list">
+          <li><a href="category.html?cat=cars" data-i18n="nav.cars">Cars</a></li>
+          <li><a href="category.html?cat=real-estate" data-i18n="nav.real_estate">Real Estate</a></li>
+          <li><a href="category.html?cat=yachts" data-i18n="nav.yachts">Yachts</a></li>
+          <li><a href="category.html?cat=watches" data-i18n="nav.watches">Watches</a></li>
+          <li><a href="category.html?cat=art" data-i18n="nav.art">Art</a></li>
+          <li><a href="category.html?cat=jewellery" data-i18n="nav.jewellery">Jewellery</a></li>
+          <li><a href="../login.html" data-i18n="header.sign_in">Sign In</a></li>
+          <li><a href="../sell.html" data-i18n="header.list_item">List an Item</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════
+       BREADCRUMB
+  ════════════════════════════════════════════ -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <div class="container">
+      <ol class="breadcrumb__list" role="list">
+        <li class="breadcrumb__item">
+          <a href="../index.html" class="breadcrumb__link" data-i18n="breadcrumb.home">Home</a>
+        </li>
+        <li class="breadcrumb__separator" aria-hidden="true">
+          <svg width="6" height="10" viewBox="0 0 6 10" fill="none" aria-hidden="true" focusable="false">
+            <path d="M1 1l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </li>
+        <li class="breadcrumb__item breadcrumb__item--active" aria-current="page">
+          <span id="category-name" data-i18n="category.name">Category Name</span>
+        </li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════
+       MAIN — PAGE WITH SIDEBAR
+  ════════════════════════════════════════════ -->
+  <main id="main-content" class="page-with-sidebar container" tabindex="-1">
+
+    <!-- Mobile filter toggle (shown only on small screens) -->
+    <button class="filter-toggle-mobile btn-outline" aria-expanded="false" aria-controls="filters-panel" data-i18n="category.show_filters">
+      <svg width="18" height="14" viewBox="0 0 18 14" aria-hidden="true" focusable="false">
+        <path d="M0 1h18M4 7h10M7 13h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      Show Filters
+    </button>
+
+    <!-- ─── LEFT: FILTERS PANEL ─────────────────── -->
+    <aside id="filters-panel" class="filters-panel" aria-label="Listing filters">
+      <div class="filters-panel__header">
+        <h3 class="filters-panel__title" data-i18n="filters.title">Filters</h3>
+        <button class="filters-panel__close" aria-label="Close filters">
+          <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" focusable="false">
+            <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <form class="filters-form" id="filters-form" novalidate>
+
+        <!-- Price Range -->
+        <fieldset class="filter-section">
+          <legend class="filter-section__legend" data-i18n="filters.price_range">Price Range</legend>
+          <div class="filter-section__row">
+            <div class="filter-field">
+              <label for="price-min" data-i18n="filters.price_min">Min ($)</label>
+              <input type="number" id="price-min" name="price_min" class="filter-input" placeholder="0" min="0" />
+            </div>
+            <span class="filter-section__dash" aria-hidden="true">—</span>
+            <div class="filter-field">
+              <label for="price-max" data-i18n="filters.price_max">Max ($)</label>
+              <input type="number" id="price-max" name="price_max" class="filter-input" placeholder="Any" min="0" />
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Location -->
+        <fieldset class="filter-section">
+          <legend class="filter-section__legend" data-i18n="filters.location">Location</legend>
+          <div class="filter-field">
+            <label for="location-country" class="sr-only" data-i18n="filters.country">Country</label>
+            <select id="location-country" name="country" class="filter-select">
+              <option value="" data-i18n="filters.any_country">Any Country</option>
+              <option value="US">United States</option>
+              <option value="GB">United Kingdom</option>
+              <option value="FR">France</option>
+              <option value="DE">Germany</option>
+              <option value="IT">Italy</option>
+              <option value="CH">Switzerland</option>
+              <option value="AE">United Arab Emirates</option>
+              <option value="MC">Monaco</option>
+              <option value="SG">Singapore</option>
+              <option value="HK">Hong Kong</option>
+            </select>
+          </div>
+        </fieldset>
+
+        <!-- ── CARS FILTERS ───────────────────────── -->
+        <fieldset class="filter-section filter-section--category" data-categories="cars">
+          <legend class="filter-section__legend" data-i18n="filters.cars.vehicle_details">Vehicle Details</legend>
+
+          <div class="filter-field">
+            <label for="car-make" data-i18n="filters.cars.make">Make</label>
+            <select id="car-make" name="car_make" class="filter-select">
+              <option value="" data-i18n="filters.any">Any</option>
+              <option value="ferrari">Ferrari</option>
+              <option value="lamborghini">Lamborghini</option>
+              <option value="bentley">Bentley</option>
+              <option value="rolls-royce">Rolls-Royce</option>
+              <option value="porsche">Porsche</option>
+              <option value="mclaren">McLaren</option>
+              <option value="bugatti">Bugatti</option>
+              <option value="aston-martin">Aston Martin</option>
+              <option value="maserati">Maserati</option>
+            </select>
+          </div>
+
+          <div class="filter-field">
+            <label for="car-model" data-i18n="filters.cars.model">Model</label>
+            <select id="car-model" name="car_model" class="filter-select">
+              <option value="" data-i18n="filters.any">Any</option>
+            </select>
+          </div>
+
+          <div class="filter-field">
+            <label data-i18n="filters.cars.year_range">Year</label>
+            <div class="filter-section__row">
+              <select id="car-year-min" name="car_year_min" class="filter-select" aria-label="Minimum year">
+                <option value="" data-i18n="filters.from">From</option>
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+                <option value="2020">2020</option>
+                <option value="2019">2019</option>
+                <option value="2018">2018</option>
+                <option value="2015">2015</option>
+                <option value="2010">2010</option>
+                <option value="2000">2000</option>
+              </select>
+              <span class="filter-section__dash" aria-hidden="true">—</span>
+              <select id="car-year-max" name="car_year_max" class="filter-select" aria-label="Maximum year">
+                <option value="" data-i18n="filters.to">To</option>
+                <option value="2025">2025</option>
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+                <option value="2020">2020</option>
+                <option value="2019">2019</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="filter-field">
+            <label for="car-fuel" data-i18n="filters.cars.fuel_type">Fuel Type</label>
+            <select id="car-fuel" name="car_fuel" class="filter-select">
+              <option value="" data-i18n="filters.any">Any</option>
+              <option value="petrol" data-i18n="filters.cars.fuel.petrol">Petrol</option>
+              <option value="hybrid" data-i18n="filters.cars.fuel.hybrid">Hybrid</option>
+              <option value="electric" data-i18n="filters.cars.fuel.electric">Electric</option>
+              <option value="diesel" data-i18n="filters.cars.fuel.diesel">Diesel</option>
+            </select>
+          </div>
+
+          <div class="filter-field">
+            <label for="car-transmission" data-i18n="filters.cars.transmission">Transmission</label>
+            <select id="car-transmission" name="car_transmission" class="filter-select">
+              <option value="" data-i18n="filters.any">Any</option>
+              <option value="automatic" data-i18n="filters.cars.transmission.automatic">Automatic</option>
+              <option value="manual" data-i18n="filters.cars.transmission.manual">Manual</option>
+              <option value="semi-auto" data-i18n="filters.cars.transmission.semi_auto">Semi-Automatic</option>
+            </select>
+          </div>
+        </fieldset>
+
+        <!-- ── REAL ESTATE FILTERS ────────────────── -->
+        <fieldset class="filter-section filter-section--category" data-categories="real-estate">
+          <legend class="filter-section__legend" data-i18n="filters.real_estate.property_details">Property Details</legend>
+
+          <div class="filter-field">
+            <label for="re-bedrooms" data-i18n="filters.real_estate.bedrooms">Bedrooms</label>
+            <select id="re-bedrooms" name="re_bedrooms" class="filter-select">
+              <option value="" data-i18n="filters.any">Any</option>
+              <option value="1">1+</option>
+              <option value="2">2+</option>
+              <option value="3">3+</option>
+              <option value="4">4+</option>
+              <option value="5">5+</option>
+              <option value="6">6+</option>
+            </select>
+          </div>
+
+          <div class="filter-field">
+            <label for="re-bathrooms" data-i18n="filters.real_estate.bathrooms">Bathrooms</label>
+            <select id="re-bathrooms" name="re_bathrooms" class="filter-select">
+              <option value="" data-i18n="filters.any">Any</option>
+              <option value="1">1+</option>
+              <option value="2">2+</option>
+              <option value="3">3+</option>
+              <option value="4">4+</option>
+              <option value="5">5+</option>
+            </select>
+          </div>
+
+          <div class="filter-field">
+            <label for="re-type" data-i18n="filters.real_estate.property_type">Property Type</label>
+            <select id="re-type" name="re_type" class="filter-select">
+              <option value="" data-i18n="filters.any">Any</option>
+              <option value="villa" data-i18n="filters.real_estate.types.villa">Villa</option>
+              <option value="penthouse" data-i18n="filters.real_estate.types.penthouse">Penthouse</option>
+              <option value="estate" data-i18n="filters.real_estate.types.estate">Estate</option>
+              <option value="chalet" data-i18n="filters.real_estate.types.chalet">Chalet</option>
+              <option value="apartment" data-i18n="filters.real_estate.types.apartment">Apartment</option>
+              <option value="townhouse" data-i18n="filters.real_estate.types.townhouse">Townhouse</option>
+            </select>
+          </div>
+
+          <div class="filter-field">
+            <label for="re-sqft" data-i18n="filters.real_estate.min_sqft">Min Sq Ft</label>
+            <input type="number" id="re-sqft" name="re_sqft_min" class="filter-input" placeholder="e.g. 3000" min="0" />
+          </div>
+        </fieldset>
+
+        <!-- ── YACHTS FILTERS ─────────────────────── -->
+        <fieldset class="filter-section filter-section--category" data-categories="yachts">
+          <legend class="filter-section__legend" data-i18n="filters.yachts.vessel_details">Vessel Details</legend>
+
+          <div class="filter-field">
+            <label for="yacht-builder" data-i18n="filters.yachts.builder">Builder</label>
+            <select id="yacht-builder" name="yacht_builder" class="filter-select">
+              <option value="" data-i18n="filters.any">Any</option>
+              <option value="benetti">Benetti</option>
+              <option value="feadship">Feadship</option>
+              <option value="lurssen">Lürssen</option>
+              <option value="oceanco">Oceanco</option>
+              <option value="heesen">Heesen</option>
+              <option value="sanlorenzo">Sanlorenzo</option>
+              <option value="azimut">Azimut</option>
+              <option value="sunseeker">Sunseeker</option>
+            </select>
+          </div>
+
+          <div class="filter-field">
+            <label data-i18n="filters.yachts.length">Length (m)</label>
+            <div class="filter-section__row">
+              <input type="number" name="yacht_length_min" class="filter-input" placeholder="Min" min="0" aria-label="Minimum length in metres" />
+              <span class="filter-section__dash" aria-hidden="true">—</span>
+              <input type="number" name="yacht_length_max" class="filter-input" placeholder="Max" min="0" aria-label="Maximum length in metres" />
+            </div>
+          </div>
+
+          <div class="filter-field">
+            <label for="yacht-cabins" data-i18n="filters.yachts.cabins">Cabins</label>
+            <select id="yacht-cabins" name="yacht_cabins" class="filter-select">
+              <option value="" data-i18n="filters.any">Any</option>
+              <option value="2">2+</option>
+              <option value="3">3+</option>
+              <option value="4">4+</option>
+              <option value="5">5+</option>
+              <option value="6">6+</option>
+              <option value="8">8+</option>
+            </select>
+          </div>
+        </fieldset>
+
+        <!-- ── WATCHES FILTERS ────────────────────── -->
+        <fieldset class="filter-section filter-section--category" data-categories="watches">
+          <legend class="filter-section__legend" data-i18n="filters.watches.watch_details">Watch Details</legend>
+
+          <div class="filter-field">
+            <label for="watch-brand" data-i18n="filters.watches.brand">Brand</label>
+            <select id="watch-brand" name="watch_brand" class="filter-select">
+              <option value="" data-i18n="filters.any">Any</option>
+              <option value="patek-philippe">Patek Philippe</option>
+              <option value="audemars-piguet">Audemars Piguet</option>
+              <option value="rolex">Rolex</option>
+              <option value="richard-mille">Richard Mille</option>
+              <option value="vacheron-constantin">Vacheron Constantin</option>
+              <option value="a-lange-sohne">A. Lange &amp; Söhne</option>
+              <option value="jaeger-lecoultre">Jaeger-LeCoultre</option>
+              <option value="breguet">Breguet</option>
+            </select>
+          </div>
+
+          <div class="filter-field">
+            <label for="watch-movement" data-i18n="filters.watches.movement">Movement</label>
+            <select id="watch-movement" name="watch_movement" class="filter-select">
+              <option value="" data-i18n="filters.any">Any</option>
+              <option value="manual" data-i18n="filters.watches.movements.manual">Manual</option>
+              <option value="automatic" data-i18n="filters.watches.movements.automatic">Automatic</option>
+              <option value="quartz" data-i18n="filters.watches.movements.quartz">Quartz</option>
+              <option value="tourbillon" data-i18n="filters.watches.movements.tourbillon">Tourbillon</option>
+            </select>
+          </div>
+
+          <div class="filter-field">
+            <label for="watch-case-material" data-i18n="filters.watches.case_material">Case Material</label>
+            <select id="watch-case-material" name="watch_case_material" class="filter-select">
+              <option value="" data-i18n="filters.any">Any</option>
+              <option value="stainless-steel" data-i18n="filters.watches.materials.stainless">Stainless Steel</option>
+              <option value="rose-gold" data-i18n="filters.watches.materials.rose_gold">Rose Gold</option>
+              <option value="yellow-gold" data-i18n="filters.watches.materials.yellow_gold">Yellow Gold</option>
+              <option value="white-gold" data-i18n="filters.watches.materials.white_gold">White Gold</option>
+              <option value="platinum" data-i18n="filters.watches.materials.platinum">Platinum</option>
+              <option value="titanium" data-i18n="filters.watches.materials.titanium">Titanium</option>
+              <option value="ceramic" data-i18n="filters.watches.materials.ceramic">Ceramic</option>
+            </select>
+          </div>
+        </fieldset>
+
+        <!-- Filter Actions -->
+        <div class="filter-actions">
+          <button type="submit" class="btn-gold filter-actions__apply" data-i18n="filters.apply">Apply Filters</button>
+          <button type="reset" class="btn-outline filter-actions__reset" data-i18n="filters.reset">Reset</button>
+        </div>
+
+      </form>
+    </aside>
+
+    <!-- ─── RIGHT: MAIN CONTENT ───────────────────── -->
+    <section class="category-content" aria-label="Listing results">
+
+      <!-- Grid Controls -->
+      <div class="grid-controls">
+        <p class="grid-controls__count">
+          <span id="results-count" data-i18n="category.results_count">—</span>
+          <span data-i18n="category.results_label"> listings found</span>
+        </p>
+        <div class="grid-controls__sort">
+          <label for="sort-select" data-i18n="category.sort_label">Sort by:</label>
+          <select id="sort-select" name="sort" class="filter-select filter-select--inline">
+            <option value="relevance" data-i18n="category.sort.relevance">Relevance</option>
+            <option value="price-asc" data-i18n="category.sort.price_asc">Price: Low to High</option>
+            <option value="price-desc" data-i18n="category.sort.price_desc">Price: High to Low</option>
+            <option value="newest" data-i18n="category.sort.newest">Newest First</option>
+            <option value="oldest" data-i18n="category.sort.oldest">Oldest First</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Listings Grid -->
+      <div class="listings-grid" id="listings-grid">
+
+        <!-- Card 1 -->
+        <article class="listing-card" aria-label="Listing placeholder 1">
+          <a href="listing-detail.html" class="listing-card__image-link" tabindex="-1" aria-hidden="true">
+            <div class="listing-card__image listing-card__image--placeholder"></div>
+          </a>
+          <div class="listing-card__body">
+            <span class="listing-card__badge" data-i18n="card.badge.featured">Featured</span>
+            <h3 class="listing-card__title">
+              <a href="listing-detail.html" data-i18n="card.placeholder_title">Placeholder Listing Title</a>
+            </h3>
+            <p class="listing-card__meta" data-i18n="card.placeholder_meta">Location, Country</p>
+            <p class="listing-card__price" data-i18n="card.placeholder_price">$0,000,000</p>
+          </div>
+          <div class="listing-card__actions">
+            <button class="listing-card__save" aria-label="Save listing" data-i18n-aria="card.save_aria">
+              <svg width="18" height="16" viewBox="0 0 18 16" fill="none" aria-hidden="true" focusable="false">
+                <path d="M9 14.5S1 9.5 1 4.5A4 4 0 019 2.18 4 4 0 0117 4.5c0 5-8 10-8 10z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="listing-card" aria-label="Listing placeholder 2">
+          <a href="listing-detail.html" class="listing-card__image-link" tabindex="-1" aria-hidden="true">
+            <div class="listing-card__image listing-card__image--placeholder"></div>
+          </a>
+          <div class="listing-card__body">
+            <span class="listing-card__badge listing-card__badge--new" data-i18n="card.badge.new">New</span>
+            <h3 class="listing-card__title">
+              <a href="listing-detail.html" data-i18n="card.placeholder_title">Placeholder Listing Title</a>
+            </h3>
+            <p class="listing-card__meta" data-i18n="card.placeholder_meta">Location, Country</p>
+            <p class="listing-card__price" data-i18n="card.placeholder_price">$0,000,000</p>
+          </div>
+          <div class="listing-card__actions">
+            <button class="listing-card__save" aria-label="Save listing" data-i18n-aria="card.save_aria">
+              <svg width="18" height="16" viewBox="0 0 18 16" fill="none" aria-hidden="true" focusable="false">
+                <path d="M9 14.5S1 9.5 1 4.5A4 4 0 019 2.18 4 4 0 0117 4.5c0 5-8 10-8 10z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="listing-card" aria-label="Listing placeholder 3">
+          <a href="listing-detail.html" class="listing-card__image-link" tabindex="-1" aria-hidden="true">
+            <div class="listing-card__image listing-card__image--placeholder"></div>
+          </a>
+          <div class="listing-card__body">
+            <h3 class="listing-card__title">
+              <a href="listing-detail.html" data-i18n="card.placeholder_title">Placeholder Listing Title</a>
+            </h3>
+            <p class="listing-card__meta" data-i18n="card.placeholder_meta">Location, Country</p>
+            <p class="listing-card__price" data-i18n="card.placeholder_price">$0,000,000</p>
+          </div>
+          <div class="listing-card__actions">
+            <button class="listing-card__save" aria-label="Save listing" data-i18n-aria="card.save_aria">
+              <svg width="18" height="16" viewBox="0 0 18 16" fill="none" aria-hidden="true" focusable="false">
+                <path d="M9 14.5S1 9.5 1 4.5A4 4 0 019 2.18 4 4 0 0117 4.5c0 5-8 10-8 10z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="listing-card" aria-label="Listing placeholder 4">
+          <a href="listing-detail.html" class="listing-card__image-link" tabindex="-1" aria-hidden="true">
+            <div class="listing-card__image listing-card__image--placeholder"></div>
+          </a>
+          <div class="listing-card__body">
+            <span class="listing-card__badge" data-i18n="card.badge.featured">Featured</span>
+            <h3 class="listing-card__title">
+              <a href="listing-detail.html" data-i18n="card.placeholder_title">Placeholder Listing Title</a>
+            </h3>
+            <p class="listing-card__meta" data-i18n="card.placeholder_meta">Location, Country</p>
+            <p class="listing-card__price" data-i18n="card.placeholder_price">$0,000,000</p>
+          </div>
+          <div class="listing-card__actions">
+            <button class="listing-card__save" aria-label="Save listing" data-i18n-aria="card.save_aria">
+              <svg width="18" height="16" viewBox="0 0 18 16" fill="none" aria-hidden="true" focusable="false">
+                <path d="M9 14.5S1 9.5 1 4.5A4 4 0 019 2.18 4 4 0 0117 4.5c0 5-8 10-8 10z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </article>
+
+        <!-- Card 5 -->
+        <article class="listing-card" aria-label="Listing placeholder 5">
+          <a href="listing-detail.html" class="listing-card__image-link" tabindex="-1" aria-hidden="true">
+            <div class="listing-card__image listing-card__image--placeholder"></div>
+          </a>
+          <div class="listing-card__body">
+            <h3 class="listing-card__title">
+              <a href="listing-detail.html" data-i18n="card.placeholder_title">Placeholder Listing Title</a>
+            </h3>
+            <p class="listing-card__meta" data-i18n="card.placeholder_meta">Location, Country</p>
+            <p class="listing-card__price" data-i18n="card.placeholder_price">$0,000,000</p>
+          </div>
+          <div class="listing-card__actions">
+            <button class="listing-card__save" aria-label="Save listing" data-i18n-aria="card.save_aria">
+              <svg width="18" height="16" viewBox="0 0 18 16" fill="none" aria-hidden="true" focusable="false">
+                <path d="M9 14.5S1 9.5 1 4.5A4 4 0 019 2.18 4 4 0 0117 4.5c0 5-8 10-8 10z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </article>
+
+        <!-- Card 6 -->
+        <article class="listing-card" aria-label="Listing placeholder 6">
+          <a href="listing-detail.html" class="listing-card__image-link" tabindex="-1" aria-hidden="true">
+            <div class="listing-card__image listing-card__image--placeholder"></div>
+          </a>
+          <div class="listing-card__body">
+            <span class="listing-card__badge listing-card__badge--new" data-i18n="card.badge.new">New</span>
+            <h3 class="listing-card__title">
+              <a href="listing-detail.html" data-i18n="card.placeholder_title">Placeholder Listing Title</a>
+            </h3>
+            <p class="listing-card__meta" data-i18n="card.placeholder_meta">Location, Country</p>
+            <p class="listing-card__price" data-i18n="card.placeholder_price">$0,000,000</p>
+          </div>
+          <div class="listing-card__actions">
+            <button class="listing-card__save" aria-label="Save listing" data-i18n-aria="card.save_aria">
+              <svg width="18" height="16" viewBox="0 0 18 16" fill="none" aria-hidden="true" focusable="false">
+                <path d="M9 14.5S1 9.5 1 4.5A4 4 0 019 2.18 4 4 0 0117 4.5c0 5-8 10-8 10z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </article>
+
+        <!-- Card 7 -->
+        <article class="listing-card" aria-label="Listing placeholder 7">
+          <a href="listing-detail.html" class="listing-card__image-link" tabindex="-1" aria-hidden="true">
+            <div class="listing-card__image listing-card__image--placeholder"></div>
+          </a>
+          <div class="listing-card__body">
+            <h3 class="listing-card__title">
+              <a href="listing-detail.html" data-i18n="card.placeholder_title">Placeholder Listing Title</a>
+            </h3>
+            <p class="listing-card__meta" data-i18n="card.placeholder_meta">Location, Country</p>
+            <p class="listing-card__price" data-i18n="card.placeholder_price">$0,000,000</p>
+          </div>
+          <div class="listing-card__actions">
+            <button class="listing-card__save" aria-label="Save listing" data-i18n-aria="card.save_aria">
+              <svg width="18" height="16" viewBox="0 0 18 16" fill="none" aria-hidden="true" focusable="false">
+                <path d="M9 14.5S1 9.5 1 4.5A4 4 0 019 2.18 4 4 0 0117 4.5c0 5-8 10-8 10z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </article>
+
+        <!-- Card 8 -->
+        <article class="listing-card" aria-label="Listing placeholder 8">
+          <a href="listing-detail.html" class="listing-card__image-link" tabindex="-1" aria-hidden="true">
+            <div class="listing-card__image listing-card__image--placeholder"></div>
+          </a>
+          <div class="listing-card__body">
+            <span class="listing-card__badge" data-i18n="card.badge.featured">Featured</span>
+            <h3 class="listing-card__title">
+              <a href="listing-detail.html" data-i18n="card.placeholder_title">Placeholder Listing Title</a>
+            </h3>
+            <p class="listing-card__meta" data-i18n="card.placeholder_meta">Location, Country</p>
+            <p class="listing-card__price" data-i18n="card.placeholder_price">$0,000,000</p>
+          </div>
+          <div class="listing-card__actions">
+            <button class="listing-card__save" aria-label="Save listing" data-i18n-aria="card.save_aria">
+              <svg width="18" height="16" viewBox="0 0 18 16" fill="none" aria-hidden="true" focusable="false">
+                <path d="M9 14.5S1 9.5 1 4.5A4 4 0 019 2.18 4 4 0 0117 4.5c0 5-8 10-8 10z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </article>
+
+        <!-- Card 9 -->
+        <article class="listing-card" aria-label="Listing placeholder 9">
+          <a href="listing-detail.html" class="listing-card__image-link" tabindex="-1" aria-hidden="true">
+            <div class="listing-card__image listing-card__image--placeholder"></div>
+          </a>
+          <div class="listing-card__body">
+            <h3 class="listing-card__title">
+              <a href="listing-detail.html" data-i18n="card.placeholder_title">Placeholder Listing Title</a>
+            </h3>
+            <p class="listing-card__meta" data-i18n="card.placeholder_meta">Location, Country</p>
+            <p class="listing-card__price" data-i18n="card.placeholder_price">$0,000,000</p>
+          </div>
+          <div class="listing-card__actions">
+            <button class="listing-card__save" aria-label="Save listing" data-i18n-aria="card.save_aria">
+              <svg width="18" height="16" viewBox="0 0 18 16" fill="none" aria-hidden="true" focusable="false">
+                <path d="M9 14.5S1 9.5 1 4.5A4 4 0 019 2.18 4 4 0 0117 4.5c0 5-8 10-8 10z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </article>
+
+      </div><!-- /.listings-grid -->
+
+      <!-- Pagination -->
+      <nav class="pagination" aria-label="Listings pagination">
+        <ul class="pagination__list" role="list">
+          <li class="pagination__item">
+            <a href="?page=0" class="pagination__link pagination__link--prev" rel="prev" aria-label="Previous page" data-i18n="pagination.previous">
+              <svg width="8" height="14" viewBox="0 0 8 14" fill="none" aria-hidden="true" focusable="false">
+                <path d="M7 1L1 7l6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Previous
+            </a>
+          </li>
+          <li class="pagination__item">
+            <a href="?page=1" class="pagination__link pagination__link--active" aria-current="page">1</a>
+          </li>
+          <li class="pagination__item">
+            <a href="?page=2" class="pagination__link">2</a>
+          </li>
+          <li class="pagination__item">
+            <a href="?page=3" class="pagination__link">3</a>
+          </li>
+          <li class="pagination__item pagination__item--ellipsis" aria-hidden="true">
+            <span class="pagination__ellipsis">…</span>
+          </li>
+          <li class="pagination__item">
+            <a href="?page=2" class="pagination__link pagination__link--next" rel="next" aria-label="Next page" data-i18n="pagination.next">
+              Next
+              <svg width="8" height="14" viewBox="0 0 8 14" fill="none" aria-hidden="true" focusable="false">
+                <path d="M1 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+    </section><!-- /.category-content -->
+
+  </main>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════════ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="site-footer__inner container">
+
+      <div class="site-footer__brand">
+        <a href="../index.html" class="site-footer__logo" aria-label="LUXMARKET homepage">
+          <span class="logo-mark">LUX</span><span class="logo-wordmark">MARKET</span>
+        </a>
+        <p class="site-footer__tagline" data-i18n="footer.tagline">The world's premier luxury marketplace.</p>
+        <div class="site-footer__social">
+          <a href="https://instagram.com" class="social-link" aria-label="Follow us on Instagram" rel="noopener noreferrer" target="_blank">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+              <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+            </svg>
+          </a>
+          <a href="https://linkedin.com" class="social-link" aria-label="Connect on LinkedIn" rel="noopener noreferrer" target="_blank">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+              <rect x="2" y="2" width="20" height="20" rx="3" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M7 10v7M7 7v.5M11 17v-4a2 2 0 014 0v4M11 10v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <a href="https://twitter.com" class="social-link" aria-label="Follow us on X (Twitter)" rel="noopener noreferrer" target="_blank">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+              <path d="M4 4l16 16M4 20L20 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <nav class="site-footer__nav" aria-label="Footer navigation">
+        <div class="site-footer__col">
+          <h4 class="site-footer__col-heading" data-i18n="footer.categories">Categories</h4>
+          <ul role="list">
+            <li><a href="category.html?cat=cars" data-i18n="nav.cars">Cars</a></li>
+            <li><a href="category.html?cat=real-estate" data-i18n="nav.real_estate">Real Estate</a></li>
+            <li><a href="category.html?cat=yachts" data-i18n="nav.yachts">Yachts</a></li>
+            <li><a href="category.html?cat=watches" data-i18n="nav.watches">Watches</a></li>
+            <li><a href="category.html?cat=art" data-i18n="nav.art">Art</a></li>
+            <li><a href="category.html?cat=jewellery" data-i18n="nav.jewellery">Jewellery</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__col">
+          <h4 class="site-footer__col-heading" data-i18n="footer.company">Company</h4>
+          <ul role="list">
+            <li><a href="../about.html" data-i18n="footer.about">About Us</a></li>
+            <li><a href="../careers.html" data-i18n="footer.careers">Careers</a></li>
+            <li><a href="../press.html" data-i18n="footer.press">Press</a></li>
+            <li><a href="../contact.html" data-i18n="footer.contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__col">
+          <h4 class="site-footer__col-heading" data-i18n="footer.support">Support</h4>
+          <ul role="list">
+            <li><a href="../help.html" data-i18n="footer.help">Help Centre</a></li>
+            <li><a href="../sell.html" data-i18n="footer.sell">Sell with Us</a></li>
+            <li><a href="../privacy.html" data-i18n="footer.privacy">Privacy Policy</a></li>
+            <li><a href="../terms.html" data-i18n="footer.terms">Terms of Service</a></li>
+          </ul>
+        </div>
+      </nav>
+
+    </div>
+
+    <div class="site-footer__bottom">
+      <div class="container">
+        <p class="site-footer__copyright" data-i18n="footer.copyright">&copy; 2026 LUXMARKET. All rights reserved.</p>
+        <p class="site-footer__legal" data-i18n="footer.legal">All listings are provided for informational purposes only.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════
+       SCRIPTS
+  ════════════════════════════════════════════ -->
+  <script src="../js/cookies.js"></script>
+  <script src="../js/i18n.js"></script>
+  <script src="../js/main.js"></script>
+
+</body>
+</html>
