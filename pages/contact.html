@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact LUXMARKET - Get in touch with our team for inquiries about luxury listings, dealer partnerships, and more.">
+  <title>Contact Us - LUXMARKET</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="stylesheet" href="../css/animations.css">
+</head>
+<body>
+
+  <!-- COOKIE CONSENT BANNER -->
+  <div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Cookie consent">
+    <div class="cookie-banner__inner">
+      <div class="cookie-banner__content">
+        <h3 data-i18n="cookie.title">We Value Your Privacy</h3>
+        <p data-i18n="cookie.description">This website uses essential technical cookies to ensure proper functionality, and optional analytics cookies to help us understand how visitors use our platform. No personal data is sold to third parties.</p>
+        <div class="cookie-banner__customize" id="cookie-customize" hidden>
+          <label class="cookie-toggle"><input type="checkbox" checked disabled> Essential (Required)</label>
+          <label class="cookie-toggle"><input type="checkbox" id="cookie-analytics"> Analytics</label>
+          <label class="cookie-toggle"><input type="checkbox" id="cookie-marketing"> Marketing</label>
+        </div>
+      </div>
+      <div class="cookie-banner__actions">
+        <button class="btn btn-outline" id="cookie-essential" data-i18n="cookie.essential">Essential Only</button>
+        <button class="btn btn-outline" id="cookie-customize-btn" data-i18n="cookie.customize">Customize</button>
+        <button class="btn btn-gold" id="cookie-accept" data-i18n="cookie.accept">Accept All</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-top">
+      <a href="../index.html" class="logo" aria-label="Home">
+        <span class="logo-text">LUX<span class="logo-accent">MARKET</span></span>
+      </a>
+      <div class="header-actions">
+        <div class="language-switcher" id="lang-switcher">
+          <button class="lang-toggle" aria-expanded="false" aria-haspopup="true">
+            <span class="lang-code">EN</span>
+            <svg class="chevron" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <ul class="lang-dropdown" role="menu">
+            <li><button role="menuitem" data-lang="en"><span class="lang-code">EN</span> English</button></li>
+            <li><button role="menuitem" data-lang="it"><span class="lang-code">IT</span> Italiano</button></li>
+            <li><button role="menuitem" data-lang="fr"><span class="lang-code">FR</span> Français</button></li>
+            <li><button role="menuitem" data-lang="de"><span class="lang-code">DE</span> Deutsch</button></li>
+            <li><button role="menuitem" data-lang="es"><span class="lang-code">ES</span> Español</button></li>
+            <li><button role="menuitem" data-lang="pt"><span class="lang-code">PT</span> Português</button></li>
+            <li><button role="menuitem" data-lang="ar"><span class="lang-code">AR</span> العربية</button></li>
+            <li><button role="menuitem" data-lang="zh"><span class="lang-code">ZH</span> 中文</button></li>
+            <li><button role="menuitem" data-lang="ja"><span class="lang-code">JA</span> 日本語</button></li>
+            <li><button role="menuitem" data-lang="ru"><span class="lang-code">RU</span> Русский</button></li>
+          </ul>
+        </div>
+        <a href="#" class="btn btn-outline">Sign In</a>
+        <a href="dealer-plans.html" class="btn btn-gold">List Your Item</a>
+      </div>
+      <button class="mobile-menu-btn" aria-label="Toggle menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+    <nav class="category-bar" aria-label="Browse categories">
+      <ul class="category-list">
+        <li><a href="category.html?cat=real-estate" data-i18n="nav.real_estate">Real Estate</a></li>
+        <li><a href="category.html?cat=cars" data-i18n="nav.cars">Cars</a></li>
+        <li><a href="category.html?cat=yachts" data-i18n="nav.yachts">Yachts</a></li>
+        <li><a href="category.html?cat=jets" data-i18n="nav.jets">Jets</a></li>
+        <li><a href="category.html?cat=watches" data-i18n="nav.watches">Watches</a></li>
+        <li><a href="category.html?cat=jewelry" data-i18n="nav.jewelry">Jewelry</a></li>
+        <li><a href="category.html?cat=motorcycles" data-i18n="nav.motorcycles">Motorcycles</a></li>
+        <li><a href="category.html?cat=helicopters" data-i18n="nav.helicopters">Helicopters</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <a href="../index.html" data-i18n="nav.home">Home</a>
+    <span>/</span>
+    <span data-i18n="nav.contact">Contact</span>
+  </div>
+
+  <!-- CONTACT PAGE -->
+  <div class="contact-page">
+    <div class="contact-form" data-animate="fade-up">
+      <h2 data-i18n="contact.form_title">Get In Touch</h2>
+      <form id="contact-form">
+        <div class="form-group">
+          <label for="contact-name" data-i18n="contact.name">Full Name</label>
+          <input type="text" id="contact-name" class="input" placeholder="Your full name" data-i18n-attr="placeholder" data-i18n="contact.name_placeholder">
+        </div>
+        <div class="form-group">
+          <label for="contact-email" data-i18n="contact.email">Email Address</label>
+          <input type="email" id="contact-email" class="input" placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+          <label for="contact-phone" data-i18n="contact.phone">Phone Number</label>
+          <input type="tel" id="contact-phone" class="input" placeholder="+1 (000) 000-0000">
+        </div>
+        <div class="form-group">
+          <label for="contact-subject" data-i18n="contact.subject">Subject</label>
+          <select id="contact-subject" class="select">
+            <option value="" data-i18n="contact.select_subject">Select a subject</option>
+            <option value="general" data-i18n="contact.subject_general">General Inquiry</option>
+            <option value="dealer" data-i18n="contact.subject_dealer">Dealer Partnership</option>
+            <option value="listing" data-i18n="contact.subject_listing">Listing Question</option>
+            <option value="support" data-i18n="contact.subject_support">Technical Support</option>
+            <option value="press" data-i18n="contact.subject_press">Press & Media</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="contact-message" data-i18n="contact.message">Message</label>
+          <textarea id="contact-message" class="textarea" placeholder="How can we help you?" data-i18n-attr="placeholder" data-i18n="contact.message_placeholder"></textarea>
+        </div>
+        <button type="submit" class="btn btn-gold btn-lg" data-i18n="contact.send">Send Message</button>
+      </form>
+    </div>
+
+    <div class="contact-info" data-animate="fade-up">
+      <h2 data-i18n="contact.info_title">Contact Information</h2>
+
+      <div class="contact-info-item">
+        <div class="icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <div>
+          <h4 data-i18n="contact.phone_label">Phone</h4>
+          <p>+41 22 000 0000</p>
+        </div>
+      </div>
+
+      <div class="contact-info-item">
+        <div class="icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div>
+          <h4 data-i18n="contact.email_label">Email</h4>
+          <p>concierge@luxmarket.com</p>
+        </div>
+      </div>
+
+      <div class="contact-info-item">
+        <div class="icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div>
+          <h4 data-i18n="contact.address_label">Address</h4>
+          <p>7 Rue du Marché, 1204 Geneva, Switzerland</p>
+        </div>
+      </div>
+
+      <div class="contact-info-item">
+        <div class="icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div>
+          <h4 data-i18n="contact.hours_label">Business Hours</h4>
+          <p>Mon–Fri: 9:00 AM – 6:00 PM CET<br>Sat: 10:00 AM – 2:00 PM CET</p>
+        </div>
+      </div>
+
+      <div class="map-placeholder">
+        <span data-i18n="contact.map_placeholder">Map Placeholder</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3>LUX<span class="logo-accent">MARKET</span></h3>
+        <p data-i18n="footer.description">The world's premier marketplace for luxury goods. Connecting discerning buyers with verified dealers since 2024.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.categories">Categories</h4>
+        <ul>
+          <li><a href="category.html?cat=real-estate" data-i18n="nav.real_estate">Real Estate</a></li>
+          <li><a href="category.html?cat=cars" data-i18n="nav.cars">Cars</a></li>
+          <li><a href="category.html?cat=yachts" data-i18n="nav.yachts">Yachts</a></li>
+          <li><a href="category.html?cat=jets" data-i18n="nav.jets">Jets</a></li>
+          <li><a href="category.html?cat=watches" data-i18n="nav.watches">Watches</a></li>
+          <li><a href="category.html?cat=jewelry" data-i18n="nav.jewelry">Jewelry</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.for_dealers">For Dealers</h4>
+        <ul>
+          <li><a href="dealer-plans.html" data-i18n="footer.pricing">Pricing Plans</a></li>
+          <li><a href="dealer-dashboard.html" data-i18n="footer.dashboard">Dashboard</a></li>
+          <li><a href="#" data-i18n="footer.api">API Documentation</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.contact">Contact</h4>
+        <p>Phone: +41 22 000 0000</p>
+        <p>Email: concierge@luxmarket.com</p>
+        <p>7 Rue du Marché, 1204 Geneva, Switzerland</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 LUXMARKET. All rights reserved.</p>
+      <ul class="footer-legal">
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../js/cookies.js"></script>
+  <script src="../js/i18n.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

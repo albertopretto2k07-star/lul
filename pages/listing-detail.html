@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="View luxury listing details on LUXMARKET — the world's premier luxury marketplace.">
+  <title>Listing Detail — LUXMARKET</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="stylesheet" href="../css/animations.css">
+</head>
+<body>
+
+  <!-- COOKIE CONSENT BANNER -->
+  <div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Cookie consent">
+    <div class="cookie-banner__inner">
+      <div class="cookie-banner__content">
+        <h3 data-i18n="cookie.title">We Value Your Privacy</h3>
+        <p data-i18n="cookie.description">This website uses essential technical cookies to ensure proper functionality, and optional analytics cookies to help us understand how visitors use our platform.</p>
+        <div class="cookie-banner__customize" id="cookie-customize" hidden>
+          <label class="cookie-toggle"><input type="checkbox" checked disabled> Essential (Required)</label>
+          <label class="cookie-toggle"><input type="checkbox" id="cookie-analytics"> Analytics</label>
+          <label class="cookie-toggle"><input type="checkbox" id="cookie-marketing"> Marketing</label>
+        </div>
+      </div>
+      <div class="cookie-banner__actions">
+        <button class="btn btn-outline" id="cookie-essential" data-i18n="cookie.essential">Essential Only</button>
+        <button class="btn btn-outline" id="cookie-customize-btn" data-i18n="cookie.customize">Customize</button>
+        <button class="btn btn-gold" id="cookie-accept" data-i18n="cookie.accept">Accept All</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-top">
+      <a href="../index.html" class="logo" aria-label="Home">
+        <span class="logo-text">LUX<span class="logo-accent">MARKET</span></span>
+      </a>
+      <div class="header-actions">
+        <div class="language-switcher" id="lang-switcher">
+          <button class="lang-toggle" aria-expanded="false" aria-haspopup="true">
+            <span class="lang-code">EN</span>
+            <svg class="chevron" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <ul class="lang-dropdown" role="menu">
+            <li><button role="menuitem" data-lang="en"><span class="lang-code">EN</span> English</button></li>
+            <li><button role="menuitem" data-lang="it"><span class="lang-code">IT</span> Italiano</button></li>
+            <li><button role="menuitem" data-lang="fr"><span class="lang-code">FR</span> Français</button></li>
+            <li><button role="menuitem" data-lang="de"><span class="lang-code">DE</span> Deutsch</button></li>
+            <li><button role="menuitem" data-lang="es"><span class="lang-code">ES</span> Español</button></li>
+            <li><button role="menuitem" data-lang="ar"><span class="lang-code">AR</span> العربية</button></li>
+            <li><button role="menuitem" data-lang="zh"><span class="lang-code">ZH</span> 中文</button></li>
+            <li><button role="menuitem" data-lang="ja"><span class="lang-code">JA</span> 日本語</button></li>
+          </ul>
+        </div>
+        <a href="#" class="btn btn-outline">Sign In</a>
+        <a href="dealer-plans.html" class="btn btn-gold">List Your Item</a>
+      </div>
+      <button class="mobile-menu-btn" aria-label="Toggle menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+    <nav class="category-bar" aria-label="Browse categories">
+      <ul class="category-list">
+        <li><a href="category.html?cat=real-estate" data-i18n="nav.real_estate">Real Estate</a></li>
+        <li><a href="category.html?cat=cars" data-i18n="nav.cars">Cars</a></li>
+        <li><a href="category.html?cat=yachts" data-i18n="nav.yachts">Yachts</a></li>
+        <li><a href="category.html?cat=jets" data-i18n="nav.jets">Jets</a></li>
+        <li><a href="category.html?cat=watches" data-i18n="nav.watches">Watches</a></li>
+        <li><a href="category.html?cat=jewelry" data-i18n="nav.jewelry">Jewelry</a></li>
+        <li><a href="category.html?cat=motorcycles" data-i18n="nav.motorcycles">Motorcycles</a></li>
+        <li><a href="category.html?cat=helicopters" data-i18n="nav.helicopters">Helicopters</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <a href="../index.html" data-i18n="nav.home">Home</a>
+    <span>/</span>
+    <a href="category.html" id="breadcrumb-category">Category</a>
+    <span>/</span>
+    <span id="breadcrumb-title">Listing Detail</span>
+  </div>
+
+  <!-- LISTING DETAIL -->
+  <main class="listing-detail container">
+
+    <!-- Gallery Section -->
+    <section class="gallery" data-animate="fade-up">
+      <div class="gallery-main">
+        <div class="gallery-main__image image-placeholder">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path d="M21 15l-5-5L5 21"/>
+          </svg>
+          <span>Primary Image</span>
+        </div>
+        <button class="gallery-nav gallery-nav--prev" aria-label="Previous image">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="gallery-nav gallery-nav--next" aria-label="Next image">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+        <span class="gallery-counter">1 of 8</span>
+      </div>
+      <div class="gallery-thumbs">
+        <button class="gallery-thumb active" aria-label="Image 1">
+          <div class="image-placeholder image-placeholder--sm"><span>1</span></div>
+        </button>
+        <button class="gallery-thumb" aria-label="Image 2">
+          <div class="image-placeholder image-placeholder--sm"><span>2</span></div>
+        </button>
+        <button class="gallery-thumb" aria-label="Image 3">
+          <div class="image-placeholder image-placeholder--sm"><span>3</span></div>
+        </button>
+        <button class="gallery-thumb" aria-label="Image 4">
+          <div class="image-placeholder image-placeholder--sm"><span>4</span></div>
+        </button>
+        <button class="gallery-thumb" aria-label="Image 5">
+          <div class="image-placeholder image-placeholder--sm"><span>5</span></div>
+        </button>
+        <button class="gallery-thumb" aria-label="Image 6">
+          <div class="image-placeholder image-placeholder--sm"><span>6</span></div>
+        </button>
+        <button class="gallery-thumb" aria-label="Image 7">
+          <div class="image-placeholder image-placeholder--sm"><span>7</span></div>
+        </button>
+        <button class="gallery-thumb" aria-label="Image 8">
+          <div class="image-placeholder image-placeholder--sm"><span>8</span></div>
+        </button>
+      </div>
+    </section>
+
+    <!-- Detail Content -->
+    <div class="detail-layout">
+
+      <!-- Left: Listing Info -->
+      <div class="detail-main" data-animate="fade-up">
+
+        <div class="detail-header">
+          <div class="detail-header__badges">
+            <span class="badge badge--featured">Featured</span>
+            <span class="badge badge--verified">Verified Dealer</span>
+          </div>
+          <h1 class="detail-header__title">2024 Ferrari SF90 Stradale Assetto Fiorano</h1>
+          <p class="detail-header__location">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Monaco, Monte Carlo
+          </p>
+          <p class="detail-header__price">$892,000</p>
+          <p class="detail-header__price-note">Price excludes applicable taxes and fees</p>
+        </div>
+
+        <!-- Key Specs -->
+        <div class="detail-specs-bar">
+          <div class="spec-item">
+            <span class="spec-item__label">Year</span>
+            <span class="spec-item__value">2024</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-item__label">Mileage</span>
+            <span class="spec-item__value">1,200 km</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-item__label">Engine</span>
+            <span class="spec-item__value">4.0L V8 Hybrid</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-item__label">Power</span>
+            <span class="spec-item__value">986 HP</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-item__label">Transmission</span>
+            <span class="spec-item__value">8-Speed DCT</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-item__label">Drive</span>
+            <span class="spec-item__value">AWD</span>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <section class="detail-section">
+          <h2 data-i18n="detail.description">Description</h2>
+          <div class="detail-description">
+            <p>This exceptional 2024 Ferrari SF90 Stradale with the coveted Assetto Fiorano package represents the pinnacle of Ferrari's engineering prowess. Finished in Rosso Corsa with a Nero interior, this hybrid supercar combines a twin-turbocharged V8 with three electric motors to produce a staggering 986 horsepower.</p>
+            <p>The Assetto Fiorano package adds Multimatic shock absorbers, high downforce carbon fibre rear spoiler, front splitter, and underbody, titanium exhaust with Inconel pipes, and carbon fibre door panels — shedding 30 kg from the standard SF90.</p>
+            <p>Delivered new through an authorised Ferrari dealer in Monaco, this example has covered just 1,200 km from new. Full Ferrari service history with the next service not due until 2026. The car comes with its complete accessory package including indoor car cover, battery charger, and tool kit.</p>
+          </div>
+        </section>
+
+        <!-- Technical Specifications -->
+        <section class="detail-section">
+          <h2 data-i18n="detail.specifications">Technical Specifications</h2>
+          <div class="specs-grid">
+            <div class="specs-grid__item">
+              <span class="specs-grid__label">Make</span>
+              <span class="specs-grid__value">Ferrari</span>
+            </div>
+            <div class="specs-grid__item">
+              <span class="specs-grid__label">Model</span>
+              <span class="specs-grid__value">SF90 Stradale</span>
+            </div>
+            <div class="specs-grid__item">
+              <span class="specs-grid__label">Package</span>
+              <span class="specs-grid__value">Assetto Fiorano</span>
+            </div>
+            <div class="specs-grid__item">
+              <span class="specs-grid__label">Year</span>
+              <span class="specs-grid__value">2024</span>
+            </div>
+            <div class="specs-grid__item">
+              <span class="specs-grid__label">Mileage</span>
+              <span class="specs-grid__value">1,200 km</span>
+            </div>
+            <div class="specs-grid__item">
+              <span class="specs-grid__label">Engine</span>
+              <span class="specs-grid__value">4.0L Twin-Turbo V8 + 3 Electric Motors</span>
+            </div>
+            <div class="specs-grid__item">
+              <span class="specs-grid__label">Power Output</span>
+              <span class="specs-grid__value">986 HP (735 kW)</span>
+            </div>
+            <div class="specs-grid__item">
+              <span class="specs-grid__label">Torque</span>
+              <span class="specs-grid__value">800 Nm</span>
+            </div>
+            <div class="specs-grid__item">
+              <span class="specs-grid__label">0-100 km/h</span>
+              <span class="specs-grid__value">2.5 seconds</span>
+            </div>
+            <div class="specs-grid__item">
+              <span class="specs-grid__label">Top Speed</span>
+              <span class="specs-grid__value">340 km/h</span>
+            </div>
+            <div class="specs-grid__item">
+              <span class="specs-grid__label">Transmission</span>
+              <span class="specs-grid__value">8-Speed Dual Clutch</span>
+            </div>
+            <div class="specs-grid__item">
+              <span class="specs-grid__label">Drivetrain</span>
+              <span class="specs-grid__value">All-Wheel Drive</span>
+            </div>
+            <div class="specs-grid__item">
+              <span class="specs-grid__label">Exterior Colour</span>
+              <span class="specs-grid__value">Rosso Corsa</span>
+            </div>
+            <div class="specs-grid__item">
+              <span class="specs-grid__label">Interior Colour</span>
+              <span class="specs-grid__value">Nero Alcantara</span>
+            </div>
+            <div class="specs-grid__item">
+              <span class="specs-grid__label">Fuel Type</span>
+              <span class="specs-grid__value">Petrol / Electric Hybrid</span>
+            </div>
+            <div class="specs-grid__item">
+              <span class="specs-grid__label">Electric Range</span>
+              <span class="specs-grid__value">25 km</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Features -->
+        <section class="detail-section">
+          <h2 data-i18n="detail.features">Features &amp; Amenities</h2>
+          <div class="features-grid">
+            <div class="feature-tag">Assetto Fiorano Package</div>
+            <div class="feature-tag">Carbon Fibre Racing Seats</div>
+            <div class="feature-tag">Carbon Fibre Rear Spoiler</div>
+            <div class="feature-tag">Titanium Exhaust</div>
+            <div class="feature-tag">Multimatic Shock Absorbers</div>
+            <div class="feature-tag">Apple CarPlay</div>
+            <div class="feature-tag">JBL Professional Audio</div>
+            <div class="feature-tag">Front &amp; Rear Parking Sensors</div>
+            <div class="feature-tag">Reversing Camera</div>
+            <div class="feature-tag">Front Axle Lift System</div>
+            <div class="feature-tag">Carbon Fibre Steering Wheel</div>
+            <div class="feature-tag">LED Matrix Headlights</div>
+            <div class="feature-tag">7-Year Maintenance Plan</div>
+            <div class="feature-tag">Ferrari Telemetry System</div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Right: Dealer Sidebar -->
+      <aside class="detail-sidebar" data-animate="fade-up">
+
+        <!-- Dealer Card -->
+        <div class="dealer-card">
+          <div class="dealer-card__header">
+            <div class="dealer-card__avatar">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </div>
+            <div class="dealer-card__info">
+              <h3 class="dealer-card__name">Monaco Prestige Motors</h3>
+              <p class="dealer-card__meta">
+                <span class="dealer-card__badge">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  Verified Dealer
+                </span>
+              </p>
+              <p class="dealer-card__since" data-i18n="detail.member_since">Member since 2021</p>
+            </div>
+          </div>
+
+          <div class="dealer-card__stats">
+            <div class="dealer-stat">
+              <span class="dealer-stat__value">47</span>
+              <span class="dealer-stat__label">Active Listings</span>
+            </div>
+            <div class="dealer-stat">
+              <span class="dealer-stat__value">4.9</span>
+              <span class="dealer-stat__label">Rating</span>
+            </div>
+            <div class="dealer-stat">
+              <span class="dealer-stat__value">&lt;2h</span>
+              <span class="dealer-stat__label">Response Time</span>
+            </div>
+          </div>
+
+          <div class="dealer-card__actions">
+            <button class="btn btn-gold btn-lg" data-i18n="detail.contact_dealer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              Contact Dealer
+            </button>
+            <button class="btn btn-outline btn-lg" data-i18n="detail.schedule_viewing">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Schedule Viewing
+            </button>
+            <button class="btn btn-outline" data-i18n="detail.show_phone">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              Show Phone Number
+            </button>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="detail-quick-actions">
+          <button class="quick-action-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            Save Listing
+          </button>
+          <button class="quick-action-btn" data-compare="sf90-001">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+            Compare
+          </button>
+          <button class="quick-action-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            Share
+          </button>
+          <button class="quick-action-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><printer x="6" y="9" width="12" height="12"/><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            Print
+          </button>
+        </div>
+
+        <!-- Safety Tips -->
+        <div class="safety-tips">
+          <h4>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Safety Tips
+          </h4>
+          <ul>
+            <li>Always meet the dealer in person before making a payment</li>
+            <li>Verify the vehicle history and documentation independently</li>
+            <li>Use LUXMARKET's secure messaging for all communications</li>
+            <li>Report suspicious listings to our support team</li>
+          </ul>
+        </div>
+
+      </aside>
+    </div>
+
+    <!-- Similar Listings -->
+    <section class="similar-listings" data-animate="fade-up">
+      <h2 data-i18n="detail.similar">Similar Listings</h2>
+      <div class="listings-row">
+
+        <article class="listing-card">
+          <div class="listing-card__image">
+            <div class="image-placeholder">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+              <span>No Image</span>
+            </div>
+          </div>
+          <div class="listing-card__body">
+            <div class="listing-card__price">$1,250,000</div>
+            <div class="listing-card__title">2024 Ferrari 296 GTB</div>
+            <div class="listing-card__location">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Zurich, Switzerland
+            </div>
+          </div>
+          <div class="listing-card__actions">
+            <button><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg> Save</button>
+          </div>
+        </article>
+
+        <article class="listing-card">
+          <div class="listing-card__image">
+            <div class="image-placeholder">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+              <span>No Image</span>
+            </div>
+          </div>
+          <div class="listing-card__body">
+            <div class="listing-card__price">$675,000</div>
+            <div class="listing-card__title">2023 Lamborghini Huracán Tecnica</div>
+            <div class="listing-card__location">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Dubai, UAE
+            </div>
+          </div>
+          <div class="listing-card__actions">
+            <button><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg> Save</button>
+          </div>
+        </article>
+
+        <article class="listing-card">
+          <div class="listing-card__image">
+            <div class="image-placeholder">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+              <span>No Image</span>
+            </div>
+          </div>
+          <div class="listing-card__body">
+            <div class="listing-card__price">$795,000</div>
+            <div class="listing-card__title">2024 McLaren 750S</div>
+            <div class="listing-card__location">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              London, United Kingdom
+            </div>
+          </div>
+          <div class="listing-card__actions">
+            <button><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg> Save</button>
+          </div>
+        </article>
+
+        <article class="listing-card">
+          <div class="listing-card__image">
+            <div class="image-placeholder">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+              <span>No Image</span>
+            </div>
+          </div>
+          <div class="listing-card__body">
+            <div class="listing-card__price">$2,400,000</div>
+            <div class="listing-card__title">2024 Bugatti Chiron Sport</div>
+            <div class="listing-card__location">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Geneva, Switzerland
+            </div>
+          </div>
+          <div class="listing-card__actions">
+            <button><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg> Save</button>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3>LUX<span class="logo-accent">MARKET</span></h3>
+        <p data-i18n="footer.description">The world's premier marketplace for luxury goods. Connecting discerning buyers with verified dealers since 2024.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.categories">Categories</h4>
+        <ul>
+          <li><a href="category.html?cat=real-estate" data-i18n="nav.real_estate">Real Estate</a></li>
+          <li><a href="category.html?cat=cars" data-i18n="nav.cars">Cars</a></li>
+          <li><a href="category.html?cat=yachts" data-i18n="nav.yachts">Yachts</a></li>
+          <li><a href="category.html?cat=jets" data-i18n="nav.jets">Jets</a></li>
+          <li><a href="category.html?cat=watches" data-i18n="nav.watches">Watches</a></li>
+          <li><a href="category.html?cat=jewelry" data-i18n="nav.jewelry">Jewelry</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.for_dealers">For Dealers</h4>
+        <ul>
+          <li><a href="dealer-plans.html" data-i18n="footer.pricing">Pricing Plans</a></li>
+          <li><a href="dealer-dashboard.html" data-i18n="footer.dashboard">Dashboard</a></li>
+          <li><a href="#" data-i18n="footer.api">API Documentation</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.contact">Contact</h4>
+        <ul>
+          <li><a href="contact.html">Get in Touch</a></li>
+          <li><a href="#">Help Centre</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 LUXMARKET. All rights reserved.</p>
+      <ul class="footer-legal">
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../js/cookies.js"></script>
+  <script src="../js/i18n.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>
