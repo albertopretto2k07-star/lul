@@ -1,223 +1,189 @@
-/* ============================================
-   LUXMARKET - Cookie Consent & Analytics
-   GDPR-style consent + lightweight data collection
-   ============================================ */
+/* ============================================================
+   LUL — Cookie Management & Analytics Collection
+   ============================================================ */
 
-const CookieConsent = (function () {
+(function () {
   'use strict';
 
-  var CONSENT_KEY = 'cookie-consent';
-  var ANALYTICS_KEY = 'lux_analytics';
-  var RETENTION_DAYS = 90;
+  // ── Config ──────────────────────────────────────────────
+  const STORAGE_KEY   = 'lul_cookie_consent';
+  const ANALYTICS_KEY = 'lul_analytics';
+  const MAX_EVENTS    = 500; // max events stored locally
 
-  function init() {
-    var consent = localStorage.getItem(CONSENT_KEY);
-    if (!consent) {
-      showBanner();
-    } else {
-      var parsed = JSON.parse(consent);
-      if (parsed.analytics) {
-        CookieAnalytics.init();
-      }
-    }
-    bindEvents();
+  // ── Utilities ───────────────────────────────────────────
+  function uuid() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+      const r = Math.random() * 16 | 0;
+      return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+    });
   }
 
-  function showBanner() {
-    var banner = document.getElementById('cookie-banner');
+  function getOrCreateSessionId() {
+    let sid = sessionStorage.getItem('lul_session_id');
+    if (!sid) { sid = uuid(); sessionStorage.setItem('lul_session_id', sid); }
+    return sid;
+  }
+
+  function parseDevice(ua) {
+    if (/mobile/i.test(ua))  return 'mobile';
+    if (/tablet|ipad/i.test(ua)) return 'tablet';
+    return 'desktop';
+  }
+
+  function parseBrowser(ua) {
+    if (/firefox/i.test(ua))  return 'Firefox';
+    if (/edg/i.test(ua))      return 'Edge';
+    if (/chrome/i.test(ua))   return 'Chrome';
+    if (/safari/i.test(ua))   return 'Safari';
+    if (/opera|opr/i.test(ua)) return 'Opera';
+    return 'Other';
+  }
+
+  function getStoredAnalytics() {
+    try { return JSON.parse(localStorage.getItem(ANALYTICS_KEY) || '[]'); }
+    catch { return []; }
+  }
+
+  function saveAnalytics(data) {
+    try { localStorage.setItem(ANALYTICS_KEY, JSON.stringify(data)); }
+    catch { /* quota exceeded — silent fail */ }
+  }
+
+  // ── Track an event ─────────────────────────────────────
+  function trackEvent(type, extra) {
+    const consent = getConsent();
+    if (!consent || consent.level === 'none') return;
+
+    const events = getStoredAnalytics();
+    if (events.length >= MAX_EVENTS) events.splice(0, 50); // rotate oldest
+
+    const ua = navigator.userAgent;
+    events.push({
+      id:        uuid(),
+      sessionId: getOrCreateSessionId(),
+      type:      type,          // 'pageview' | 'click' | 'search' | 'listing_view'
+      page:      window.location.pathname,
+      title:     document.title,
+      referrer:  document.referrer || 'direct',
+      device:    parseDevice(ua),
+      browser:   parseBrowser(ua),
+      language:  navigator.language || 'unknown',
+      timestamp: new Date().toISOString(),
+      consent:   consent.level,
+      ...extra
+    });
+    saveAnalytics(events);
+  }
+
+  // ── Session duration tracking ───────────────────────────
+  const sessionStart = Date.now();
+  window.addEventListener('beforeunload', () => {
+    const duration = Math.round((Date.now() - sessionStart) / 1000);
+    trackEvent('session_end', { duration });
+  });
+
+  // ── Click tracking ──────────────────────────────────────
+  document.addEventListener('click', e => {
+    const el = e.target.closest('a, button, [data-track]');
+    if (!el) return;
+    const label = el.dataset.track || el.innerText?.trim()?.substring(0, 40) || el.className;
+    trackEvent('click', { label, tag: el.tagName.toLowerCase() });
+  });
+
+  // ── Consent helpers ─────────────────────────────────────
+  function getConsent() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)); }
+    catch { return null; }
+  }
+
+  function setConsent(level, prefs) {
+    const consent = { level, prefs, timestamp: new Date().toISOString() };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(consent));
+    trackEvent('consent_set', { level });
+    return consent;
+  }
+
+  // ── Banner DOM ──────────────────────────────────────────
+  function buildBanner() {
+    const banner = document.getElementById('cookie-banner');
+    const modal  = document.getElementById('cookie-modal');
     if (!banner) return;
-    // Small delay for animation
-    setTimeout(function () {
-      banner.classList.add('show');
-    }, 500);
+
+    // Show banner
+    setTimeout(() => banner.classList.add('visible'), 600);
+
+    // Accept All
+    banner.querySelector('.btn-cookie-all')?.addEventListener('click', () => {
+      setConsent('all', { analytics: true, marketing: false });
+      hideBanner();
+      trackEvent('pageview');
+    });
+
+    // Technical only
+    banner.querySelector('.btn-cookie-tech')?.addEventListener('click', () => {
+      setConsent('technical', { analytics: false, marketing: false });
+      hideBanner();
+    });
+
+    // Customize → modal
+    banner.querySelector('.btn-cookie-customize')?.addEventListener('click', () => {
+      if (modal) { modal.classList.add('open'); }
+    });
+
+    // Modal: save
+    modal?.querySelector('.btn-modal-save')?.addEventListener('click', () => {
+      const analyticsToggle = modal.querySelector('#toggle-analytics');
+      const prefs = { analytics: analyticsToggle?.checked || false, marketing: false };
+      const level = prefs.analytics ? 'all' : 'technical';
+      setConsent(level, prefs);
+      modal.classList.remove('open');
+      hideBanner();
+      if (level === 'all') trackEvent('pageview');
+    });
+
+    // Modal: cancel
+    modal?.querySelector('.btn-modal-cancel')?.addEventListener('click', () => {
+      modal.classList.remove('open');
+    });
+
+    // Click outside modal
+    modal?.addEventListener('click', e => {
+      if (e.target === modal) modal.classList.remove('open');
+    });
   }
 
   function hideBanner() {
-    var banner = document.getElementById('cookie-banner');
-    if (banner) banner.classList.remove('show');
-  }
-
-  function setConsent(type) {
-    var consent = { essential: true, analytics: false, marketing: false, timestamp: Date.now() };
-
-    if (type === 'all') {
-      consent.analytics = true;
-      consent.marketing = true;
-    } else if (type === 'custom') {
-      var analyticsEl = document.getElementById('cookie-analytics');
-      var marketingEl = document.getElementById('cookie-marketing');
-      consent.analytics = analyticsEl ? analyticsEl.checked : false;
-      consent.marketing = marketingEl ? marketingEl.checked : false;
-    }
-
-    localStorage.setItem(CONSENT_KEY, JSON.stringify(consent));
-    hideBanner();
-
-    if (consent.analytics) {
-      CookieAnalytics.init();
+    const banner = document.getElementById('cookie-banner');
+    if (banner) {
+      banner.style.transform = 'translateY(100%)';
+      setTimeout(() => banner.remove(), 400);
     }
   }
 
-  function bindEvents() {
-    var acceptBtn = document.getElementById('cookie-accept');
-    var essentialBtn = document.getElementById('cookie-essential');
-    var customizeBtn = document.getElementById('cookie-customize-btn');
-    var customizePanel = document.getElementById('cookie-customize');
-
-    if (acceptBtn) {
-      acceptBtn.addEventListener('click', function () { setConsent('all'); });
-    }
-    if (essentialBtn) {
-      essentialBtn.addEventListener('click', function () { setConsent('essential'); });
-    }
-    if (customizeBtn && customizePanel) {
-      customizeBtn.addEventListener('click', function () {
-        var isHidden = customizePanel.hidden;
-        customizePanel.hidden = !isHidden;
-        if (!isHidden) {
-          // If closing customize, save custom settings
-          setConsent('custom');
-        }
-      });
-    }
-  }
-
-  return { init: init };
-})();
-
-// --- Analytics Collection ---
-var CookieAnalytics = (function () {
-  'use strict';
-
-  var ANALYTICS_KEY = 'lux_analytics';
-  var sessionStart = Date.now();
-  var initialized = false;
-
+  // ── Init ────────────────────────────────────────────────
   function init() {
-    if (initialized) return;
-    initialized = true;
-
-    purgeOldData();
-    trackPageView();
-    trackSessionDuration();
-  }
-
-  function purgeOldData() {
-    var data = getData();
-    var cutoff = Date.now() - (90 * 24 * 60 * 60 * 1000);
-    var filtered = data.filter(function (entry) {
-      return entry.timestamp > cutoff;
-    });
-    localStorage.setItem(ANALYTICS_KEY, JSON.stringify(filtered));
-  }
-
-  function trackPageView() {
-    var entry = {
-      type: 'pageview',
-      page: window.location.pathname + window.location.search,
-      timestamp: Date.now(),
-      referrer: document.referrer || 'direct',
-      language: document.documentElement.lang || 'en',
-      viewport: window.innerWidth + 'x' + window.innerHeight,
-      country: localStorage.getItem('language') || 'en'
-    };
-
-    // Track category if on category page
-    var params = new URLSearchParams(window.location.search);
-    if (params.get('cat')) {
-      entry.category = params.get('cat');
-    }
-
-    // Track search query
-    if (params.get('q')) {
-      entry.searchQuery = params.get('q');
-    }
-
-    appendData(entry);
-  }
-
-  function trackSessionDuration() {
-    window.addEventListener('beforeunload', function () {
-      var duration = Math.round((Date.now() - sessionStart) / 1000);
-      var entry = {
-        type: 'session',
-        duration: duration,
-        timestamp: Date.now(),
-        page: window.location.pathname
-      };
-      appendData(entry);
-    });
-  }
-
-  function appendData(entry) {
-    var data = getData();
-    data.push(entry);
-    try {
-      localStorage.setItem(ANALYTICS_KEY, JSON.stringify(data));
-    } catch (e) {
-      // localStorage full, remove oldest entries
-      data = data.slice(Math.floor(data.length / 2));
-      localStorage.setItem(ANALYTICS_KEY, JSON.stringify(data));
+    const consent = getConsent();
+    if (!consent) {
+      // No consent yet → show banner
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', buildBanner);
+      } else {
+        buildBanner();
+      }
+    } else if (consent.level === 'all') {
+      // Already consented → track pageview silently
+      document.addEventListener('DOMContentLoaded', () => trackEvent('pageview'));
     }
   }
 
-  function getData() {
-    try {
-      return JSON.parse(localStorage.getItem(ANALYTICS_KEY) || '[]');
-    } catch (e) {
-      return [];
-    }
-  }
+  init();
 
-  function getPageViews(days) {
-    var cutoff = Date.now() - ((days || 30) * 24 * 60 * 60 * 1000);
-    return getData().filter(function (e) {
-      return e.type === 'pageview' && e.timestamp > cutoff;
-    });
-  }
-
-  function getViewsByDay(days) {
-    var views = getPageViews(days || 30);
-    var byDay = {};
-    views.forEach(function (v) {
-      var d = new Date(v.timestamp).toISOString().split('T')[0];
-      byDay[d] = (byDay[d] || 0) + 1;
-    });
-    return byDay;
-  }
-
-  function getTrafficSources() {
-    var views = getPageViews(30);
-    var sources = { Direct: 0, Search: 0, Referral: 0, Social: 0 };
-    views.forEach(function (v) {
-      var ref = v.referrer || 'direct';
-      if (ref === 'direct' || ref === '') sources.Direct++;
-      else if (/google|bing|yahoo|duckduckgo/.test(ref)) sources.Search++;
-      else if (/facebook|twitter|instagram|linkedin|tiktok/.test(ref)) sources.Social++;
-      else sources.Referral++;
-    });
-    return sources;
-  }
-
-  function getViewsByCountry() {
-    var views = getPageViews(30);
-    var byCountry = {};
-    views.forEach(function (v) {
-      var c = (v.country || 'en').toUpperCase();
-      byCountry[c] = (byCountry[c] || 0) + 1;
-    });
-    return byCountry;
-  }
-
-  return {
-    init: init,
-    getData: getData,
-    getPageViews: getPageViews,
-    getViewsByDay: getViewsByDay,
-    getTrafficSources: getTrafficSources,
-    getViewsByCountry: getViewsByCountry
+  // ── Public API (used by analytics.js) ───────────────────
+  window.LulCookies = {
+    getConsent,
+    getStoredAnalytics,
+    trackEvent,
+    clearAnalytics: () => { localStorage.removeItem(ANALYTICS_KEY); }
   };
-})();
 
-// Initialize on load
-document.addEventListener('DOMContentLoaded', CookieConsent.init);
+})();
