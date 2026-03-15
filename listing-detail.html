@@ -70,6 +70,17 @@
     </div>
     <a href="pricing.html" class="btn-publish" data-i18n="publish">List with Us</a>
     <a href="#" class="btn-login" data-i18n="login">Sign In</a>
+    <div style="position:relative">
+      <button class="user-profile-btn" style="display:none" aria-label="User profile"><i class="fa fa-user"></i></button>
+      <div class="user-profile-dropdown">
+        <div class="profile-dropdown-header">
+          <div class="profile-name">User</div>
+          <div class="profile-email"></div>
+        </div>
+        <a href="listings.html">My Listings</a>
+        <button class="profile-logout-btn"><i class="fa fa-sign-out-alt" style="margin-right:8px"></i>Sign Out</button>
+      </div>
+    </div>
     <button class="header-menu-toggle"><i class="fa fa-bars"></i></button>
   </div>
 </header>
@@ -406,7 +417,7 @@
             </div>
             <div class="card-footer">
               <span class="card-dealer"><img class="card-dealer-avatar" src="https://ui-avatars.com/api/?name=D&background=0F1E34&color=fff" alt="" /> DEALER</span>
-              <a href="listing-detail.html" class="btn-card-contact">Details</a>
+              <a href="listing-detail.html" class="btn-card-contact" data-i18n="card_details">Details</a>
             </div>
           </div>
         </article>
@@ -428,7 +439,7 @@
             </div>
             <div class="card-footer">
               <span class="card-dealer"><img class="card-dealer-avatar" src="https://ui-avatars.com/api/?name=D&background=0F1E34&color=fff" alt="" /> DEALER</span>
-              <a href="listing-detail.html" class="btn-card-contact">Details</a>
+              <a href="listing-detail.html" class="btn-card-contact" data-i18n="card_details">Details</a>
             </div>
           </div>
         </article>
@@ -450,7 +461,7 @@
             </div>
             <div class="card-footer">
               <span class="card-dealer"><img class="card-dealer-avatar" src="https://ui-avatars.com/api/?name=D&background=0F1E34&color=fff" alt="" /> DEALER</span>
-              <a href="listing-detail.html" class="btn-card-contact">Details</a>
+              <a href="listing-detail.html" class="btn-card-contact" data-i18n="card_details">Details</a>
             </div>
           </div>
         </article>
@@ -480,20 +491,19 @@
       <div class="footer-col">
         <h4>Explore</h4>
         <ul>
-          <li><a href="listings.html?cat=homes">Homes</a></li>
-          <li><a href="listings.html?cat=cars">Cars</a></li>
-          <li><a href="listings.html?cat=yachts">Yachts</a></li>
-          <li><a href="listings.html?cat=jets">Private Jets</a></li>
-          <li><a href="listings.html?cat=villas">Villas</a></li>
+          <li><a href="listings.html?cat=cars" data-i18n="cat_cars">Luxury Cars</a></li>
+          <li><a href="listings.html?cat=yachts" data-i18n="cat_yachts">Yachts</a></li>
+          <li><a href="listings.html?cat=jets" data-i18n="cat_jets">Private Jets</a></li>
+          <li><a href="listings.html?cat=realestate" data-i18n="cat_realestate">Real Estate</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Company</h4>
         <ul>
-          <li><a href="#">About LUL</a></li>
-          <li><a href="pricing.html">For Dealers</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms</a></li>
+          <li><a href="about.html" data-i18n="footer_about">About LUL</a></li>
+          <li><a href="pricing.html" data-i18n="footer_dealers">For Dealers</a></li>
+          <li><a href="#" data-i18n="footer_privacy">Privacy Policy</a></li>
+          <li><a href="#" data-i18n="footer_terms">Terms of Service</a></li>
         </ul>
       </div>
       <!-- ═══ CONTATTI — modifica qui ═══ -->

@@ -42,6 +42,9 @@
       featured_label: 'Featured Listings',
       featured_title: 'Handpicked for Discerning Buyers',
       view_all:       'View All Listings',
+      card_details:   'View Details',
+      card_featured:  'Featured',
+      card_new:       'New',
       categories_label:'Browse by Category',
       categories_title:'Every Luxury, One Destination',
       how_label:      'How It Works',
@@ -83,16 +86,29 @@
       auth_or:           'or continue with',
       // Cookie learn more
       cookie_title:      'Cookie Policy',
-      cookie_intro:      'We use cookies and similar technologies to enhance your experience on our platform. Below you will find details about the types of cookies we use and their purposes.',
+      cookie_intro:      'This platform employs cookies and analogous tracking technologies to ensure optimal functionality and to enhance the browsing experience. The following sections provide a comprehensive overview of the categories of cookies utilised and the specific purposes they serve.',
       cookie_essential_h:'Essential Cookies',
-      cookie_essential_p:'These cookies are necessary for the website to function properly. They enable core functionalities such as session management, security, and language preferences. They cannot be disabled.',
+      cookie_essential_p:'Essential cookies are strictly necessary for the proper operation of this website. They facilitate core functionalities including, but not limited to, session management, security protocols, and the retention of language preferences. As these cookies are integral to the delivery of the service, they cannot be deactivated by the user.',
       cookie_analytics_h:'Analytics Cookies',
-      cookie_analytics_p:'We use analytics cookies to collect anonymous data about how visitors use our site — including pages visited, session duration, device type, and browser information. This data helps us improve the platform experience and understand user behaviour. We use tools such as Google Analytics.',
+      cookie_analytics_p:'Analytics cookies are employed to gather anonymised, aggregated data regarding visitor interactions with the platform — encompassing pages visited, session duration, device classification, and browser characteristics. The information obtained through these cookies enables continuous improvement of the platform experience and facilitates a deeper understanding of user behaviour patterns. Third-party analytical services, such as Google Analytics, may be utilised for this purpose.',
       cookie_marketing_h:'Marketing Cookies',
-      cookie_marketing_p:'Marketing cookies are used to deliver targeted advertisements and measure the effectiveness of advertising campaigns. They help us understand which promotions and channels are most effective in reaching our audience. These cookies may be set by third-party advertising partners.',
+      cookie_marketing_p:'Marketing cookies serve the purpose of delivering relevant promotional content and measuring the effectiveness of advertising initiatives. These cookies assist in identifying which campaigns and communication channels yield the highest engagement within the target audience. It should be noted that such cookies may be placed by authorised third-party advertising partners operating on behalf of this platform.',
       cookie_social_h:   'Social Media Cookies',
-      cookie_social_p:   'These cookies are set by social media services that we have added to the site, enabling you to share our content with your networks. They are capable of tracking your browser across other sites and building a profile of your interests.',
-      cookie_close:      'Close'
+      cookie_social_p:   'Social media cookies are deployed by external social networking services integrated into this website. Their primary function is to enable users to share content across their respective networks. It should be acknowledged that these cookies possess the capability to monitor browsing activity across multiple websites and to construct interest-based user profiles.',
+      cookie_close:      'Close',
+      // About page
+      about_eyebrow:     'About Us',
+      about_title:       'The World\'s Most Exclusive Marketplace',
+      about_subtitle:    'LUL — Luxury Unique Listings connects discerning buyers with elite dealers and private sellers of the world\'s finest luxury assets.',
+      about_mission_h:   'Our Mission',
+      about_mission_p:   'To create a single, trusted destination where luxury meets technology. We believe that acquiring an exceptional car, yacht, jet, or property should be as refined as the asset itself — seamless, transparent, and global.',
+      about_reach_h:     'Global Reach',
+      about_reach_p:     'With over 3,500 verified dealers across 140+ countries, LUL is the go-to platform for high-net-worth individuals seeking the finest luxury assets available worldwide.',
+      about_trust_h:     'Trust & Verification',
+      about_trust_p:     'Every dealer on our platform undergoes a rigorous verification process. We provide concierge support, legal guidance, and post-sale assistance worldwide.',
+      about_social_label:'Stay Connected',
+      about_social_title:'Follow Us on Social Media',
+      about_social_desc: 'Stay up to date with the latest luxury listings, exclusive events, and industry insights by following our official channels.'
     },
     it: {
       nav_cars:       'Auto',
@@ -114,6 +130,9 @@
       featured_label: 'Inserzioni in Evidenza',
       featured_title: 'Selezionate per Acquirenti Esigenti',
       view_all:       'Vedi Tutte le Inserzioni',
+      card_details:   'Dettagli',
+      card_featured:  'In Evidenza',
+      card_new:       'Nuovo',
       categories_label:'Sfoglia per Categoria',
       categories_title:'Ogni Lusso, Un\'Unica Destinazione',
       how_label:      'Come Funziona',
@@ -153,16 +172,28 @@
       auth_btn_signup:   'Crea Account',
       auth_or:           'oppure continua con',
       cookie_title:      'Informativa sui Cookie',
-      cookie_intro:      'Utilizziamo cookie e tecnologie simili per migliorare la tua esperienza sulla nostra piattaforma. Di seguito troverai i dettagli sui tipi di cookie utilizzati e le loro finalità.',
+      cookie_intro:      'La presente piattaforma si avvale di cookie e tecnologie di tracciamento analoghe al fine di garantire il corretto funzionamento del servizio e di ottimizzare l\'esperienza di navigazione. Le sezioni seguenti forniscono un quadro dettagliato delle categorie di cookie impiegati e delle relative finalità.',
       cookie_essential_h:'Cookie Essenziali',
-      cookie_essential_p:'Questi cookie sono necessari per il funzionamento del sito. Abilitano funzionalità fondamentali come la gestione della sessione, la sicurezza e le preferenze linguistiche. Non possono essere disattivati.',
+      cookie_essential_p:'I cookie essenziali risultano strettamente necessari per il corretto funzionamento del sito web. Essi consentono l\'erogazione di funzionalità fondamentali quali, a titolo esemplificativo, la gestione della sessione, i protocolli di sicurezza e la memorizzazione delle preferenze linguistiche. Trattandosi di componenti indispensabili per la fruizione del servizio, la loro disattivazione da parte dell\'utente non è consentita.',
       cookie_analytics_h:'Cookie Analitici',
-      cookie_analytics_p:'Utilizziamo cookie analitici per raccogliere dati anonimi su come i visitatori utilizzano il nostro sito — incluse le pagine visitate, la durata della sessione, il tipo di dispositivo e le informazioni sul browser. Questi dati ci aiutano a migliorare l\'esperienza sulla piattaforma.',
+      cookie_analytics_p:'I cookie analitici vengono impiegati per la raccolta di dati anonimi e aggregati relativi alle interazioni degli utenti con la piattaforma, ivi comprese le pagine consultate, la durata delle sessioni, la tipologia di dispositivo e le caratteristiche del browser. Le informazioni acquisite attraverso tali cookie consentono il miglioramento continuo dell\'esperienza sulla piattaforma. A tal fine, possono essere utilizzati servizi analitici di terze parti, come Google Analytics.',
       cookie_marketing_h:'Cookie di Marketing',
-      cookie_marketing_p:'I cookie di marketing vengono utilizzati per fornire pubblicità mirata e misurare l\'efficacia delle campagne pubblicitarie. Ci aiutano a capire quali promozioni e canali sono più efficaci nel raggiungere il nostro pubblico.',
-      cookie_social_h:   'Cookie Social Media',
-      cookie_social_p:   'Questi cookie sono impostati dai servizi di social media che abbiamo aggiunto al sito, consentendoti di condividere i nostri contenuti con le tue reti.',
-      cookie_close:      'Chiudi'
+      cookie_marketing_p:'I cookie di marketing hanno la finalità di veicolare contenuti promozionali pertinenti e di misurare l\'efficacia delle iniziative pubblicitarie. Tali cookie consentono di individuare le campagne e i canali di comunicazione che generano il maggiore coinvolgimento presso il pubblico di riferimento. Si precisa che detti cookie possono essere installati da partner pubblicitari terzi autorizzati che operano per conto della piattaforma.',
+      cookie_social_h:   'Cookie dei Social Media',
+      cookie_social_p:   'I cookie dei social media sono installati da servizi di social network esterni integrati nel presente sito web. La loro funzione primaria consiste nel consentire agli utenti la condivisione dei contenuti attraverso le rispettive reti sociali. Si rende noto che tali cookie possono monitorare l\'attività di navigazione su più siti web e costruire profili basati sugli interessi dell\'utente.',
+      cookie_close:      'Chiudi',
+      about_eyebrow:     'Chi Siamo',
+      about_title:       'Il Marketplace Più Esclusivo al Mondo',
+      about_subtitle:    'LUL — Luxury Unique Listings mette in contatto acquirenti esigenti con dealer d\'élite e venditori privati dei più pregiati beni di lusso al mondo.',
+      about_mission_h:   'La Nostra Missione',
+      about_mission_p:   'Creare un\'unica destinazione affidabile dove il lusso incontra la tecnologia. Acquistare un\'auto, uno yacht, un jet o un immobile esclusivo deve essere un\'esperienza raffinata quanto il bene stesso.',
+      about_reach_h:     'Portata Globale',
+      about_reach_p:     'Con oltre 3.500 dealer verificati in più di 140 paesi, LUL è la piattaforma di riferimento per individui facoltosi alla ricerca dei migliori beni di lusso.',
+      about_trust_h:     'Fiducia e Verifica',
+      about_trust_p:     'Ogni dealer sulla nostra piattaforma viene sottoposto a un rigoroso processo di verifica. Offriamo supporto concierge, assistenza legale e post-vendita a livello mondiale.',
+      about_social_label:'Resta Connesso',
+      about_social_title:'Seguici sui Social Media',
+      about_social_desc: 'Rimani aggiornato sulle ultime inserzioni di lusso, eventi esclusivi e approfondimenti del settore seguendo i nostri canali ufficiali.'
     },
     fr: {
       nav_cars:       'Voitures',
@@ -184,6 +215,9 @@
       featured_label: 'Annonces en Vedette',
       featured_title: 'Sélectionnées pour des Acheteurs Exigeants',
       view_all:       'Voir Toutes les Annonces',
+      card_details:   'Détails',
+      card_featured:  'En Vedette',
+      card_new:       'Nouveau',
       categories_label:'Parcourir par Catégorie',
       categories_title:'Chaque Luxe, Une Destination',
       how_label:      'Comment Ça Marche',
@@ -254,6 +288,9 @@
       featured_label: 'Empfohlene Inserate',
       featured_title: 'Handverlesen für Anspruchsvolle Käufer',
       view_all:       'Alle Inserate Anzeigen',
+      card_details:   'Details',
+      card_featured:  'Empfohlen',
+      card_new:       'Neu',
       categories_label:'Nach Kategorie Durchsuchen',
       categories_title:'Jeder Luxus, Ein Ziel',
       how_label:      'So Funktioniert Es',
@@ -317,6 +354,9 @@
       featured_label: 'Anuncios Destacados',
       featured_title: 'Seleccionados para Compradores Exigentes',
       view_all:       'Ver Todos los Anuncios',
+      card_details:   'Detalles',
+      card_featured:  'Destacado',
+      card_new:       'Nuevo',
       categories_label:'Explorar por Categoría',
       categories_title:'Todo el Lujo, Un Solo Destino',
       how_label:      'Cómo Funciona',
@@ -380,6 +420,9 @@
       featured_label: 'Anúncios em Destaque',
       featured_title: 'Selecionados para Compradores Exigentes',
       view_all:       'Ver Todos os Anúncios',
+      card_details:   'Detalhes',
+      card_featured:  'Destaque',
+      card_new:       'Novo',
       categories_label:'Explorar por Categoria',
       categories_title:'Todo o Luxo, Um Só Destino',
       how_label:      'Como Funciona',
@@ -443,6 +486,9 @@
       featured_label: 'Избранные Объявления',
       featured_title: 'Подобрано для Взыскательных Покупателей',
       view_all:       'Смотреть Все Объявления',
+      card_details:   'Подробнее',
+      card_featured:  'Избранное',
+      card_new:       'Новое',
       categories_label:'Обзор по Категориям',
       categories_title:'Каждая Роскошь — Одно Место',
       how_label:      'Как Это Работает',
@@ -506,6 +552,9 @@
       featured_label: 'إعلانات مميزة',
       featured_title: 'مختارة لمشترين مميزين',
       view_all:       'عرض جميع الإعلانات',
+      card_details:   'التفاصيل',
+      card_featured:  'مميز',
+      card_new:       'جديد',
       categories_label:'تصفح حسب الفئة',
       categories_title:'كل الرفاهية في مكان واحد',
       how_label:      'كيف يعمل',
@@ -545,6 +594,9 @@
       featured_label: '精选列表',
       featured_title: '为挑剔的买家精心挑选',
       view_all:       '查看所有列表',
+      card_details:   '查看详情',
+      card_featured:  '精选',
+      card_new:       '新品',
       categories_label:'按类别浏览',
       categories_title:'所有奢华，一个目的地',
       how_label:      '工作原理',
@@ -584,6 +636,9 @@
       featured_label: '注目のリスティング',
       featured_title: '目の肥えたバイヤーのために厳選',
       view_all:       'すべてのリスティングを見る',
+      card_details:   '詳細を見る',
+      card_featured:  '注目',
+      card_new:       '新着',
       categories_label:'カテゴリーで探す',
       categories_title:'すべての贅沢を、一つの場所で',
       how_label:      '仕組み',
@@ -712,54 +767,6 @@
     });
   }
 
-  // ── Auth Modal (Sign In / Sign Up) ────────────────────────
-  function initAuthModal() {
-    const modal = document.getElementById('auth-modal');
-    if (!modal) return;
-
-    // Open modal on Sign In click
-    document.querySelectorAll('.btn-login').forEach(btn => {
-      btn.addEventListener('click', e => {
-        e.preventDefault();
-        showAuthTab('signin');
-        modal.classList.add('open');
-        document.body.style.overflow = 'hidden';
-      });
-    });
-
-    // Close
-    modal.querySelector('.auth-close')?.addEventListener('click', closeAuth);
-    modal.addEventListener('click', e => { if (e.target === modal) closeAuth(); });
-
-    // Tab switch
-    modal.querySelectorAll('.auth-tab-btn').forEach(btn => {
-      btn.addEventListener('click', () => showAuthTab(btn.dataset.tab));
-    });
-
-    // Toggle links
-    modal.querySelector('.auth-switch-signup')?.addEventListener('click', e => { e.preventDefault(); showAuthTab('signup'); });
-    modal.querySelector('.auth-switch-signin')?.addEventListener('click', e => { e.preventDefault(); showAuthTab('signin'); });
-
-    // Form submit (demo)
-    modal.querySelectorAll('form').forEach(form => {
-      form.addEventListener('submit', e => {
-        e.preventDefault();
-        alert('This is a demo — authentication is not connected to a backend yet.');
-        closeAuth();
-      });
-    });
-
-    function closeAuth() {
-      modal.classList.remove('open');
-      document.body.style.overflow = '';
-    }
-
-    function showAuthTab(tab) {
-      modal.querySelectorAll('.auth-tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
-      modal.querySelectorAll('.auth-form').forEach(f => f.classList.toggle('active', f.dataset.form === tab));
-    }
-  }
-
   // ── Cookie Learn More Modal ──────────────────────────────
   function initCookieLearnMore() {
     const modal = document.getElementById('cookie-learn-more');
@@ -881,7 +888,7 @@
         const monthly = parseFloat(el.dataset.priceMonthly);
         if (!monthly) return;
         const price = annual ? Math.round(monthly * 10) : monthly;
-        el.textContent = monthly === 0 ? 'Free' : '€' + price;
+        el.textContent = monthly === 0 ? 'Free' : price;
       });
       document.querySelectorAll('[data-price-period]').forEach(el => {
         el.textContent = annual ? '/ year' : '/ month';
@@ -889,6 +896,171 @@
       const saveBadge = document.getElementById('save-badge');
       if (saveBadge) saveBadge.style.display = annual ? 'inline' : 'none';
     });
+  }
+
+  // ── Clickable listing cards ─────────────────────────────
+  function initClickableCards() {
+    document.addEventListener('click', e => {
+      const card = e.target.closest('.listing-card');
+      if (!card) return;
+      // Don't navigate if clicking fav button or existing link
+      if (e.target.closest('.card-fav') || e.target.closest('.btn-card-contact')) return;
+      const link = card.querySelector('.btn-card-contact');
+      if (link) window.location.href = link.href;
+    });
+  }
+
+  // ── User Auth with Profile Icon ────────────────────────
+  const AUTH_USER_KEY = 'lul_user';
+
+  function getUser() {
+    try { return JSON.parse(localStorage.getItem(AUTH_USER_KEY)); }
+    catch { return null; }
+  }
+
+  function saveUser(user) {
+    localStorage.setItem(AUTH_USER_KEY, JSON.stringify(user));
+    // Track to analytics
+    if (window.LulCookies) {
+      window.LulCookies.trackEvent('auth', { action: 'login', email: user.email });
+    }
+  }
+
+  function logoutUser() {
+    localStorage.removeItem(AUTH_USER_KEY);
+    if (window.LulCookies) {
+      window.LulCookies.trackEvent('auth', { action: 'logout' });
+    }
+    updateProfileUI();
+  }
+
+  function updateProfileUI() {
+    const user = getUser();
+    const profileBtns = document.querySelectorAll('.user-profile-btn');
+    const loginBtns = document.querySelectorAll('.btn-login');
+
+    profileBtns.forEach(btn => {
+      if (user) {
+        btn.classList.add('logged-in');
+        const initials = user.name ? user.name.split(' ').map(w => w[0]).join('').toUpperCase().substring(0, 2) : 'U';
+        btn.innerHTML = `<i class="fa fa-user"></i>`;
+        btn.title = user.name || user.email;
+        btn.style.display = '';
+      } else {
+        btn.classList.remove('logged-in');
+        btn.innerHTML = `<i class="fa fa-user"></i>`;
+        btn.style.display = 'none';
+      }
+    });
+
+    loginBtns.forEach(btn => {
+      btn.style.display = user ? 'none' : '';
+    });
+
+    // Update profile dropdowns
+    document.querySelectorAll('.user-profile-dropdown').forEach(dd => {
+      if (user) {
+        const header = dd.querySelector('.profile-name');
+        const email = dd.querySelector('.profile-email');
+        if (header) header.textContent = user.name || 'User';
+        if (email) email.textContent = user.email || '';
+      }
+    });
+  }
+
+  function initAuthModal() {
+    const modal = document.getElementById('auth-modal');
+    if (!modal) return;
+
+    // Open modal on Sign In click
+    document.querySelectorAll('.btn-login').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        showAuthTab('signin');
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    // Profile button click -> dropdown
+    document.querySelectorAll('.user-profile-btn').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        const dropdown = btn.parentElement.querySelector('.user-profile-dropdown');
+        if (dropdown) dropdown.classList.toggle('open');
+      });
+    });
+
+    // Logout buttons
+    document.querySelectorAll('.profile-logout-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        logoutUser();
+        document.querySelectorAll('.user-profile-dropdown').forEach(dd => dd.classList.remove('open'));
+      });
+    });
+
+    // Close dropdowns on outside click
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.user-profile-dropdown').forEach(dd => dd.classList.remove('open'));
+    });
+
+    // Close
+    modal.querySelector('.auth-close')?.addEventListener('click', closeAuth);
+    modal.addEventListener('click', e => { if (e.target === modal) closeAuth(); });
+
+    // Tab switch
+    modal.querySelectorAll('.auth-tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => showAuthTab(btn.dataset.tab));
+    });
+
+    // Toggle links
+    modal.querySelector('.auth-switch-signup')?.addEventListener('click', e => { e.preventDefault(); showAuthTab('signup'); });
+    modal.querySelector('.auth-switch-signin')?.addEventListener('click', e => { e.preventDefault(); showAuthTab('signin'); });
+
+    // Form submit — save to localStorage + analytics
+    const signinForm = modal.querySelector('[data-form="signin"]');
+    const signupForm = modal.querySelector('[data-form="signup"]');
+
+    signinForm?.addEventListener('submit', e => {
+      e.preventDefault();
+      const email = signinForm.querySelector('input[type="email"]').value;
+      const user = { email, name: email.split('@')[0], loggedInAt: new Date().toISOString() };
+      saveUser(user);
+      updateProfileUI();
+      closeAuth();
+    });
+
+    signupForm?.addEventListener('submit', e => {
+      e.preventDefault();
+      const name = signupForm.querySelector('input[type="text"]').value;
+      const email = signupForm.querySelector('input[type="email"]').value;
+      const passwords = signupForm.querySelectorAll('input[type="password"]');
+      if (passwords[0].value !== passwords[1].value) {
+        passwords[1].setCustomValidity('Passwords do not match');
+        passwords[1].reportValidity();
+        return;
+      }
+      const user = { name, email, registeredAt: new Date().toISOString(), loggedInAt: new Date().toISOString() };
+      saveUser(user);
+      if (window.LulCookies) {
+        window.LulCookies.trackEvent('auth', { action: 'signup', email, name });
+      }
+      updateProfileUI();
+      closeAuth();
+    });
+
+    function closeAuth() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function showAuthTab(tab) {
+      modal.querySelectorAll('.auth-tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+      modal.querySelectorAll('.auth-form').forEach(f => f.classList.toggle('active', f.dataset.form === tab));
+    }
+
+    // On load, check if user is logged in and update UI
+    updateProfileUI();
   }
 
   // ── Scroll animations (IntersectionObserver) ────────────
@@ -946,6 +1118,7 @@
     initDetailTabs();
     initFAQ();
     initPricingToggle();
+    initClickableCards();
     initScrollAnimations();
     initHeaderScroll();
     initActiveNav();

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="About LUL — Luxury Unique Listings. Our mission, story, and social channels." />
+  <title>About Us — LUL Luxury Unique Listings</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+
+<!-- Cookie Banner -->
+<div id="cookie-banner" role="alertdialog">
+  <div class="cookie-text"><strong>Cookie Notice</strong> — This platform employs essential cookies required for proper site functionality. With your consent, anonymised analytical data may also be collected. <a href="#" class="cookie-learn-more-link">Learn more</a></div>
+  <div class="cookie-actions">
+    <button class="btn-cookie-all">Accept All</button>
+    <button class="btn-cookie-tech">Essential Only</button>
+    <button class="btn-cookie-customize">Customize</button>
+  </div>
+</div>
+<div id="cookie-modal" role="dialog" aria-modal="true">
+  <div class="cookie-modal-box">
+    <h2>Cookie Preferences</h2>
+    <p>Please select which categories of cookies you wish to authorise.</p>
+    <div class="cookie-toggle-row">
+      <div><div class="cookie-toggle-label">Essential Cookies</div><div class="cookie-toggle-desc">Always active.</div></div>
+      <label class="toggle"><input type="checkbox" checked disabled /><span class="toggle-slider"></span></label>
+    </div>
+    <div class="cookie-toggle-row">
+      <div><div class="cookie-toggle-label">Analytics Cookies</div><div class="cookie-toggle-desc">Anonymised usage data.</div></div>
+      <label class="toggle"><input id="toggle-analytics" type="checkbox" /><span class="toggle-slider"></span></label>
+    </div>
+    <div class="cookie-modal-btns">
+      <button class="btn-modal-cancel">Cancel</button>
+      <button class="btn-modal-save">Save Preferences</button>
+    </div>
+  </div>
+</div>
+
+<!-- Mobile Menu -->
+<nav class="mobile-menu">
+  <button class="mobile-menu-close"><i class="fa fa-times"></i></button>
+  <a href="listings.html?cat=cars" data-i18n="nav_cars">Cars</a>
+  <a href="listings.html?cat=yachts" data-i18n="nav_yachts">Yachts</a>
+  <a href="listings.html?cat=jets" data-i18n="nav_jets">Private Jets</a>
+  <a href="listings.html?cat=realestate" data-i18n="nav_realestate">Real Estate</a>
+  <a href="pricing.html" style="color:var(--color-gold);margin-top:12px" data-i18n="publish">List with Us</a>
+</nav>
+
+<!-- Header -->
+<header class="site-header">
+  <a href="index.html" class="header-logo">
+    <div class="logo-mark">L</div>
+    <div><span class="logo-text">LUL</span><span class="logo-tagline">Luxury Unique Listings</span></div>
+  </a>
+  <nav class="header-nav">
+    <a href="listings.html?cat=cars"       data-i18n="nav_cars">Cars</a>
+    <a href="listings.html?cat=yachts"     data-i18n="nav_yachts">Yachts</a>
+    <a href="listings.html?cat=jets"       data-i18n="nav_jets">Private Jets</a>
+    <a href="listings.html?cat=realestate" data-i18n="nav_realestate">Real Estate</a>
+  </nav>
+  <div class="header-right">
+    <div class="lang-switcher">
+      <button class="lang-btn"><span class="lang-flag">🇬🇧</span><span class="lang-code">EN</span><span class="lang-arrow">▼</span></button>
+      <div class="lang-dropdown"></div>
+    </div>
+    <a href="pricing.html" class="btn-publish" data-i18n="publish">List with Us</a>
+    <a href="#" class="btn-login" data-i18n="login">Sign In</a>
+    <div style="position:relative">
+      <button class="user-profile-btn" style="display:none" aria-label="User profile"><i class="fa fa-user"></i></button>
+      <div class="user-profile-dropdown">
+        <div class="profile-dropdown-header">
+          <div class="profile-name">User</div>
+          <div class="profile-email"></div>
+        </div>
+        <a href="listings.html">My Listings</a>
+        <button class="profile-logout-btn"><i class="fa fa-sign-out-alt" style="margin-right:8px"></i>Sign Out</button>
+      </div>
+    </div>
+    <button class="header-menu-toggle"><i class="fa fa-bars"></i></button>
+  </div>
+</header>
+
+<!-- About Hero -->
+<section class="section" style="padding-top:120px">
+  <div class="container" style="max-width:860px">
+    <div class="section-header" style="margin-bottom:48px">
+      <p class="section-eyebrow" style="color:var(--color-gold)" data-i18n="about_eyebrow">About Us</p>
+      <h1 style="font-family:var(--font-serif);font-size:2.8rem;color:var(--color-white);margin-bottom:20px" data-i18n="about_title">The World's Most Exclusive Marketplace</h1>
+      <p style="color:var(--color-muted);font-size:1.05rem;line-height:1.8;max-width:700px;margin:0 auto" data-i18n="about_subtitle">LUL — Luxury Unique Listings connects discerning buyers with elite dealers and private sellers of the world's finest luxury assets.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Mission -->
+<section class="section section-alt">
+  <div class="container" style="max-width:860px">
+    <div class="steps-grid" style="gap:48px">
+      <div class="step">
+        <div class="step-num"><i class="fa fa-bullseye"></i></div>
+        <h3 data-i18n="about_mission_h">Our Mission</h3>
+        <p data-i18n="about_mission_p">To create a single, trusted destination where luxury meets technology. We believe that acquiring an exceptional car, yacht, jet, or property should be as refined as the asset itself — seamless, transparent, and global.</p>
+      </div>
+      <div class="step">
+        <div class="step-num"><i class="fa fa-globe"></i></div>
+        <h3 data-i18n="about_reach_h">Global Reach</h3>
+        <p data-i18n="about_reach_p">With over 3,500 verified dealers across 140+ countries, LUL is the go-to platform for high-net-worth individuals seeking the finest luxury assets available worldwide. Every listing is curated and verified for authenticity.</p>
+      </div>
+      <div class="step">
+        <div class="step-num"><i class="fa fa-shield-alt"></i></div>
+        <h3 data-i18n="about_trust_h">Trust & Verification</h3>
+        <p data-i18n="about_trust_p">Every dealer on our platform undergoes a rigorous verification process. We provide concierge support, legal guidance, and post-sale assistance to ensure every transaction meets the highest standards of professionalism.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Social Channels -->
+<section class="section">
+  <div class="container" style="max-width:860px;text-align:center">
+    <div class="section-header" style="margin-bottom:40px">
+      <p class="section-eyebrow" style="color:var(--color-gold)" data-i18n="about_social_label">Stay Connected</p>
+      <h2 class="section-title" data-i18n="about_social_title">Follow Us on Social Media</h2>
+      <p style="color:var(--color-muted);font-size:0.95rem;line-height:1.7;max-width:600px;margin:12px auto 0" data-i18n="about_social_desc">Stay up to date with the latest luxury listings, exclusive events, and industry insights by following our official channels.</p>
+    </div>
+
+    <div style="display:flex;justify-content:center;gap:24px;flex-wrap:wrap">
+      <a href="#" class="social-btn" style="width:64px;height:64px;font-size:1.5rem;display:flex;align-items:center;justify-content:center" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" class="social-btn" style="width:64px;height:64px;font-size:1.5rem;display:flex;align-items:center;justify-content:center" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#" class="social-btn" style="width:64px;height:64px;font-size:1.5rem;display:flex;align-items:center;justify-content:center" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+      <a href="#" class="social-btn" style="width:64px;height:64px;font-size:1.5rem;display:flex;align-items:center;justify-content:center" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="#" class="social-btn" style="width:64px;height:64px;font-size:1.5rem;display:flex;align-items:center;justify-content:center" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="#" class="social-btn" style="width:64px;height:64px;font-size:1.5rem;display:flex;align-items:center;justify-content:center" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="stats-row">
+      <div class="stat-item">
+        <span class="num">12,000+</span>
+        <span class="label">Active Listings</span>
+      </div>
+      <div class="stat-item">
+        <span class="num">140+</span>
+        <span class="label">Countries</span>
+      </div>
+      <div class="stat-item">
+        <span class="num">3,500+</span>
+        <span class="label">Verified Dealers</span>
+      </div>
+      <div class="stat-item">
+        <span class="num">98%</span>
+        <span class="label">Satisfaction Rate</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="header-logo" style="margin-bottom:16px">
+          <div class="logo-mark">L</div>
+          <div><span class="logo-text">LUL</span><span class="logo-tagline">Luxury Unique Listings</span></div>
+        </a>
+        <p data-i18n="footer_desc">The world's most exclusive marketplace for luxury cars, yachts, private jets, and real estate.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-x-twitter"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="listings.html?cat=cars" data-i18n="cat_cars">Luxury Cars</a></li>
+          <li><a href="listings.html?cat=yachts" data-i18n="cat_yachts">Yachts</a></li>
+          <li><a href="listings.html?cat=jets" data-i18n="cat_jets">Private Jets</a></li>
+          <li><a href="listings.html?cat=realestate" data-i18n="cat_realestate">Real Estate</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer_company">Company</h4>
+        <ul>
+          <li><a href="about.html" data-i18n="footer_about">About LUL</a></li>
+          <li><a href="pricing.html" data-i18n="footer_dealers">For Dealers</a></li>
+          <li><a href="#" data-i18n="footer_privacy">Privacy Policy</a></li>
+          <li><a href="#" data-i18n="footer_terms">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <div class="footer-contact-item"><i class="fa fa-phone"></i><a href="tel:+00000000000">[INSERISCI NUMERO]</a></div>
+        <div class="footer-contact-item"><i class="fa fa-envelope"></i><a href="mailto:info@example.com">[INSERISCI EMAIL]</a></div>
+        <div class="footer-contact-item"><i class="fab fa-whatsapp"></i><a href="#">[INSERISCI WHATSAPP]</a></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-i18n="footer_copy">&copy; 2025 LUL — Luxury Unique Listings. All rights reserved.</span>
+      <div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Cookies</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- Auth Modal -->
+<div id="auth-modal" role="dialog" aria-modal="true">
+  <div class="auth-modal-box">
+    <button class="auth-close" aria-label="Close"><i class="fa fa-times"></i></button>
+    <div class="auth-tabs">
+      <button class="auth-tab-btn active" data-tab="signin" data-i18n="auth_signin">Sign In</button>
+      <button class="auth-tab-btn" data-tab="signup" data-i18n="auth_signup">Create Account</button>
+    </div>
+    <form class="auth-form active" data-form="signin">
+      <div class="auth-field"><label data-i18n="auth_email">Email address</label><input type="email" required placeholder="Email address" /></div>
+      <div class="auth-field"><label data-i18n="auth_password">Password</label><input type="password" required placeholder="••••••••" /></div>
+      <a href="#" class="auth-forgot" data-i18n="auth_forgot">Forgot password?</a>
+      <button type="submit" class="auth-submit" data-i18n="auth_btn_signin">Sign In</button>
+      <div class="auth-divider"><span data-i18n="auth_or">or continue with</span></div>
+      <div class="auth-social"><button type="button" class="auth-social-btn"><i class="fab fa-google"></i> Google</button><button type="button" class="auth-social-btn"><i class="fab fa-apple"></i> Apple</button></div>
+      <p class="auth-switch"><span data-i18n="auth_no_account">Don't have an account?</span> <a href="#" class="auth-switch-signup" data-i18n="auth_signup">Create Account</a></p>
+    </form>
+    <form class="auth-form" data-form="signup">
+      <div class="auth-field"><label data-i18n="auth_name">Full name</label><input type="text" required placeholder="Full name" /></div>
+      <div class="auth-field"><label data-i18n="auth_email">Email address</label><input type="email" required placeholder="Email address" /></div>
+      <div class="auth-field"><label data-i18n="auth_password">Password</label><input type="password" required placeholder="••••••••" /></div>
+      <div class="auth-field"><label data-i18n="auth_confirm_pw">Confirm password</label><input type="password" required placeholder="••••••••" /></div>
+      <button type="submit" class="auth-submit" data-i18n="auth_btn_signup">Create Account</button>
+      <div class="auth-divider"><span data-i18n="auth_or">or continue with</span></div>
+      <div class="auth-social"><button type="button" class="auth-social-btn"><i class="fab fa-google"></i> Google</button><button type="button" class="auth-social-btn"><i class="fab fa-apple"></i> Apple</button></div>
+      <p class="auth-switch"><span data-i18n="auth_has_account">Already have an account?</span> <a href="#" class="auth-switch-signin" data-i18n="auth_signin">Sign In</a></p>
+    </form>
+  </div>
+</div>
+
+<!-- Cookie Learn More Modal -->
+<div id="cookie-learn-more" role="dialog" aria-modal="true">
+  <div class="cookie-lm-box">
+    <button class="cookie-lm-close" aria-label="Close"><i class="fa fa-times"></i></button>
+    <h2 data-i18n="cookie_title">Cookie Policy</h2>
+    <p class="cookie-lm-intro" data-i18n="cookie_intro">This platform employs cookies and analogous tracking technologies to ensure optimal functionality.</p>
+    <div class="cookie-lm-section"><h3><i class="fa fa-lock"></i> <span data-i18n="cookie_essential_h">Essential Cookies</span></h3><p data-i18n="cookie_essential_p">Strictly necessary for proper platform operation.</p></div>
+    <div class="cookie-lm-section"><h3><i class="fa fa-chart-bar"></i> <span data-i18n="cookie_analytics_h">Analytics Cookies</span></h3><p data-i18n="cookie_analytics_p">Anonymised data regarding platform usage.</p></div>
+    <div class="cookie-lm-section"><h3><i class="fa fa-bullhorn"></i> <span data-i18n="cookie_marketing_h">Marketing Cookies</span></h3><p data-i18n="cookie_marketing_p">Promotional content delivery and campaign measurement.</p></div>
+    <div class="cookie-lm-section"><h3><i class="fa fa-share-alt"></i> <span data-i18n="cookie_social_h">Social Media Cookies</span></h3><p data-i18n="cookie_social_p">Deployed by external social networking services.</p></div>
+    <button class="cookie-lm-close-btn" data-i18n="cookie_close">Close</button>
+  </div>
+</div>
+
+<script src="js/cookies.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

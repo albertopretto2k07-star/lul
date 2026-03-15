@@ -18,7 +18,7 @@
 ══════════════════════════════════════════════════════ -->
 <div id="cookie-banner" role="alertdialog" aria-label="Cookie consent">
   <div class="cookie-text">
-    <strong>We use cookies</strong> — technical cookies are essential for the site to function properly. With your consent we also collect anonymous analytics to improve your experience.
+    <strong>Cookie Notice</strong> — This platform employs essential cookies required for proper site functionality. With your consent, anonymised analytical data may also be collected to enhance the browsing experience.
     <a href="#" class="cookie-learn-more-link" style="margin-left:6px">Learn more</a>
   </div>
   <div class="cookie-actions">
@@ -32,18 +32,18 @@
 <div id="cookie-modal" role="dialog" aria-modal="true" aria-labelledby="cookie-modal-title">
   <div class="cookie-modal-box">
     <h2 id="cookie-modal-title">Cookie Preferences</h2>
-    <p>Choose which cookies you'd like to allow. Essential cookies cannot be disabled as they are required for the site to work.</p>
+    <p>Please select which categories of cookies you wish to authorise. Essential cookies cannot be deactivated as they are required for the proper functioning of the platform.</p>
     <div class="cookie-toggle-row">
       <div>
         <div class="cookie-toggle-label">Essential Cookies</div>
-        <div class="cookie-toggle-desc">Session management, security, language preferences. Always active.</div>
+        <div class="cookie-toggle-desc">Session management, security protocols, and language preferences. Permanently active.</div>
       </div>
       <label class="toggle"><input type="checkbox" checked disabled /><span class="toggle-slider"></span></label>
     </div>
     <div class="cookie-toggle-row">
       <div>
         <div class="cookie-toggle-label">Analytics Cookies</div>
-        <div class="cookie-toggle-desc">Anonymous data about pages visited, device type and session duration. Helps us improve the platform.</div>
+        <div class="cookie-toggle-desc">Anonymised data regarding pages visited, device classification, and session duration. Facilitates platform improvement.</div>
       </div>
       <label class="toggle"><input id="toggle-analytics" type="checkbox" /><span class="toggle-slider"></span></label>
     </div>
@@ -96,6 +96,17 @@
 
     <a href="pricing.html" class="btn-publish" data-i18n="publish">List with Us</a>
     <a href="#" class="btn-login" data-i18n="login">Sign In</a>
+    <div style="position:relative">
+      <button class="user-profile-btn" style="display:none" aria-label="User profile"><i class="fa fa-user"></i></button>
+      <div class="user-profile-dropdown">
+        <div class="profile-dropdown-header">
+          <div class="profile-name">User</div>
+          <div class="profile-email"></div>
+        </div>
+        <a href="listings.html">My Listings</a>
+        <button class="profile-logout-btn"><i class="fa fa-sign-out-alt" style="margin-right:8px"></i>Sign Out</button>
+      </div>
+    </div>
     <button class="header-menu-toggle" aria-label="Open menu"><i class="fa fa-bars"></i></button>
   </div>
 </header>
@@ -173,7 +184,7 @@
       <article class="listing-card" data-id="1">
         <div class="card-image-wrap">
           <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&q=80" alt="INSERISCI TITOLO INSERZIONE 1" loading="lazy" />
-          <span class="card-badge featured">Featured</span>
+          <span class="card-badge featured" data-i18n="card_featured">Featured</span>
           <button class="card-fav" aria-label="Save to favourites"><i class="fa-regular fa-heart"></i></button>
           <span class="card-location"><i class="fa fa-map-marker-alt"></i> INSERISCI LUOGO</span>
           <span class="card-img-count"><i class="fa fa-images"></i> 12</span>
@@ -189,7 +200,7 @@
           </div>
           <div class="card-footer">
             <span class="card-dealer"><img class="card-dealer-avatar" src="https://ui-avatars.com/api/?name=D&background=0F1E34&color=fff" alt="Dealer" /> DEALER NAME</span>
-            <a href="listing-detail.html" class="btn-card-contact">View Details</a>
+            <a href="listing-detail.html" class="btn-card-contact" data-i18n="card_details">View Details</a>
           </div>
         </div>
       </article>
@@ -198,7 +209,7 @@
       <article class="listing-card" data-id="2">
         <div class="card-image-wrap">
           <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=80" alt="INSERISCI TITOLO INSERZIONE 2" loading="lazy" />
-          <span class="card-badge new">New</span>
+          <span class="card-badge new" data-i18n="card_new">New</span>
           <button class="card-fav" aria-label="Save to favourites"><i class="fa-regular fa-heart"></i></button>
           <span class="card-location"><i class="fa fa-map-marker-alt"></i> INSERISCI LUOGO</span>
           <span class="card-img-count"><i class="fa fa-images"></i> 8</span>
@@ -214,7 +225,7 @@
           </div>
           <div class="card-footer">
             <span class="card-dealer"><img class="card-dealer-avatar" src="https://ui-avatars.com/api/?name=D&background=0F1E34&color=fff" alt="Dealer" /> DEALER NAME</span>
-            <a href="listing-detail.html" class="btn-card-contact">View Details</a>
+            <a href="listing-detail.html" class="btn-card-contact" data-i18n="card_details">View Details</a>
           </div>
         </div>
       </article>
@@ -238,7 +249,7 @@
           </div>
           <div class="card-footer">
             <span class="card-dealer"><img class="card-dealer-avatar" src="https://ui-avatars.com/api/?name=D&background=0F1E34&color=fff" alt="Dealer" /> DEALER NAME</span>
-            <a href="listing-detail.html" class="btn-card-contact">View Details</a>
+            <a href="listing-detail.html" class="btn-card-contact" data-i18n="card_details">View Details</a>
           </div>
         </div>
       </article>
@@ -247,7 +258,7 @@
       <article class="listing-card" data-id="4">
         <div class="card-image-wrap">
           <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80" alt="INSERISCI TITOLO INSERZIONE 4" loading="lazy" />
-          <span class="card-badge featured">Featured</span>
+          <span class="card-badge featured" data-i18n="card_featured">Featured</span>
           <button class="card-fav" aria-label="Save to favourites"><i class="fa-regular fa-heart"></i></button>
           <span class="card-location"><i class="fa fa-map-marker-alt"></i> INSERISCI LUOGO</span>
           <span class="card-img-count"><i class="fa fa-images"></i> 10</span>
@@ -263,7 +274,7 @@
           </div>
           <div class="card-footer">
             <span class="card-dealer"><img class="card-dealer-avatar" src="https://ui-avatars.com/api/?name=D&background=0F1E34&color=fff" alt="Dealer" /> DEALER NAME</span>
-            <a href="listing-detail.html" class="btn-card-contact">View Details</a>
+            <a href="listing-detail.html" class="btn-card-contact" data-i18n="card_details">View Details</a>
           </div>
         </div>
       </article>
@@ -287,7 +298,7 @@
           </div>
           <div class="card-footer">
             <span class="card-dealer"><img class="card-dealer-avatar" src="https://ui-avatars.com/api/?name=D&background=0F1E34&color=fff" alt="Dealer" /> DEALER NAME</span>
-            <a href="listing-detail.html" class="btn-card-contact">View Details</a>
+            <a href="listing-detail.html" class="btn-card-contact" data-i18n="card_details">View Details</a>
           </div>
         </div>
       </article>
@@ -296,7 +307,7 @@
       <article class="listing-card" data-id="6">
         <div class="card-image-wrap">
           <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&q=80" alt="INSERISCI TITOLO INSERZIONE 6" loading="lazy" />
-          <span class="card-badge new">New</span>
+          <span class="card-badge new" data-i18n="card_new">New</span>
           <button class="card-fav" aria-label="Save to favourites"><i class="fa-regular fa-heart"></i></button>
           <span class="card-location"><i class="fa fa-map-marker-alt"></i> INSERISCI LUOGO</span>
           <span class="card-img-count"><i class="fa fa-images"></i> 20</span>
@@ -312,7 +323,7 @@
           </div>
           <div class="card-footer">
             <span class="card-dealer"><img class="card-dealer-avatar" src="https://ui-avatars.com/api/?name=D&background=0F1E34&color=fff" alt="Dealer" /> DEALER NAME</span>
-            <a href="listing-detail.html" class="btn-card-contact">View Details</a>
+            <a href="listing-detail.html" class="btn-card-contact" data-i18n="card_details">View Details</a>
           </div>
         </div>
       </article>
@@ -490,7 +501,7 @@
       <div class="footer-col">
         <h4 data-i18n="footer_company">Company</h4>
         <ul>
-          <li><a href="#" data-i18n="footer_about">About LUL</a></li>
+          <li><a href="about.html" data-i18n="footer_about">About LUL</a></li>
           <li><a href="pricing.html" data-i18n="footer_dealers">For Dealers</a></li>
           <li><a href="#" data-i18n="footer_careers">Careers</a></li>
           <li><a href="#" data-i18n="footer_press">Press</a></li>
