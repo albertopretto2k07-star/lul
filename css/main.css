@@ -202,6 +202,9 @@ input, select, textarea { font-family: inherit; }
   gap: 32px;
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
+.header-logo { order: 3; }
+.header-nav { order: 1; }
+.header-right { order: 2; }
 
 /* Logo */
 .header-logo {
@@ -304,8 +307,9 @@ input, select, textarea { font-family: inherit; }
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-lg);
   min-width: 180px;
-  overflow: hidden;
-  border: 1px solid var(--color-border);
+  max-height: 360px;
+  overflow-y: auto;
+  z-index: 1000;
 }
 .lang-dropdown.open { display: block; }
 .lang-option {
@@ -350,10 +354,15 @@ input, select, textarea { font-family: inherit; }
 .header-menu-toggle {
   display: none;
   color: var(--color-white);
-  font-size: 1.3rem;
-  padding: 6px;
+  font-size: 1.4rem;
+  padding: 8px;
   background: none;
+  border: none;
+  cursor: pointer;
+  line-height: 1;
+  transition: var(--transition);
 }
+.header-menu-toggle:hover { color: var(--color-gold); }
 
 /* ============================================================
    HERO
@@ -1600,6 +1609,14 @@ input, select, textarea { font-family: inherit; }
   .hero h1 { font-size: 1.8rem; }
   .kpi-grid { grid-template-columns: 1fr; }
   .hero-stats { flex-direction: column; gap: 12px; }
+  .categories-grid { grid-template-columns: 1fr; }
+  .section-title { font-size: 1.5rem; }
+  .auth-modal-box { padding: 24px 20px; }
+  .cookie-lm-box { padding: 24px 20px; max-height: 85vh; }
+  .lang-dropdown { min-width: 160px; max-height: 280px; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+  .footer-bottom-links { justify-content: center; }
+  .stat-item .num { font-size: 1.6rem; }
 }
 
 /* ============================================================
@@ -1840,13 +1857,11 @@ input, select, textarea { font-family: inherit; }
 /* ============================================================
    RTL SUPPORT (Arabic)
    ============================================================ */
-[dir="rtl"] .site-header { flex-direction: row-reverse; }
-[dir="rtl"] .header-nav { flex-direction: row-reverse; }
-[dir="rtl"] .header-right { flex-direction: row-reverse; }
-[dir="rtl"] .header-logo { flex-direction: row-reverse; }
+[dir="rtl"] { direction: rtl; }
+[dir="rtl"] .site-header { direction: ltr; }
+[dir="rtl"] .header-logo { direction: rtl; }
+[dir="rtl"] .header-nav a { direction: rtl; }
 [dir="rtl"] .hero-content { text-align: right; }
-[dir="rtl"] .hero-search-row { direction: rtl; }
-[dir="rtl"] .hero-stats { direction: rtl; }
 [dir="rtl"] .section-header { text-align: right; }
 [dir="rtl"] .card-body { text-align: right; }
 [dir="rtl"] .card-footer { flex-direction: row-reverse; }
@@ -1854,9 +1869,7 @@ input, select, textarea { font-family: inherit; }
 [dir="rtl"] .card-img-count { right: auto; left: 16px; }
 [dir="rtl"] .card-badge { left: auto; right: 16px; }
 [dir="rtl"] .card-fav { right: auto; left: 16px; }
-[dir="rtl"] .steps-grid { direction: rtl; }
 [dir="rtl"] .dealer-banner { text-align: right; }
-[dir="rtl"] .footer-grid { direction: rtl; }
 [dir="rtl"] .footer-brand { text-align: right; }
 [dir="rtl"] .footer-col { text-align: right; }
 [dir="rtl"] .footer-contact-item { flex-direction: row-reverse; justify-content: flex-end; }
@@ -1868,6 +1881,31 @@ input, select, textarea { font-family: inherit; }
 [dir="rtl"] .breadcrumb { direction: rtl; }
 [dir="rtl"] .listings-sidebar { text-align: right; }
 [dir="rtl"] .category-hero-inner { flex-direction: row-reverse; }
+/* Prevent RTL from affecting grid sizing */
+[dir="rtl"] .listings-grid,
+[dir="rtl"] .listings-grid-4,
+[dir="rtl"] .categories-grid,
+[dir="rtl"] .pricing-grid,
+[dir="rtl"] .steps-grid,
+[dir="rtl"] .stats-row,
+[dir="rtl"] .footer-grid,
+[dir="rtl"] .kpi-grid { direction: ltr; }
+[dir="rtl"] .listings-grid > *,
+[dir="rtl"] .listings-grid-4 > *,
+[dir="rtl"] .categories-grid > *,
+[dir="rtl"] .pricing-grid > *,
+[dir="rtl"] .steps-grid > *,
+[dir="rtl"] .stats-row > *,
+[dir="rtl"] .footer-grid > *,
+[dir="rtl"] .kpi-grid > * { direction: rtl; }
+[dir="rtl"] .listing-card { direction: rtl; }
+[dir="rtl"] .hero-search { direction: rtl; }
+[dir="rtl"] .hero-search-row { direction: rtl; }
+[dir="rtl"] .hero-tabs { direction: rtl; }
+[dir="rtl"] .hero-stats { direction: rtl; }
+[dir="rtl"] #cookie-banner { direction: rtl; }
+[dir="rtl"] #cookie-banner .cookie-text { text-align: right; }
+[dir="rtl"] .lang-dropdown { right: auto; left: 0; }
 
 /* ============================================================
    CLICKABLE CARDS
