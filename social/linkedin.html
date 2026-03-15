@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LUL on LinkedIn</title>
+  <!-- MODIFICA: Inserisci il tuo URL LinkedIn qui sotto per il redirect automatico -->
+  <!-- <meta http-equiv="refresh" content="3;url=https://www.linkedin.com/company/TUO_PROFILO" /> -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../css/main.css" />
+  <style>
+    .social-redirect { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
+    .social-redirect-box { text-align: center; max-width: 480px; }
+    .social-redirect-icon { font-size: 4rem; color: #0A66C2; margin-bottom: 24px; }
+    .social-redirect-box h1 { font-family: var(--font-serif); font-size: 2rem; color: var(--color-white); margin-bottom: 16px; }
+    .social-redirect-box p { color: var(--color-muted); font-size: 1rem; line-height: 1.7; margin-bottom: 32px; }
+    .social-redirect-btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; background: #0A66C2; color: #fff; font-weight: 600; border-radius: var(--radius-md); font-size: 1rem; transition: var(--transition); text-decoration: none; }
+    .social-redirect-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(10,102,194,0.3); }
+    .social-redirect-back { display: inline-block; margin-top: 20px; color: var(--color-muted); font-size: 0.9rem; }
+    .social-redirect-back:hover { color: var(--color-gold); }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="../index.html" class="header-logo">
+    <div class="logo-mark">L</div>
+    <div><span class="logo-text">LUL</span><span class="logo-tagline">Luxury Unique Listings</span></div>
+  </a>
+  <nav class="header-nav">
+    <a href="../listings.html?cat=cars">Cars</a>
+    <a href="../listings.html?cat=yachts">Yachts</a>
+    <a href="../listings.html?cat=jets">Private Jets</a>
+    <a href="../listings.html?cat=realestate">Real Estate</a>
+  </nav>
+  <div class="header-right">
+    <a href="../index.html" class="btn-publish" style="font-size:0.85rem">Home</a>
+  </div>
+</header>
+
+<div class="social-redirect">
+  <div class="social-redirect-box">
+    <div class="social-redirect-icon"><i class="fab fa-linkedin-in"></i></div>
+    <h1>Connect on LinkedIn</h1>
+    <p>Join our professional network and stay informed about luxury market trends, partnership opportunities, and company updates.</p>
+    <!-- MODIFICA: Sostituisci # con il tuo URL LinkedIn -->
+    <a href="#" class="social-redirect-btn"><i class="fab fa-linkedin-in"></i> Open LinkedIn</a>
+    <br>
+    <a href="../index.html" class="social-redirect-back">&larr; Back to LUL</a>
+  </div>
+</div>
+
+</body>
+</html>

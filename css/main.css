@@ -202,9 +202,6 @@ input, select, textarea { font-family: inherit; }
   gap: 32px;
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
-.header-logo { order: 3; }
-.header-nav { order: 1; }
-.header-right { order: 2; }
 
 /* Logo */
 .header-logo {
