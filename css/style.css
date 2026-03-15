@@ -6,18 +6,18 @@
 /* --- 1. CSS Custom Properties --- */
 :root {
   /* Colors */
-  --color-primary: #1A1A2E;
-  --color-secondary: #C9A96E;
-  --color-accent-hover: #B8923D;
-  --color-bg-light: #FAFAFA;
-  --color-bg-card: #FFFFFF;
-  --color-text-primary: #1A1A1A;
-  --color-text-body: #4A4A4A;
-  --color-text-muted: #8A8A8A;
-  --color-border: #E8E8E8;
+  --color-primary: #0A1628;
+  --color-secondary: #C0C0C0;
+  --color-accent-hover: #8A8A96;
+  --color-bg-light: #0B1929;
+  --color-bg-card: #0F1E34;
+  --color-text-primary: #E8ECF1;
+  --color-text-body: #B0B8C8;
+  --color-text-muted: #8899AA;
+  --color-border: #1E3250;
   --color-success: #2E7D5B;
   --color-error: #C0392B;
-  --color-overlay: rgba(26, 26, 46, 0.85);
+  --color-overlay: rgba(5, 13, 24, 0.85);
 
   /* Typography */
   --font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;

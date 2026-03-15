@@ -1,1616 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<meta name="description" content="LUL - Luxury Unique Listings. The world's finest homes, cars, yachts, jets and collectibles."/>
-<title>LUL - Luxury Unique Listings</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-<style>
-/* ===== PAGES (SPA ROUTER) =====*/
-.page{display:none}.page.active{display:block}
-/* ============================================================
-   LUL — Luxury Listing Platform
-   Main Stylesheet
-   ============================================================ */
-
-/* --- Google Fonts & Variables --- */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
-
-:root {
-  --color-bg:         #F8F7F4;
-  --color-white:      #FFFFFF;
-  --color-black:      #0D0D0D;
-  --color-gold:       #C9A84C;
-  --color-gold-light: #E8D5A3;
-  --color-gold-dark:  #A07C28;
-  --color-text:       #1A1A1A;
-  --color-muted:      #6B6B6B;
-  --color-border:     #E5E5E0;
-  --color-card-bg:    #FFFFFF;
-  --color-input-bg:   #F2F1EE;
-  --color-overlay:    rgba(13,13,13,0.65);
-
-  --font-serif:  'Playfair Display', Georgia, serif;
-  --font-sans:   'Inter', system-ui, sans-serif;
-
-  --radius-sm:  4px;
-  --radius-md:  8px;
-  --radius-lg:  16px;
-  --radius-xl:  24px;
-
-  --shadow-sm:  0 1px 4px rgba(0,0,0,0.07);
-  --shadow-md:  0 4px 16px rgba(0,0,0,0.10);
-  --shadow-lg:  0 8px 32px rgba(0,0,0,0.14);
-  --shadow-gold:0 4px 20px rgba(201,168,76,0.22);
-
-  --transition: all 0.25s ease;
-  --header-h:   72px;
-}
-
-/* --- Reset --- */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; }
-body {
-  font-family: var(--font-sans);
-  background: var(--color-bg);
-  color: var(--color-text);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-}
-img { max-width: 100%; display: block; }
-a { color: inherit; text-decoration: none; }
-ul { list-style: none; }
-button { cursor: pointer; border: none; background: none; font-family: inherit; }
-input, select, textarea { font-family: inherit; }
-
-/* ============================================================
-   COOKIE BANNER
-   ============================================================ */
-#cookie-banner {
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
-  z-index: 9999;
-  background: var(--color-black);
-  color: var(--color-white);
-  padding: 20px 40px;
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  flex-wrap: wrap;
-  border-top: 2px solid var(--color-gold);
-  box-shadow: 0 -4px 24px rgba(0,0,0,0.4);
-  transform: translateY(100%);
-  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
-}
-#cookie-banner.visible { transform: translateY(0); }
-#cookie-banner .cookie-text { flex: 1; min-width: 260px; font-size: 0.875rem; line-height: 1.6; }
-#cookie-banner .cookie-text a { color: var(--color-gold); text-decoration: underline; }
-#cookie-banner .cookie-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-.btn-cookie-all {
-  background: var(--color-gold);
-  color: var(--color-black);
-  padding: 10px 22px;
-  border-radius: var(--radius-sm);
-  font-weight: 600;
-  font-size: 0.875rem;
-  transition: var(--transition);
-}
-.btn-cookie-all:hover { background: var(--color-gold-dark); }
-.btn-cookie-tech {
-  background: transparent;
-  color: var(--color-white);
-  border: 1px solid rgba(255,255,255,0.4);
-  padding: 10px 22px;
-  border-radius: var(--radius-sm);
-  font-size: 0.875rem;
-  transition: var(--transition);
-}
-.btn-cookie-tech:hover { border-color: var(--color-white); }
-.btn-cookie-customize {
-  background: transparent;
-  color: var(--color-muted);
-  font-size: 0.8rem;
-  text-decoration: underline;
-  padding: 10px 4px;
-  transition: var(--transition);
-}
-.btn-cookie-customize:hover { color: var(--color-white); }
-
-/* Cookie Modal */
-#cookie-modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 10000;
-  background: rgba(0,0,0,0.7);
-  align-items: center;
-  justify-content: center;
-}
-#cookie-modal.open { display: flex; }
-.cookie-modal-box {
-  background: var(--color-white);
-  border-radius: var(--radius-lg);
-  padding: 40px;
-  max-width: 560px;
-  width: 90%;
-  box-shadow: var(--shadow-lg);
-}
-.cookie-modal-box h2 { font-family: var(--font-serif); font-size: 1.5rem; margin-bottom: 8px; }
-.cookie-modal-box p { color: var(--color-muted); font-size: 0.9rem; margin-bottom: 24px; }
-.cookie-toggle-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--color-border);
-}
-.cookie-toggle-row:last-of-type { border-bottom: none; }
-.cookie-toggle-label { font-weight: 500; font-size: 0.9rem; }
-.cookie-toggle-desc { font-size: 0.8rem; color: var(--color-muted); }
-/* Toggle switch */
-.toggle { position: relative; display: inline-block; width: 44px; height: 24px; }
-.toggle input { opacity: 0; width: 0; height: 0; }
-.toggle-slider {
-  position: absolute; inset: 0;
-  background: var(--color-border);
-  border-radius: 24px;
-  transition: var(--transition);
-}
-.toggle-slider::before {
-  content: '';
-  position: absolute;
-  width: 18px; height: 18px;
-  left: 3px; bottom: 3px;
-  background: white;
-  border-radius: 50%;
-  transition: var(--transition);
-}
-.toggle input:checked + .toggle-slider { background: var(--color-gold); }
-.toggle input:checked + .toggle-slider::before { transform: translateX(20px); }
-.toggle input:disabled + .toggle-slider { opacity: 0.5; }
-.cookie-modal-btns { display: flex; gap: 12px; margin-top: 28px; justify-content: flex-end; }
-.btn-modal-save {
-  background: var(--color-gold);
-  color: var(--color-black);
-  padding: 10px 28px;
-  border-radius: var(--radius-sm);
-  font-weight: 600;
-  transition: var(--transition);
-}
-.btn-modal-save:hover { background: var(--color-gold-dark); }
-.btn-modal-cancel {
-  padding: 10px 20px;
-  color: var(--color-muted);
-  font-size: 0.9rem;
-  transition: var(--transition);
-}
-.btn-modal-cancel:hover { color: var(--color-text); }
-
-/* ============================================================
-   HEADER
-   ============================================================ */
-.site-header {
-  position: sticky;
-  top: 0; left: 0; right: 0;
-  z-index: 1000;
-  background: var(--color-black);
-  height: var(--header-h);
-  display: flex;
-  align-items: center;
-  padding: 0 40px;
-  gap: 32px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-
-/* Logo */
-.header-logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  flex-shrink: 0;
-}
-.logo-mark {
-  width: 38px; height: 38px;
-  background: var(--color-gold);
-  border-radius: var(--radius-sm);
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-serif);
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--color-black);
-  letter-spacing: -0.5px;
-}
-.logo-text {
-  font-family: var(--font-serif);
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: var(--color-white);
-  letter-spacing: 2px;
-}
-.logo-tagline {
-  font-size: 0.6rem;
-  color: var(--color-gold);
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  display: block;
-  margin-top: -4px;
-}
-
-/* Main Nav */
-.header-nav {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-.header-nav a {
-  color: rgba(255,255,255,0.75);
-  font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  padding: 8px 14px;
-  border-radius: var(--radius-sm);
-  transition: var(--transition);
-  white-space: nowrap;
-}
-.header-nav a:hover, .header-nav a.active {
-  color: var(--color-white);
-  background: rgba(255,255,255,0.08);
-}
-.header-nav a.active { color: var(--color-gold); }
-
-/* Header Right */
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-shrink: 0;
-}
-
-/* Language Switcher */
-.lang-switcher {
-  position: relative;
-}
-.lang-btn {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: rgba(255,255,255,0.8);
-  font-size: 0.82rem;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  padding: 6px 10px;
-  border: 1px solid rgba(255,255,255,0.18);
-  border-radius: var(--radius-sm);
-  transition: var(--transition);
-  background: transparent;
-  cursor: pointer;
-}
-.lang-btn:hover { border-color: var(--color-gold); color: var(--color-gold); }
-.lang-flag { font-size: 1.1rem; line-height: 1; }
-.lang-code { font-weight: 600; }
-.lang-arrow { font-size: 0.65rem; opacity: 0.6; transition: var(--transition); }
-.lang-btn.open .lang-arrow { transform: rotate(180deg); }
-
-.lang-dropdown {
-  display: none;
-  position: absolute;
-  top: calc(100% + 8px);
-  right: 0;
-  background: var(--color-white);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-lg);
-  min-width: 180px;
-  overflow: hidden;
-  border: 1px solid var(--color-border);
-}
-.lang-dropdown.open { display: block; }
-.lang-option {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 11px 16px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--color-text);
-  transition: var(--transition);
-  cursor: pointer;
-}
-.lang-option:hover { background: var(--color-bg); color: var(--color-gold); }
-.lang-option.selected { background: var(--color-bg); color: var(--color-gold); font-weight: 600; }
-.lang-option .flag { font-size: 1.2rem; }
-
-/* Publish CTA */
-.btn-publish {
-  background: var(--color-gold);
-  color: var(--color-black);
-  padding: 9px 20px;
-  border-radius: var(--radius-sm);
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  transition: var(--transition);
-  white-space: nowrap;
-}
-.btn-publish:hover { background: var(--color-gold-dark); transform: translateY(-1px); box-shadow: var(--shadow-gold); }
-
-/* Login Link */
-.btn-login {
-  color: rgba(255,255,255,0.75);
-  font-size: 0.85rem;
-  font-weight: 500;
-  transition: var(--transition);
-}
-.btn-login:hover { color: var(--color-white); }
-
-/* Hamburger */
-.header-menu-toggle {
-  display: none;
-  color: var(--color-white);
-  font-size: 1.3rem;
-  padding: 6px;
-  background: none;
-}
-
-/* ============================================================
-   HERO
-   ============================================================ */
-.hero {
-  position: relative;
-  min-height: 600px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1800&q=80');
-  background-size: cover;
-  background-position: center;
-  transform: scale(1.05);
-  transition: transform 8s ease;
-}
-.hero:hover .hero-bg { transform: scale(1.0); }
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(13,13,13,0.6) 0%, rgba(13,13,13,0.4) 50%, rgba(13,13,13,0.7) 100%);
-}
-.hero-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  padding: 60px 20px;
-  max-width: 800px;
-}
-.hero-eyebrow {
-  font-size: 0.75rem;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--color-gold);
-  margin-bottom: 16px;
-  font-weight: 500;
-}
-.hero h1 {
-  font-family: var(--font-serif);
-  font-size: clamp(2.2rem, 5vw, 3.8rem);
-  color: var(--color-white);
-  line-height: 1.2;
-  margin-bottom: 16px;
-  font-weight: 500;
-}
-.hero h1 em { font-style: italic; color: var(--color-gold-light); }
-.hero-sub {
-  color: rgba(255,255,255,0.75);
-  font-size: 1rem;
-  margin-bottom: 40px;
-  max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Hero Search */
-.hero-search {
-  background: var(--color-white);
-  border-radius: var(--radius-lg);
-  padding: 8px 8px 8px 8px;
-  box-shadow: var(--shadow-lg);
-  max-width: 680px;
-  margin: 0 auto;
-}
-.hero-tabs {
-  display: flex;
-  gap: 4px;
-  margin-bottom: 8px;
-  padding: 0 4px;
-  flex-wrap: wrap;
-}
-.hero-tab {
-  padding: 7px 14px;
-  border-radius: var(--radius-sm);
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--color-muted);
-  transition: var(--transition);
-  cursor: pointer;
-  background: none;
-}
-.hero-tab:hover { color: var(--color-text); background: var(--color-bg); }
-.hero-tab.active { background: var(--color-black); color: var(--color-white); }
-.hero-search-row {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-.hero-search-row input {
-  flex: 1;
-  border: none;
-  background: var(--color-input-bg);
-  border-radius: var(--radius-sm);
-  padding: 12px 16px;
-  font-size: 0.9rem;
-  color: var(--color-text);
-  outline: none;
-}
-.hero-search-row input::placeholder { color: var(--color-muted); }
-.hero-search-row select {
-  border: none;
-  background: var(--color-input-bg);
-  border-radius: var(--radius-sm);
-  padding: 12px 14px;
-  font-size: 0.85rem;
-  color: var(--color-text);
-  outline: none;
-  cursor: pointer;
-}
-.btn-search {
-  background: var(--color-gold);
-  color: var(--color-black);
-  border-radius: var(--radius-sm);
-  padding: 12px 24px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: var(--transition);
-  white-space: nowrap;
-}
-.btn-search:hover { background: var(--color-gold-dark); transform: translateY(-1px); }
-.hero-stats {
-  display: flex;
-  gap: 32px;
-  justify-content: center;
-  margin-top: 32px;
-}
-.hero-stat { text-align: center; }
-.hero-stat .num {
-  font-family: var(--font-serif);
-  font-size: 1.6rem;
-  color: var(--color-white);
-  font-weight: 600;
-  display: block;
-}
-.hero-stat .label { font-size: 0.75rem; color: rgba(255,255,255,0.6); letter-spacing: 1px; }
-
-/* ============================================================
-   SECTIONS GENERAL
-   ============================================================ */
-.section { padding: 80px 0; }
-.section-alt { background: var(--color-white); }
-.container { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
-.section-header { text-align: center; margin-bottom: 52px; }
-.section-eyebrow {
-  font-size: 0.72rem;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--color-gold);
-  font-weight: 500;
-  margin-bottom: 12px;
-}
-.section-title {
-  font-family: var(--font-serif);
-  font-size: clamp(1.6rem, 3vw, 2.4rem);
-  font-weight: 500;
-  color: var(--color-text);
-  line-height: 1.25;
-}
-.section-desc { color: var(--color-muted); max-width: 500px; margin: 12px auto 0; font-size: 0.95rem; }
-
-/* ============================================================
-   LISTING CARDS
-   ============================================================ */
-.listings-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-}
-.listing-card {
-  background: var(--color-card-bg);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--color-border);
-  transition: var(--transition);
-  cursor: pointer;
-}
-.listing-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-lg), 0 0 0 1px var(--color-gold-light);
-}
-.card-image-wrap {
-  position: relative;
-  aspect-ratio: 4/3;
-  overflow: hidden;
-  background: var(--color-border);
-}
-.card-image-wrap img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
-}
-.listing-card:hover .card-image-wrap img { transform: scale(1.06); }
-.card-badge {
-  position: absolute;
-  top: 14px; left: 14px;
-  background: var(--color-black);
-  color: var(--color-white);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  padding: 4px 10px;
-  border-radius: 2px;
-}
-.card-badge.featured { background: var(--color-gold); color: var(--color-black); }
-.card-badge.new { background: #2D7D4B; }
-.card-fav {
-  position: absolute;
-  top: 12px; right: 12px;
-  width: 32px; height: 32px;
-  background: rgba(255,255,255,0.9);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.9rem;
-  color: var(--color-muted);
-  transition: var(--transition);
-  box-shadow: var(--shadow-sm);
-}
-.card-fav:hover { color: #e85d5d; background: white; transform: scale(1.1); }
-.card-location {
-  position: absolute;
-  bottom: 12px; left: 12px;
-  background: rgba(0,0,0,0.55);
-  color: white;
-  font-size: 0.72rem;
-  padding: 3px 8px;
-  border-radius: 2px;
-  display: flex; align-items: center; gap: 4px;
-  backdrop-filter: blur(4px);
-}
-.card-img-count {
-  position: absolute;
-  bottom: 12px; right: 12px;
-  background: rgba(0,0,0,0.55);
-  color: white;
-  font-size: 0.72rem;
-  padding: 3px 8px;
-  border-radius: 2px;
-  display: flex; align-items: center; gap: 4px;
-  backdrop-filter: blur(4px);
-}
-.card-body { padding: 20px; }
-.card-category {
-  font-size: 0.7rem;
-  color: var(--color-gold);
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-.card-title {
-  font-family: var(--font-serif);
-  font-size: 1.05rem;
-  font-weight: 500;
-  color: var(--color-text);
-  margin-bottom: 4px;
-  line-height: 1.35;
-}
-.card-price {
-  font-size: 1.15rem;
-  font-weight: 600;
-  color: var(--color-text);
-  margin-bottom: 14px;
-}
-.card-price .currency { font-size: 0.85rem; font-weight: 400; color: var(--color-muted); }
-.card-specs {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 16px;
-}
-.spec-tag {
-  font-size: 0.75rem;
-  color: var(--color-muted);
-  background: var(--color-bg);
-  padding: 4px 10px;
-  border-radius: 2px;
-  display: flex; align-items: center; gap: 5px;
-}
-.spec-tag i { font-size: 0.7rem; color: var(--color-gold); }
-.card-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 14px;
-  border-top: 1px solid var(--color-border);
-}
-.card-dealer {
-  font-size: 0.78rem;
-  color: var(--color-muted);
-  display: flex; align-items: center; gap: 6px;
-}
-.card-dealer-avatar {
-  width: 24px; height: 24px;
-  border-radius: 50%;
-  background: var(--color-border);
-  object-fit: cover;
-}
-.btn-card-contact {
-  font-size: 0.78rem;
-  color: var(--color-gold-dark);
-  font-weight: 600;
-  border: 1px solid var(--color-gold);
-  padding: 5px 14px;
-  border-radius: var(--radius-sm);
-  transition: var(--transition);
-}
-.btn-card-contact:hover { background: var(--color-gold); color: var(--color-black); }
-
-/* View All */
-.section-cta-wrap { text-align: center; margin-top: 44px; }
-.btn-outline {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  border: 1.5px solid var(--color-text);
-  padding: 12px 28px;
-  border-radius: var(--radius-sm);
-  font-size: 0.875rem;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  transition: var(--transition);
-}
-.btn-outline:hover { background: var(--color-text); color: var(--color-white); }
-
-/* ============================================================
-   CATEGORIES GRID
-   ============================================================ */
-.categories-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-}
-.category-card {
-  position: relative;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  aspect-ratio: 4/3;
-  cursor: pointer;
-  transition: var(--transition);
-}
-.category-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
-.category-card img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-.category-card:hover img { transform: scale(1.08); }
-.category-card-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.1) 60%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 20px;
-  text-align: center;
-}
-.category-icon { font-size: 1.6rem; margin-bottom: 6px; color: var(--color-gold-light); }
-.category-name {
-  font-family: var(--font-serif);
-  color: var(--color-white);
-  font-size: 1rem;
-  font-weight: 500;
-}
-.category-count { font-size: 0.72rem; color: rgba(255,255,255,0.6); margin-top: 2px; }
-.category-card.wide { grid-column: span 2; }
-
-/* ============================================================
-   HOW IT WORKS
-   ============================================================ */
-.steps-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
-  position: relative;
-}
-.steps-grid::before {
-  content: '';
-  position: absolute;
-  top: 36px; left: calc(16.6% + 20px); right: calc(16.6% + 20px);
-  height: 1px;
-  background: linear-gradient(to right, var(--color-gold), var(--color-gold));
-  opacity: 0.3;
-}
-.step { text-align: center; padding: 0 20px; }
-.step-num {
-  width: 72px; height: 72px;
-  border-radius: 50%;
-  border: 1.5px solid var(--color-gold);
-  display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 20px;
-  font-family: var(--font-serif);
-  font-size: 1.4rem;
-  color: var(--color-gold);
-  background: var(--color-white);
-  position: relative;
-  z-index: 1;
-}
-.step h3 { font-family: var(--font-serif); font-size: 1.1rem; margin-bottom: 10px; }
-.step p { color: var(--color-muted); font-size: 0.875rem; line-height: 1.7; }
-
-/* ============================================================
-   DEALER BANNER
-   ============================================================ */
-.dealer-banner {
-  background: var(--color-black);
-  border-radius: var(--radius-xl);
-  padding: 56px 64px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 40px;
-  position: relative;
-  overflow: hidden;
-}
-.dealer-banner::before {
-  content: '';
-  position: absolute;
-  top: -60px; right: -60px;
-  width: 280px; height: 280px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(201,168,76,0.18) 0%, transparent 70%);
-}
-.dealer-banner-text { max-width: 520px; }
-.dealer-banner h2 {
-  font-family: var(--font-serif);
-  font-size: clamp(1.5rem, 3vw, 2.2rem);
-  color: var(--color-white);
-  margin-bottom: 14px;
-  font-weight: 500;
-}
-.dealer-banner h2 span { color: var(--color-gold); }
-.dealer-banner p { color: rgba(255,255,255,0.65); font-size: 0.95rem; line-height: 1.7; }
-.dealer-banner-actions { display: flex; gap: 14px; flex-wrap: wrap; }
-.btn-primary {
-  background: var(--color-gold);
-  color: var(--color-black);
-  padding: 13px 28px;
-  border-radius: var(--radius-sm);
-  font-weight: 600;
-  font-size: 0.9rem;
-  transition: var(--transition);
-  white-space: nowrap;
-  display: inline-flex; align-items: center; gap: 8px;
-}
-.btn-primary:hover { background: var(--color-gold-dark); transform: translateY(-2px); box-shadow: var(--shadow-gold); }
-.btn-secondary {
-  border: 1.5px solid rgba(255,255,255,0.3);
-  color: var(--color-white);
-  padding: 13px 28px;
-  border-radius: var(--radius-sm);
-  font-weight: 500;
-  font-size: 0.9rem;
-  transition: var(--transition);
-  white-space: nowrap;
-}
-.btn-secondary:hover { border-color: var(--color-white); background: rgba(255,255,255,0.08); }
-
-/* ============================================================
-   TESTIMONIALS / STATS
-   ============================================================ */
-.stats-row {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
-  text-align: center;
-}
-.stat-item .num {
-  font-family: var(--font-serif);
-  font-size: 2.6rem;
-  font-weight: 600;
-  color: var(--color-gold);
-  display: block;
-}
-.stat-item .label { font-size: 0.85rem; color: var(--color-muted); margin-top: 4px; }
-
-/* ============================================================
-   FOOTER
-   ============================================================ */
-.site-footer {
-  background: var(--color-black);
-  color: rgba(255,255,255,0.65);
-  padding: 64px 0 0;
-}
-.footer-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1.5fr;
-  gap: 48px;
-  padding-bottom: 48px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-.footer-brand .logo-text { font-family: var(--font-serif); font-size: 1.5rem; color: var(--color-white); letter-spacing: 2px; }
-.footer-brand p { font-size: 0.875rem; margin-top: 12px; line-height: 1.7; max-width: 280px; }
-.footer-brand .footer-social { display: flex; gap: 12px; margin-top: 24px; }
-.social-btn {
-  width: 36px; height: 36px;
-  border: 1px solid rgba(255,255,255,0.18);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  color: rgba(255,255,255,0.65);
-  font-size: 0.9rem;
-  transition: var(--transition);
-}
-.social-btn:hover { border-color: var(--color-gold); color: var(--color-gold); }
-.footer-col h4 {
-  font-size: 0.78rem;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--color-white);
-  font-weight: 600;
-  margin-bottom: 20px;
-}
-.footer-col ul li { margin-bottom: 10px; }
-.footer-col ul li a { font-size: 0.875rem; transition: var(--transition); }
-.footer-col ul li a:hover { color: var(--color-white); }
-.footer-contact-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  margin-bottom: 14px;
-  font-size: 0.875rem;
-}
-.footer-contact-item i { color: var(--color-gold); margin-top: 3px; flex-shrink: 0; }
-/* ---- SLOT CONTATTI — modifica qui ---- */
-.footer-contact-item a { transition: var(--transition); }
-.footer-contact-item a:hover { color: var(--color-white); }
-.footer-bottom {
-  padding: 20px 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 0.78rem;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.footer-bottom-links { display: flex; gap: 20px; }
-.footer-bottom-links a { transition: var(--transition); }
-.footer-bottom-links a:hover { color: var(--color-white); }
-
-/* ============================================================
-   LISTINGS PAGE
-   ============================================================ */
-.listings-layout {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 32px;
-  align-items: start;
-}
-.listings-sidebar {
-  background: var(--color-white);
-  border-radius: var(--radius-lg);
-  padding: 28px;
-  border: 1px solid var(--color-border);
-  position: sticky;
-  top: calc(var(--header-h) + 20px);
-}
-.sidebar-title {
-  font-family: var(--font-serif);
-  font-size: 1rem;
-  font-weight: 500;
-  margin-bottom: 20px;
-  display: flex; align-items: center; justify-content: space-between;
-}
-.sidebar-reset { font-size: 0.75rem; color: var(--color-gold); font-weight: 400; cursor: pointer; }
-.sidebar-section { margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--color-border); }
-.sidebar-section:last-child { border-bottom: none; margin-bottom: 0; }
-.sidebar-section-label {
-  font-size: 0.75rem;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  font-weight: 600;
-  color: var(--color-muted);
-  margin-bottom: 12px;
-}
-.filter-range { display: flex; gap: 8px; }
-.filter-range input {
-  flex: 1;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  padding: 8px 12px;
-  font-size: 0.82rem;
-  color: var(--color-text);
-  background: var(--color-bg);
-  outline: none;
-}
-.filter-range input:focus { border-color: var(--color-gold); }
-.filter-select {
-  width: 100%;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  padding: 9px 12px;
-  font-size: 0.85rem;
-  color: var(--color-text);
-  background: var(--color-bg);
-  outline: none;
-  cursor: pointer;
-}
-.filter-checkbox { display: flex; flex-direction: column; gap: 8px; }
-.filter-checkbox label {
-  display: flex; align-items: center; gap: 8px;
-  font-size: 0.85rem; color: var(--color-text); cursor: pointer;
-}
-.filter-checkbox input[type=checkbox] { accent-color: var(--color-gold); width: 15px; height: 15px; }
-.btn-apply-filters {
-  width: 100%;
-  background: var(--color-gold);
-  color: var(--color-black);
-  padding: 11px;
-  border-radius: var(--radius-sm);
-  font-weight: 600;
-  font-size: 0.875rem;
-  margin-top: 4px;
-  transition: var(--transition);
-}
-.btn-apply-filters:hover { background: var(--color-gold-dark); }
-
-/* Listings header bar */
-.listings-top-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 24px;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.listings-count { font-size: 0.9rem; color: var(--color-muted); }
-.listings-count strong { color: var(--color-text); }
-.listings-sort { display: flex; align-items: center; gap: 10px; }
-.listings-sort select {
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  padding: 7px 12px;
-  font-size: 0.82rem;
-  background: var(--color-white);
-  outline: none;
-  cursor: pointer;
-}
-.listings-grid-4 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 22px;
-}
-
-/* Pagination */
-.pagination {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 48px;
-}
-.page-btn {
-  width: 38px; height: 38px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--color-border);
-  background: var(--color-white);
-  font-size: 0.875rem;
-  display: flex; align-items: center; justify-content: center;
-  transition: var(--transition);
-  cursor: pointer;
-}
-.page-btn:hover, .page-btn.active {
-  background: var(--color-gold);
-  border-color: var(--color-gold);
-  color: var(--color-black);
-  font-weight: 600;
-}
-
-/* Category Banner */
-.category-hero {
-  background: var(--color-black);
-  padding: 40px 0;
-  color: var(--color-white);
-}
-.category-hero-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-.category-hero h1 { font-family: var(--font-serif); font-size: 2rem; font-weight: 500; }
-.breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: rgba(255,255,255,0.5); margin-top: 6px; }
-.breadcrumb a { color: rgba(255,255,255,0.5); transition: var(--transition); }
-.breadcrumb a:hover { color: var(--color-gold); }
-.breadcrumb .sep { opacity: 0.4; }
-.breadcrumb .current { color: var(--color-gold); }
-
-/* ============================================================
-   LISTING DETAIL PAGE
-   ============================================================ */
-.detail-layout {
-  display: grid;
-  grid-template-columns: 1fr 380px;
-  gap: 40px;
-  align-items: start;
-}
-.gallery-main {
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  aspect-ratio: 16/9;
-  background: var(--color-border);
-  cursor: pointer;
-  position: relative;
-}
-.gallery-main img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
-.gallery-main:hover img { transform: scale(1.03); }
-.gallery-expand {
-  position: absolute;
-  top: 14px; right: 14px;
-  background: rgba(0,0,0,0.55);
-  color: white;
-  width: 36px; height: 36px;
-  border-radius: var(--radius-sm);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.9rem;
-  cursor: pointer;
-  backdrop-filter: blur(4px);
-  transition: var(--transition);
-}
-.gallery-expand:hover { background: rgba(0,0,0,0.8); }
-.gallery-thumbs {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 8px;
-  margin-top: 8px;
-}
-.gallery-thumb {
-  aspect-ratio: 4/3;
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-  cursor: pointer;
-  border: 2px solid transparent;
-  transition: var(--transition);
-}
-.gallery-thumb.active, .gallery-thumb:hover { border-color: var(--color-gold); }
-.gallery-thumb img { width: 100%; height: 100%; object-fit: cover; }
-
-.detail-info-card {
-  background: var(--color-white);
-  border-radius: var(--radius-lg);
-  padding: 28px;
-  border: 1px solid var(--color-border);
-  position: sticky;
-  top: calc(var(--header-h) + 20px);
-}
-.detail-badge {
-  display: inline-block;
-  font-size: 0.7rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  font-weight: 600;
-  color: var(--color-gold);
-  margin-bottom: 8px;
-}
-.detail-title {
-  font-family: var(--font-serif);
-  font-size: 1.5rem;
-  font-weight: 500;
-  margin-bottom: 6px;
-  line-height: 1.3;
-}
-.detail-location { font-size: 0.85rem; color: var(--color-muted); margin-bottom: 16px; display: flex; align-items: center; gap: 6px; }
-.detail-price {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--color-text);
-  margin-bottom: 24px;
-}
-.detail-price small { font-size: 0.9rem; font-weight: 400; color: var(--color-muted); }
-.detail-spec-mini {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 24px;
-  padding: 16px;
-  background: var(--color-bg);
-  border-radius: var(--radius-md);
-}
-.spec-mini-item { font-size: 0.82rem; }
-.spec-mini-item .spec-label { color: var(--color-muted); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px; }
-.spec-mini-item .spec-val { font-weight: 600; }
-.btn-contact-main {
-  width: 100%;
-  background: var(--color-gold);
-  color: var(--color-black);
-  padding: 14px;
-  border-radius: var(--radius-sm);
-  font-weight: 600;
-  font-size: 0.9rem;
-  margin-bottom: 10px;
-  transition: var(--transition);
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-}
-.btn-contact-main:hover { background: var(--color-gold-dark); }
-.btn-whatsapp {
-  width: 100%;
-  background: #25D366;
-  color: white;
-  padding: 12px;
-  border-radius: var(--radius-sm);
-  font-weight: 600;
-  font-size: 0.875rem;
-  margin-bottom: 16px;
-  transition: var(--transition);
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-}
-.btn-whatsapp:hover { background: #1BAD54; }
-.dealer-info-row {
-  display: flex; align-items: center; gap: 12px;
-  padding: 14px;
-  background: var(--color-bg);
-  border-radius: var(--radius-md);
-  font-size: 0.85rem;
-}
-.dealer-avatar-lg {
-  width: 44px; height: 44px;
-  border-radius: 50%;
-  background: var(--color-border);
-  object-fit: cover;
-}
-.dealer-name { font-weight: 600; }
-.dealer-since { font-size: 0.75rem; color: var(--color-muted); }
-
-/* Detail Main Content */
-.detail-main { padding-bottom: 40px; }
-.detail-tabs { display: flex; gap: 0; border-bottom: 2px solid var(--color-border); margin-bottom: 32px; }
-.detail-tab {
-  padding: 12px 24px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--color-muted);
-  border-bottom: 2px solid transparent;
-  margin-bottom: -2px;
-  cursor: pointer;
-  transition: var(--transition);
-  background: none;
-}
-.detail-tab:hover { color: var(--color-text); }
-.detail-tab.active { color: var(--color-gold); border-bottom-color: var(--color-gold); }
-.detail-tab-content { display: none; }
-.detail-tab-content.active { display: block; }
-
-/* Specs Table */
-.specs-table { width: 100%; border-collapse: collapse; }
-.specs-table tr { border-bottom: 1px solid var(--color-border); }
-.specs-table tr:last-child { border-bottom: none; }
-.specs-table td { padding: 14px 16px; font-size: 0.875rem; }
-.specs-table td:first-child { color: var(--color-muted); font-weight: 500; width: 40%; background: var(--color-bg); }
-.specs-table td:last-child { font-weight: 500; }
-.detail-description { font-size: 0.95rem; line-height: 1.8; color: var(--color-muted); }
-.detail-description p { margin-bottom: 16px; }
-
-/* Contact Form */
-.contact-form { display: flex; flex-direction: column; gap: 14px; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.form-group label { display: block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; color: var(--color-muted); margin-bottom: 6px; }
-.form-group input, .form-group select, .form-group textarea {
-  width: 100%;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  padding: 11px 14px;
-  font-size: 0.875rem;
-  background: var(--color-bg);
-  outline: none;
-  color: var(--color-text);
-  transition: var(--transition);
-}
-.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--color-gold); background: white; }
-.form-group textarea { min-height: 100px; resize: vertical; }
-
-/* Lightbox */
-#lightbox {
-  display: none;
-  position: fixed; inset: 0;
-  z-index: 9998;
-  background: rgba(0,0,0,0.92);
-  align-items: center; justify-content: center;
-}
-#lightbox.open { display: flex; }
-.lightbox-img { max-width: 90vw; max-height: 85vh; border-radius: var(--radius-md); }
-.lightbox-close {
-  position: absolute; top: 20px; right: 28px;
-  color: white; font-size: 2rem; cursor: pointer; opacity: 0.75;
-  transition: var(--transition);
-}
-.lightbox-close:hover { opacity: 1; }
-.lightbox-prev, .lightbox-next {
-  position: absolute; top: 50%; transform: translateY(-50%);
-  color: white; font-size: 1.5rem; cursor: pointer;
-  background: rgba(255,255,255,0.12); width: 48px; height: 48px;
-  border-radius: 50%; display: flex; align-items: center; justify-content: center;
-  transition: var(--transition);
-}
-.lightbox-prev { left: 24px; }
-.lightbox-next { right: 24px; }
-.lightbox-prev:hover, .lightbox-next:hover { background: rgba(255,255,255,0.25); }
-
-/* ============================================================
-   PRICING PAGE
-   ============================================================ */
-.pricing-hero {
-  background: var(--color-black);
-  padding: 72px 0;
-  text-align: center;
-  color: var(--color-white);
-}
-.pricing-hero h1 { font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 500; margin-bottom: 14px; }
-.pricing-hero p { color: rgba(255,255,255,0.65); max-width: 520px; margin: 0 auto; }
-.pricing-toggle { display: flex; align-items: center; gap: 14px; justify-content: center; margin-top: 28px; }
-.pricing-toggle span { font-size: 0.875rem; color: rgba(255,255,255,0.65); }
-.pricing-toggle .toggle { display: inline-block; }
-.pricing-badge { background: var(--color-gold); color: var(--color-black); font-size: 0.68rem; font-weight: 700; padding: 2px 8px; border-radius: 2px; letter-spacing: 0.5px; }
-
-.pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
-  align-items: start;
-}
-.pricing-card {
-  background: var(--color-white);
-  border-radius: var(--radius-lg);
-  padding: 32px 24px;
-  border: 1px solid var(--color-border);
-  transition: var(--transition);
-  position: relative;
-}
-.pricing-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
-.pricing-card.featured {
-  border-color: var(--color-gold);
-  box-shadow: 0 0 0 1px var(--color-gold), var(--shadow-lg);
-}
-.pricing-card-recommended {
-  position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
-  background: var(--color-gold); color: var(--color-black);
-  font-size: 0.68rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-  padding: 4px 16px; border-radius: 2px; white-space: nowrap;
-}
-.pricing-plan-name { font-size: 0.75rem; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 700; color: var(--color-muted); margin-bottom: 16px; }
-.pricing-plan-name.gold { color: var(--color-gold); }
-.pricing-price { font-family: var(--font-serif); font-size: 2.2rem; font-weight: 600; margin-bottom: 4px; }
-.pricing-price sub { font-size: 1rem; font-weight: 400; font-family: var(--font-sans); color: var(--color-muted); }
-.pricing-period { font-size: 0.78rem; color: var(--color-muted); margin-bottom: 20px; }
-.pricing-desc { font-size: 0.82rem; color: var(--color-muted); line-height: 1.6; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--color-border); }
-.pricing-features { list-style: none; margin-bottom: 28px; }
-.pricing-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.82rem; margin-bottom: 10px; line-height: 1.5; }
-.pricing-features li i { color: var(--color-gold); margin-top: 3px; flex-shrink: 0; font-size: 0.7rem; }
-.pricing-features li.disabled { color: var(--color-border); }
-.pricing-features li.disabled i { color: var(--color-border); }
-.btn-plan {
-  display: block; width: 100%;
-  padding: 12px;
-  border-radius: var(--radius-sm);
-  font-size: 0.875rem;
-  font-weight: 600;
-  text-align: center;
-  transition: var(--transition);
-  border: 1.5px solid var(--color-border);
-  color: var(--color-text);
-}
-.btn-plan:hover { border-color: var(--color-gold); color: var(--color-gold); }
-.btn-plan.gold { background: var(--color-gold); color: var(--color-black); border-color: var(--color-gold); }
-.btn-plan.gold:hover { background: var(--color-gold-dark); border-color: var(--color-gold-dark); }
-.btn-plan.dark { background: var(--color-black); color: var(--color-white); border-color: var(--color-black); }
-.btn-plan.dark:hover { background: #333; }
-
-/* Pricing extras */
-.pricing-extras {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-top: 48px;
-}
-.pricing-extra {
-  background: var(--color-white);
-  border-radius: var(--radius-lg);
-  padding: 28px;
-  border: 1px solid var(--color-border);
-  text-align: center;
-}
-.pricing-extra-icon { font-size: 2rem; margin-bottom: 14px; color: var(--color-gold); }
-.pricing-extra h3 { font-family: var(--font-serif); font-size: 1.1rem; margin-bottom: 8px; }
-.pricing-extra p { font-size: 0.85rem; color: var(--color-muted); line-height: 1.6; }
-
-/* Comparison Table */
-.comparison-table-wrap { overflow-x: auto; }
-.comparison-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-.comparison-table th { padding: 16px 20px; text-align: center; background: var(--color-black); color: var(--color-white); font-weight: 600; white-space: nowrap; }
-.comparison-table th:first-child { text-align: left; min-width: 200px; }
-.comparison-table th.featured-col { background: var(--color-gold); color: var(--color-black); }
-.comparison-table td { padding: 14px 20px; text-align: center; border-bottom: 1px solid var(--color-border); }
-.comparison-table td:first-child { text-align: left; font-weight: 500; }
-.comparison-table tr:hover td { background: var(--color-bg); }
-.comparison-table .check { color: #2D7D4B; font-size: 1rem; }
-.comparison-table .cross { color: var(--color-border); }
-.comparison-table .category-row td { background: var(--color-bg); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--color-muted); font-weight: 700; padding: 10px 20px; }
-
-/* Trial Form */
-.trial-form-section {
-  background: linear-gradient(135deg, var(--color-black) 0%, #1a1a1a 100%);
-  border-radius: var(--radius-xl);
-  padding: 56px;
-  text-align: center;
-  color: var(--color-white);
-  position: relative;
-  overflow: hidden;
-}
-.trial-form-section::before {
-  content: '';
-  position: absolute;
-  bottom: -80px; left: -80px;
-  width: 300px; height: 300px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 70%);
-}
-.trial-form-section h2 { font-family: var(--font-serif); font-size: 2rem; margin-bottom: 10px; }
-.trial-form-section p { color: rgba(255,255,255,0.6); margin-bottom: 32px; }
-.trial-form {
-  display: flex;
-  gap: 12px;
-  max-width: 500px;
-  margin: 0 auto;
-  flex-wrap: wrap;
-}
-.trial-form input {
-  flex: 1;
-  border: 1px solid rgba(255,255,255,0.2);
-  background: rgba(255,255,255,0.08);
-  border-radius: var(--radius-sm);
-  padding: 12px 16px;
-  font-size: 0.875rem;
-  color: var(--color-white);
-  outline: none;
-  transition: var(--transition);
-  min-width: 0;
-}
-.trial-form input::placeholder { color: rgba(255,255,255,0.4); }
-.trial-form input:focus { border-color: var(--color-gold); background: rgba(255,255,255,0.12); }
-.trial-form button {
-  background: var(--color-gold);
-  color: var(--color-black);
-  padding: 12px 24px;
-  border-radius: var(--radius-sm);
-  font-weight: 600;
-  font-size: 0.875rem;
-  transition: var(--transition);
-}
-.trial-form button:hover { background: var(--color-gold-dark); }
-
-/* FAQ */
-.faq-item {
-  border-bottom: 1px solid var(--color-border);
-}
-.faq-question {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px 0;
-  cursor: pointer;
-  font-weight: 500;
-  font-size: 0.95rem;
-  gap: 16px;
-}
-.faq-icon { color: var(--color-gold); font-size: 0.9rem; transition: var(--transition); flex-shrink: 0; }
-.faq-item.open .faq-icon { transform: rotate(45deg); }
-.faq-answer {
-  display: none;
-  padding-bottom: 18px;
-  font-size: 0.875rem;
-  color: var(--color-muted);
-  line-height: 1.7;
-}
-.faq-item.open .faq-answer { display: block; }
-
-/* ============================================================
-   ANALYTICS DASHBOARD
-   ============================================================ */
-.analytics-header {
-  background: var(--color-black);
-  padding: 32px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-.analytics-header h1 { font-family: var(--font-serif); color: var(--color-white); font-size: 1.6rem; font-weight: 500; }
-.analytics-header p { color: rgba(255,255,255,0.5); font-size: 0.875rem; margin-top: 4px; }
-.analytics-header-row { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
-
-.kpi-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  margin-bottom: 32px;
-}
-.kpi-card {
-  background: var(--color-white);
-  border-radius: var(--radius-lg);
-  padding: 24px;
-  border: 1px solid var(--color-border);
-}
-.kpi-label { font-size: 0.75rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-muted); margin-bottom: 10px; }
-.kpi-value { font-family: var(--font-serif); font-size: 2rem; font-weight: 600; color: var(--color-text); margin-bottom: 6px; }
-.kpi-delta { font-size: 0.78rem; }
-.kpi-delta.up { color: #2D7D4B; }
-.kpi-delta.down { color: #C0392B; }
-.kpi-icon { float: right; font-size: 1.4rem; color: var(--color-gold); opacity: 0.7; margin-top: -44px; }
-
-.chart-card {
-  background: var(--color-white);
-  border-radius: var(--radius-lg);
-  padding: 28px;
-  border: 1px solid var(--color-border);
-  height: 100%;
-}
-.chart-card h3 { font-family: var(--font-serif); font-size: 1rem; font-weight: 500; margin-bottom: 20px; color: var(--color-text); }
-.charts-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 20px;
-  margin-bottom: 20px;
-}
-.charts-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 20px;
-}
-
-.analytics-export-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(255,255,255,0.08);
-  color: rgba(255,255,255,0.75);
-  border: 1px solid rgba(255,255,255,0.15);
-  padding: 9px 18px;
-  border-radius: var(--radius-sm);
-  font-size: 0.82rem;
-  font-weight: 500;
-  transition: var(--transition);
-  cursor: pointer;
-}
-.analytics-export-btn:hover { border-color: var(--color-gold); color: var(--color-gold); }
-
-/* ============================================================
-   MISC & UTILITIES
-   ============================================================ */
-.text-gold { color: var(--color-gold); }
-.text-muted { color: var(--color-muted); }
-.separator { height: 1px; background: var(--color-border); margin: 0; }
-.mt-40 { margin-top: 40px; }
-.mb-40 { margin-bottom: 40px; }
-
-/* Mobile menu */
-.mobile-menu {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 999;
-  background: var(--color-black);
-  padding: 100px 40px 40px;
-  flex-direction: column;
-  gap: 8px;
-}
-.mobile-menu.open { display: flex; }
-.mobile-menu a {
-  color: rgba(255,255,255,0.75);
-  font-size: 1.2rem;
-  font-family: var(--font-serif);
-  padding: 12px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  transition: var(--transition);
-}
-.mobile-menu a:hover { color: var(--color-gold); }
-.mobile-menu-close {
-  position: absolute; top: 24px; right: 24px;
-  color: white; font-size: 1.5rem; cursor: pointer;
-}
-
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
-@media (max-width: 1200px) {
-  .pricing-grid { grid-template-columns: repeat(3, 1fr); }
-}
-@media (max-width: 1024px) {
-  .listings-grid { grid-template-columns: repeat(2, 1fr); }
-  .categories-grid { grid-template-columns: repeat(3, 1fr); }
-  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
-  .stats-row { grid-template-columns: repeat(2, 1fr); }
-  .detail-layout { grid-template-columns: 1fr; }
-  .detail-info-card { position: static; }
-  .listings-layout { grid-template-columns: 1fr; }
-  .listings-sidebar { position: static; }
-  .charts-grid { grid-template-columns: 1fr; }
-  .charts-row { grid-template-columns: 1fr 1fr; }
-  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 768px) {
-  :root { --header-h: 60px; }
-  .site-header { padding: 0 20px; gap: 12px; }
-  .header-nav { display: none; }
-  .header-right .btn-publish { display: none; }
-  .header-right .btn-login { display: none; }
-  .header-menu-toggle { display: block; }
-  .container { padding: 0 20px; }
-  .section { padding: 56px 0; }
-  .hero { min-height: 460px; }
-  .hero-search-row { flex-wrap: wrap; }
-  .hero-stats { gap: 20px; }
-  .listings-grid { grid-template-columns: 1fr; }
-  .categories-grid { grid-template-columns: repeat(2, 1fr); }
-  .category-card.wide { grid-column: span 1; }
-  .steps-grid { grid-template-columns: 1fr; }
-  .steps-grid::before { display: none; }
-  .dealer-banner { padding: 32px 24px; flex-direction: column; }
-  .footer-grid { grid-template-columns: 1fr; }
-  .pricing-grid { grid-template-columns: 1fr; }
-  .pricing-extras { grid-template-columns: 1fr; }
-  .charts-row { grid-template-columns: 1fr; }
-  .kpi-grid { grid-template-columns: 1fr 1fr; }
-  .gallery-thumbs { grid-template-columns: repeat(4, 1fr); }
-  .listings-grid-4 { grid-template-columns: 1fr; }
-  .form-row { grid-template-columns: 1fr; }
-  .hero-tabs { gap: 2px; }
-  .hero-tab { padding: 6px 10px; font-size: 0.75rem; }
-  .trial-form-section { padding: 32px 24px; }
-  .dealer-banner .dealer-banner-actions { width: 100%; }
-  .btn-primary, .btn-secondary { width: 100%; justify-content: center; text-align: center; }
-}
-@media (max-width: 480px) {
-  .hero h1 { font-size: 1.8rem; }
-  .kpi-grid { grid-template-columns: 1fr; }
-  .hero-stats { flex-direction: column; gap: 12px; }
-}
-
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="LUL — Luxury Unique Listings. Discover the world's finest cars, yachts, private jets and real estate." />
+  <title>LUL — Luxury Unique Listings</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/main.css" />
 </head>
 <body>
 
-<!-- ====================================================
-     COOKIE BANNER + MODAL
-==================================================== -->
+<!-- ══════════════════════════════════════════════════════
+     COOKIE BANNER
+══════════════════════════════════════════════════════ -->
 <div id="cookie-banner" role="alertdialog" aria-label="Cookie consent">
   <div class="cookie-text">
-    <strong>We use cookies</strong> — essential cookies keep the site working. With your consent we also collect anonymous analytics to improve your experience.
-    <a href="#" style="margin-left:6px">Learn more</a>
+    <strong>We use cookies</strong> — technical cookies are essential for the site to function properly. With your consent we also collect anonymous analytics to improve your experience.
+    <a href="#" class="cookie-learn-more-link" style="margin-left:6px">Learn more</a>
   </div>
   <div class="cookie-actions">
     <button class="btn-cookie-all">Accept All</button>
@@ -1619,23 +28,24 @@ input, select, textarea { font-family: inherit; }
   </div>
 </div>
 
-<div id="cookie-modal" role="dialog" aria-modal="true" aria-labelledby="ck-title">
+<!-- Cookie Preferences Modal -->
+<div id="cookie-modal" role="dialog" aria-modal="true" aria-labelledby="cookie-modal-title">
   <div class="cookie-modal-box">
-    <h2 id="ck-title">Cookie Preferences</h2>
-    <p>Choose which cookies you'd like to allow. Essential cookies cannot be disabled — they are required for the site to work.</p>
+    <h2 id="cookie-modal-title">Cookie Preferences</h2>
+    <p>Choose which cookies you'd like to allow. Essential cookies cannot be disabled as they are required for the site to work.</p>
     <div class="cookie-toggle-row">
       <div>
         <div class="cookie-toggle-label">Essential Cookies</div>
-        <div class="cookie-toggle-desc">Session, security, language preferences. Always active.</div>
+        <div class="cookie-toggle-desc">Session management, security, language preferences. Always active.</div>
       </div>
-      <label class="toggle"><input type="checkbox" checked disabled/><span class="toggle-slider"></span></label>
+      <label class="toggle"><input type="checkbox" checked disabled /><span class="toggle-slider"></span></label>
     </div>
     <div class="cookie-toggle-row">
       <div>
         <div class="cookie-toggle-label">Analytics Cookies</div>
-        <div class="cookie-toggle-desc">Anonymous data on pages visited, device type and session duration. Helps us improve the platform.</div>
+        <div class="cookie-toggle-desc">Anonymous data about pages visited, device type and session duration. Helps us improve the platform.</div>
       </div>
-      <label class="toggle"><input id="toggle-analytics" type="checkbox"/><span class="toggle-slider"></span></label>
+      <label class="toggle"><input id="toggle-analytics" type="checkbox" /><span class="toggle-slider"></span></label>
     </div>
     <div class="cookie-modal-btns">
       <button class="btn-modal-cancel">Cancel</button>
@@ -1644,25 +54,21 @@ input, select, textarea { font-family: inherit; }
   </div>
 </div>
 
-<!-- Mobile Menu -->
-<nav class="mobile-menu" id="mob-menu" aria-label="Mobile navigation">
-  <button class="mobile-menu-close" id="mob-close" aria-label="Close menu"><i class="fa fa-times"></i></button>
-  <a onclick="nav('home')">Home</a>
-  <a onclick="nav('listings','homes')">Homes</a>
-  <a onclick="nav('listings','cars')">Cars</a>
-  <a onclick="nav('listings','yachts')">Yachts</a>
-  <a onclick="nav('listings','jets')">Private Jets</a>
-  <a onclick="nav('listings','villas')">Villas</a>
-  <a onclick="nav('listings','watches')">Watches</a>
-  <a onclick="nav('listings','jewellery')">Jewellery</a>
-  <a onclick="nav('pricing')" style="color:var(--color-gold);margin-top:12px">List with Us</a>
+<!-- Mobile Menu Overlay -->
+<nav class="mobile-menu" aria-label="Mobile navigation">
+  <button class="mobile-menu-close" aria-label="Close menu"><i class="fa fa-times"></i></button>
+  <a href="listings.html?cat=cars" data-i18n="nav_cars">Cars</a>
+  <a href="listings.html?cat=yachts" data-i18n="nav_yachts">Yachts</a>
+  <a href="listings.html?cat=jets" data-i18n="nav_jets">Private Jets</a>
+  <a href="listings.html?cat=realestate" data-i18n="nav_realestate">Real Estate</a>
+  <a href="pricing.html" style="color:var(--color-gold);margin-top:12px" data-i18n="publish">List with Us</a>
 </nav>
 
-<!-- ====================================================
-     HEADER (sticky, shared across all pages)
-==================================================== -->
-<header class="site-header" id="site-header">
-  <a class="header-logo" onclick="nav('home')" style="cursor:pointer">
+<!-- ══════════════════════════════════════════════════════
+     HEADER
+══════════════════════════════════════════════════════ -->
+<header class="site-header">
+  <a href="index.html" class="header-logo" aria-label="LUL Home">
     <div class="logo-mark">L</div>
     <div>
       <span class="logo-text">LUL</span>
@@ -1670,1173 +76,456 @@ input, select, textarea { font-family: inherit; }
     </div>
   </a>
 
-  <nav class="header-nav" id="h-nav">
-    <a onclick="nav('listings','homes')"     data-i18n="nav_homes">Homes</a>
-    <a onclick="nav('listings','cars')"      data-i18n="nav_cars">Cars</a>
-    <a onclick="nav('listings','yachts')"    data-i18n="nav_yachts">Yachts</a>
-    <a onclick="nav('listings','jets')"      data-i18n="nav_jets">Private Jets</a>
-    <a onclick="nav('listings','villas')"    data-i18n="nav_villas">Villas</a>
-    <a onclick="nav('listings','watches')"   data-i18n="nav_watches">Watches</a>
-    <a onclick="nav('listings','jewellery')" data-i18n="nav_jewellery">Jewellery</a>
-    <a onclick="nav('listings','other')"     data-i18n="nav_other">Other</a>
+  <nav class="header-nav" aria-label="Main navigation">
+    <a href="listings.html?cat=cars"       data-i18n="nav_cars">Cars</a>
+    <a href="listings.html?cat=yachts"     data-i18n="nav_yachts">Yachts</a>
+    <a href="listings.html?cat=jets"       data-i18n="nav_jets">Private Jets</a>
+    <a href="listings.html?cat=realestate" data-i18n="nav_realestate">Real Estate</a>
   </nav>
 
   <div class="header-right">
     <!-- Language Switcher -->
-    <div class="lang-switcher" id="lang-sw">
-      <button class="lang-btn" id="lang-btn" aria-haspopup="listbox" aria-label="Select language">
-        <span class="lang-flag">&#127468;&#127463;</span>
+    <div class="lang-switcher">
+      <button class="lang-btn" aria-haspopup="listbox" aria-expanded="false" aria-label="Select language">
+        <span class="lang-flag">🇬🇧</span>
         <span class="lang-code">EN</span>
-        <span class="lang-arrow">&#9660;</span>
+        <span class="lang-arrow">▼</span>
       </button>
-      <div class="lang-dropdown" id="lang-dd"></div>
+      <div class="lang-dropdown" role="listbox"></div>
     </div>
-    <button class="btn-publish" onclick="nav('pricing')" data-i18n="publish">List with Us</button>
-    <button class="btn-login" data-i18n="login">Sign In</button>
-    <button class="header-menu-toggle" id="mob-toggle" aria-label="Open menu"><i class="fa fa-bars"></i></button>
+
+    <a href="pricing.html" class="btn-publish" data-i18n="publish">List with Us</a>
+    <a href="#" class="btn-login" data-i18n="login">Sign In</a>
+    <button class="header-menu-toggle" aria-label="Open menu"><i class="fa fa-bars"></i></button>
   </div>
 </header>
 
-<!-- Lightbox (shared) -->
-<div id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
-  <span class="lightbox-close" id="lb-close" title="Close">&#215;</span>
-  <button class="lightbox-prev" id="lb-prev" aria-label="Previous"><i class="fa fa-chevron-left"></i></button>
-  <img class="lightbox-img" id="lb-img" src="" alt="Gallery"/>
-  <button class="lightbox-next" id="lb-next" aria-label="Next"><i class="fa fa-chevron-right"></i></button>
-</div>
+<!-- ══════════════════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg" role="img" aria-label="Luxury villa with pool at sunset"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow" data-i18n="hero_eyebrow">The World's Finest Listings</p>
+    <h1>
+      <span data-i18n="hero_h1_1">Discover the Art of</span><br>
+      <em data-i18n="hero_h1_em">Exceptional Living</em>
+    </h1>
+    <p class="hero-sub" data-i18n="hero_sub">
+      Curated luxury real estate, vehicles, yachts, jets and collectibles from elite dealers worldwide.
+    </p>
 
-
-<!-- ====================================================
-     PAGE: HOME
-==================================================== -->
-<div id="page-home" class="page active">
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg" role="img" aria-label="Luxury villa at sunset"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-eyebrow" data-i18n="hero_eyebrow">The World's Finest Listings</p>
-      <h1>
-        <span data-i18n="hero_h1_1">Discover the Art of</span><br>
-        <em data-i18n="hero_h1_em">Exceptional Living</em>
-      </h1>
-      <p class="hero-sub" data-i18n="hero_sub">Curated luxury real estate, vehicles, yachts, jets and collectibles from elite dealers worldwide.</p>
-
-      <div class="hero-search" role="search">
-        <div class="hero-tabs">
-          <button class="hero-tab active" onclick="setHeroTab(this,'homes')"  data-i18n="nav_homes">Homes</button>
-          <button class="hero-tab"        onclick="setHeroTab(this,'cars')"   data-i18n="nav_cars">Cars</button>
-          <button class="hero-tab"        onclick="setHeroTab(this,'yachts')" data-i18n="nav_yachts">Yachts</button>
-          <button class="hero-tab"        onclick="setHeroTab(this,'jets')"   data-i18n="nav_jets">Jets</button>
-          <button class="hero-tab"        onclick="setHeroTab(this,'villas')" data-i18n="nav_villas">Villas</button>
-          <button class="hero-tab"        onclick="setHeroTab(this,'other')"  data-i18n="nav_other">Other</button>
-        </div>
-        <div class="hero-search-row">
-          <input type="text" id="hero-q" data-i18n-ph="search_ph" placeholder="Search by make, model, location..." aria-label="Search"/>
-          <select id="hero-price" aria-label="Price range">
-            <option value="">Any Price</option>
-            <option value="0-500000">Under &euro;500K</option>
-            <option value="500000-1000000">&euro;500K &ndash; &euro;1M</option>
-            <option value="1000000-5000000">&euro;1M &ndash; &euro;5M</option>
-            <option value="5000000-">&euro;5M+</option>
-          </select>
-          <button class="btn-search" onclick="nav('listings', heroTabCat)">
-            <i class="fa fa-search"></i> <span data-i18n="btn_search">Search</span>
-          </button>
-        </div>
+    <!-- Search Bar -->
+    <div class="hero-search" role="search">
+      <div class="hero-tabs">
+        <button class="hero-tab active" data-i18n="nav_cars">Cars</button>
+        <button class="hero-tab" data-i18n="nav_yachts">Yachts</button>
+        <button class="hero-tab" data-i18n="nav_jets">Jets</button>
+        <button class="hero-tab" data-i18n="nav_realestate">Real Estate</button>
       </div>
-
-      <div class="hero-stats">
-        <div class="hero-stat"><span class="num">12,000+</span><span class="label">Active Listings</span></div>
-        <div class="hero-stat"><span class="num">140+</span><span class="label">Countries</span></div>
-        <div class="hero-stat"><span class="num">3,500+</span><span class="label">Elite Dealers</span></div>
+      <div class="hero-search-row">
+        <input type="text" data-i18n-ph="search_ph" placeholder="Search by make, model, location…" aria-label="Search" />
+        <select aria-label="Price range">
+          <option value="">Any Price</option>
+          <option value="0-500000">Under €500K</option>
+          <option value="500000-1000000">€500K – €1M</option>
+          <option value="1000000-5000000">€1M – €5M</option>
+          <option value="5000000-">€5M+</option>
+        </select>
+        <button class="btn-search" onclick="window.location.href='listings.html'">
+          <i class="fa fa-search"></i>
+          <span data-i18n="btn_search">Search</span>
+        </button>
       </div>
     </div>
-  </section>
 
-  <!-- FEATURED LISTINGS -->
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <p class="section-eyebrow" data-i18n="featured_label">Featured Listings</p>
-        <h2 class="section-title" data-i18n="featured_title">Handpicked for Discerning Buyers</h2>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="num">12,000+</span>
+        <span class="label">Active Listings</span>
       </div>
-      <div class="listings-grid">
-
-        <!-- ═══ INSERZIONE 1 — modifica src, titolo, prezzo, spec ═══ -->
-        <article class="listing-card" onclick="nav('detail')">
-          <div class="card-image-wrap">
-            <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&q=80" alt="INSERISCI TITOLO 1" loading="lazy"/>
-            <span class="card-badge featured">Featured</span>
-            <button class="card-fav" onclick="event.stopPropagation()" aria-label="Save"><i class="fa-regular fa-heart"></i></button>
-            <span class="card-location"><i class="fa fa-map-marker-alt"></i> INSERISCI LUOGO</span>
-            <span class="card-img-count"><i class="fa fa-images"></i> 12</span>
-          </div>
-          <div class="card-body">
-            <p class="card-category">CATEGORIA</p>
-            <h3 class="card-title">INSERISCI TITOLO INSERZIONE 1</h3>
-            <p class="card-price">&euro; INSERISCI PREZZO</p>
-            <div class="card-specs">
-              <span class="spec-tag"><i class="fa fa-ruler-combined"></i> SPEC 1</span>
-              <span class="spec-tag"><i class="fa fa-bed"></i> SPEC 2</span>
-              <span class="spec-tag"><i class="fa fa-bath"></i> SPEC 3</span>
-            </div>
-            <div class="card-footer">
-              <span class="card-dealer"><img class="card-dealer-avatar" src="https://ui-avatars.com/api/?name=D&background=C9A84C&color=fff" alt=""/> DEALER NAME</span>
-              <span class="btn-card-contact">View Details</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- ═══ INSERZIONE 2 ═══ -->
-        <article class="listing-card" onclick="nav('detail')">
-          <div class="card-image-wrap">
-            <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=80" alt="INSERISCI TITOLO 2" loading="lazy"/>
-            <span class="card-badge new2">New</span>
-            <button class="card-fav" onclick="event.stopPropagation()"><i class="fa-regular fa-heart"></i></button>
-            <span class="card-location"><i class="fa fa-map-marker-alt"></i> INSERISCI LUOGO</span>
-            <span class="card-img-count"><i class="fa fa-images"></i> 8</span>
-          </div>
-          <div class="card-body">
-            <p class="card-category">CATEGORIA</p>
-            <h3 class="card-title">INSERISCI TITOLO INSERZIONE 2</h3>
-            <p class="card-price">&euro; INSERISCI PREZZO</p>
-            <div class="card-specs">
-              <span class="spec-tag"><i class="fa fa-tachometer-alt"></i> SPEC 1</span>
-              <span class="spec-tag"><i class="fa fa-car"></i> SPEC 2</span>
-              <span class="spec-tag"><i class="fa fa-gas-pump"></i> SPEC 3</span>
-            </div>
-            <div class="card-footer">
-              <span class="card-dealer"><img class="card-dealer-avatar" src="https://ui-avatars.com/api/?name=D&background=C9A84C&color=fff" alt=""/> DEALER NAME</span>
-              <span class="btn-card-contact">View Details</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- ═══ INSERZIONE 3 ═══ -->
-        <article class="listing-card" onclick="nav('detail')">
-          <div class="card-image-wrap">
-            <img src="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=600&q=80" alt="INSERISCI TITOLO 3" loading="lazy"/>
-            <button class="card-fav" onclick="event.stopPropagation()"><i class="fa-regular fa-heart"></i></button>
-            <span class="card-location"><i class="fa fa-map-marker-alt"></i> INSERISCI LUOGO</span>
-            <span class="card-img-count"><i class="fa fa-images"></i> 15</span>
-          </div>
-          <div class="card-body">
-            <p class="card-category">CATEGORIA</p>
-            <h3 class="card-title">INSERISCI TITOLO INSERZIONE 3</h3>
-            <p class="card-price">&euro; INSERISCI PREZZO</p>
-            <div class="card-specs">
-              <span class="spec-tag"><i class="fa fa-water"></i> SPEC 1</span>
-              <span class="spec-tag"><i class="fa fa-ship"></i> SPEC 2</span>
-              <span class="spec-tag"><i class="fa fa-anchor"></i> SPEC 3</span>
-            </div>
-            <div class="card-footer">
-              <span class="card-dealer"><img class="card-dealer-avatar" src="https://ui-avatars.com/api/?name=D&background=C9A84C&color=fff" alt=""/> DEALER NAME</span>
-              <span class="btn-card-contact">View Details</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- ═══ INSERZIONE 4 ═══ -->
-        <article class="listing-card" onclick="nav('detail')">
-          <div class="card-image-wrap">
-            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80" alt="INSERISCI TITOLO 4" loading="lazy"/>
-            <span class="card-badge featured">Featured</span>
-            <button class="card-fav" onclick="event.stopPropagation()"><i class="fa-regular fa-heart"></i></button>
-            <span class="card-location"><i class="fa fa-map-marker-alt"></i> INSERISCI LUOGO</span>
-            <span class="card-img-count"><i class="fa fa-images"></i> 10</span>
-          </div>
-          <div class="card-body">
-            <p class="card-category">CATEGORIA</p>
-            <h3 class="card-title">INSERISCI TITOLO INSERZIONE 4</h3>
-            <p class="card-price">&euro; INSERISCI PREZZO</p>
-            <div class="card-specs">
-              <span class="spec-tag"><i class="fa fa-plane"></i> SPEC 1</span>
-              <span class="spec-tag"><i class="fa fa-users"></i> SPEC 2</span>
-              <span class="spec-tag"><i class="fa fa-route"></i> SPEC 3</span>
-            </div>
-            <div class="card-footer">
-              <span class="card-dealer"><img class="card-dealer-avatar" src="https://ui-avatars.com/api/?name=D&background=C9A84C&color=fff" alt=""/> DEALER NAME</span>
-              <span class="btn-card-contact">View Details</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- ═══ INSERZIONE 5 ═══ -->
-        <article class="listing-card" onclick="nav('detail')">
-          <div class="card-image-wrap">
-            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="INSERISCI TITOLO 5" loading="lazy"/>
-            <button class="card-fav" onclick="event.stopPropagation()"><i class="fa-regular fa-heart"></i></button>
-            <span class="card-location"><i class="fa fa-map-marker-alt"></i> INSERISCI LUOGO</span>
-            <span class="card-img-count"><i class="fa fa-images"></i> 7</span>
-          </div>
-          <div class="card-body">
-            <p class="card-category">CATEGORIA</p>
-            <h3 class="card-title">INSERISCI TITOLO INSERZIONE 5</h3>
-            <p class="card-price">&euro; INSERISCI PREZZO</p>
-            <div class="card-specs">
-              <span class="spec-tag"><i class="fa fa-clock"></i> SPEC 1</span>
-              <span class="spec-tag"><i class="fa fa-certificate"></i> SPEC 2</span>
-              <span class="spec-tag"><i class="fa fa-gem"></i> SPEC 3</span>
-            </div>
-            <div class="card-footer">
-              <span class="card-dealer"><img class="card-dealer-avatar" src="https://ui-avatars.com/api/?name=D&background=C9A84C&color=fff" alt=""/> DEALER NAME</span>
-              <span class="btn-card-contact">View Details</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- ═══ INSERZIONE 6 ═══ -->
-        <article class="listing-card" onclick="nav('detail')">
-          <div class="card-image-wrap">
-            <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&q=80" alt="INSERISCI TITOLO 6" loading="lazy"/>
-            <span class="card-badge new2">New</span>
-            <button class="card-fav" onclick="event.stopPropagation()"><i class="fa-regular fa-heart"></i></button>
-            <span class="card-location"><i class="fa fa-map-marker-alt"></i> INSERISCI LUOGO</span>
-            <span class="card-img-count"><i class="fa fa-images"></i> 20</span>
-          </div>
-          <div class="card-body">
-            <p class="card-category">CATEGORIA</p>
-            <h3 class="card-title">INSERISCI TITOLO INSERZIONE 6</h3>
-            <p class="card-price">&euro; INSERISCI PREZZO</p>
-            <div class="card-specs">
-              <span class="spec-tag"><i class="fa fa-tree"></i> SPEC 1</span>
-              <span class="spec-tag"><i class="fa fa-swimming-pool"></i> SPEC 2</span>
-              <span class="spec-tag"><i class="fa fa-ruler-combined"></i> SPEC 3</span>
-            </div>
-            <div class="card-footer">
-              <span class="card-dealer"><img class="card-dealer-avatar" src="https://ui-avatars.com/api/?name=D&background=C9A84C&color=fff" alt=""/> DEALER NAME</span>
-              <span class="btn-card-contact">View Details</span>
-            </div>
-          </div>
-        </article>
-
+      <div class="hero-stat">
+        <span class="num">140+</span>
+        <span class="label">Countries</span>
       </div>
-      <div class="section-cta-wrap">
-        <button class="btn-outline" onclick="nav('listings')">View All Listings <i class="fa fa-arrow-right"></i></button>
-      </div>
-    </div>
-  </section>
-
-  <!-- CATEGORIES -->
-  <section class="section section-alt">
-    <div class="container">
-      <div class="section-header">
-        <p class="section-eyebrow" data-i18n="categories_label">Browse by Category</p>
-        <h2 class="section-title" data-i18n="categories_title">Every Luxury, One Destination</h2>
-      </div>
-      <div class="categories-grid">
-        <div class="category-card wide" onclick="nav('listings','homes')">
-          <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80" alt="Homes" loading="lazy"/>
-          <div class="category-card-overlay"><div class="category-icon"><i class="fa fa-home"></i></div><div class="category-name" data-i18n="cat_homes">Homes &amp; Estates</div><div class="category-count">4,200+ listings</div></div>
-        </div>
-        <div class="category-card" onclick="nav('listings','cars')">
-          <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=600&q=80" alt="Cars" loading="lazy"/>
-          <div class="category-card-overlay"><div class="category-icon"><i class="fa fa-car"></i></div><div class="category-name" data-i18n="cat_cars">Luxury Cars</div><div class="category-count">2,800+ listings</div></div>
-        </div>
-        <div class="category-card" onclick="nav('listings','yachts')">
-          <img src="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=600&q=80" alt="Yachts" loading="lazy"/>
-          <div class="category-card-overlay"><div class="category-icon"><i class="fa fa-ship"></i></div><div class="category-name" data-i18n="cat_yachts">Yachts</div><div class="category-count">1,100+ listings</div></div>
-        </div>
-        <div class="category-card" onclick="nav('listings','jets')">
-          <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80" alt="Jets" loading="lazy"/>
-          <div class="category-card-overlay"><div class="category-icon"><i class="fa fa-plane"></i></div><div class="category-name" data-i18n="cat_jets">Private Jets</div><div class="category-count">320+ listings</div></div>
-        </div>
-        <div class="category-card" onclick="nav('listings','villas')">
-          <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80" alt="Villas" loading="lazy"/>
-          <div class="category-card-overlay"><div class="category-icon"><i class="fa fa-umbrella-beach"></i></div><div class="category-name" data-i18n="cat_villas">Villas</div><div class="category-count">1,900+ listings</div></div>
-        </div>
-        <div class="category-card" onclick="nav('listings','watches')">
-          <img src="https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=600&q=80" alt="Watches" loading="lazy"/>
-          <div class="category-card-overlay"><div class="category-icon"><i class="fa fa-clock"></i></div><div class="category-name" data-i18n="cat_watches">Watches</div><div class="category-count">650+ listings</div></div>
-        </div>
-        <div class="category-card" onclick="nav('listings','jewellery')">
-          <img src="https://images.unsplash.com/photo-1611955167811-4711904bb9f8?w=600&q=80" alt="Jewellery" loading="lazy"/>
-          <div class="category-card-overlay"><div class="category-icon"><i class="fa fa-gem"></i></div><div class="category-name" data-i18n="cat_jewellery">Jewellery</div><div class="category-count">480+ listings</div></div>
-        </div>
-        <div class="category-card" onclick="nav('listings','other')">
-          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Collectibles" loading="lazy"/>
-          <div class="category-card-overlay"><div class="category-icon"><i class="fa fa-star"></i></div><div class="category-name" data-i18n="cat_other">Collectibles</div><div class="category-count">780+ listings</div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- HOW IT WORKS -->
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <p class="section-eyebrow" data-i18n="how_label">How It Works</p>
-        <h2 class="section-title" data-i18n="how_title">Simple. Elegant. Effortless.</h2>
-        <p class="section-desc">Whether you're buying or selling, our platform connects the world's finest objects with those who appreciate them.</p>
-      </div>
-      <div class="steps-grid">
-        <div class="step"><div class="step-num">01</div><h3>Browse &amp; Discover</h3><p>Explore thousands of curated listings across every luxury category, filtered by location, price and specifications.</p></div>
-        <div class="step"><div class="step-num">02</div><h3>Connect Directly</h3><p>Contact verified dealers and private sellers directly. No middlemen, no hidden fees — pure luxury at your fingertips.</p></div>
-        <div class="step"><div class="step-num">03</div><h3>Own with Confidence</h3><p>Every listing is verified. Benefit from our concierge support, legal guidance and post-sale assistance worldwide.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STATS -->
-  <section class="section section-alt">
-    <div class="container">
-      <div class="stats-row">
-        <div class="stat-item"><span class="num">&euro; 2.4B+</span><span class="lbl">Estimated Value Listed</span></div>
-        <div class="stat-item"><span class="num">140+</span><span class="lbl">Countries Represented</span></div>
-        <div class="stat-item"><span class="num">3,500+</span><span class="lbl">Verified Dealers</span></div>
-        <div class="stat-item"><span class="num">98%</span><span class="lbl">Dealer Satisfaction</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- DEALER BANNER -->
-  <section class="section">
-    <div class="container">
-      <div class="dealer-banner">
-        <div class="dealer-banner-text">
-          <h2>Are you a <span>luxury dealer</span>?<br>Start listing today &mdash; free.</h2>
-          <p>Join thousands of elite dealers worldwide. Start with a free trial, grow your reach, and connect with high-net-worth buyers across 140+ countries. No commitment. No credit card.</p>
-        </div>
-        <div class="dealer-banner-actions">
-          <button class="btn-primary" onclick="nav('pricing')"><i class="fa fa-rocket"></i> Start Free Trial</button>
-          <button class="btn-secondary" onclick="nav('pricing')">View Plans</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-</div><!-- /page-home -->
-
-<!-- ====================================================
-     PAGE: LISTINGS
-==================================================== -->
-<div id="page-listings" class="page">
-  <div class="category-hero">
-    <div class="container">
-      <div class="category-hero-inner">
-        <div>
-          <h2 id="cat-h2">All Luxury Listings</h2>
-          <nav class="breadcrumb">
-            <a onclick="nav('home')">Home</a><span class="sep2">/</span>
-            <span class="current" id="cat-bc">All Listings</span>
-          </nav>
-        </div>
-        <div style="color:rgba(255,255,255,.5);font-size:.875rem">Showing <strong style="color:white" id="l-total">8</strong> results</div>
+      <div class="hero-stat">
+        <span class="num">3,500+</span>
+        <span class="label">Elite Dealers</span>
       </div>
     </div>
   </div>
+</section>
 
-  <div class="section">
-    <div class="container">
-      <div class="listings-layout">
+<!-- ══════════════════════════════════════════════════════
+     FEATURED LISTINGS
+══════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-eyebrow" data-i18n="featured_label">Featured Listings</p>
+      <h2 class="section-title" data-i18n="featured_title">Handpicked for Discerning Buyers</h2>
+    </div>
 
-        <!-- SIDEBAR -->
-        <aside class="listings-sidebar">
-          <div class="sidebar-title">Filters
-            <span class="sidebar-reset" onclick="document.querySelectorAll('#page-listings .filter-range input,#page-listings .filter-select').forEach(e=>e.value='');document.querySelectorAll('#page-listings .filter-checkbox input').forEach(e=>e.checked=false)">Reset all</span>
+    <div class="listings-grid">
+
+      <!-- ═══ INSERZIONE 1 — modifica qui ═══ -->
+      <article class="listing-card" data-id="1">
+        <div class="card-image-wrap">
+          <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&q=80" alt="INSERISCI TITOLO INSERZIONE 1" loading="lazy" />
+          <span class="card-badge featured">Featured</span>
+          <button class="card-fav" aria-label="Save to favourites"><i class="fa-regular fa-heart"></i></button>
+          <span class="card-location"><i class="fa fa-map-marker-alt"></i> INSERISCI LUOGO</span>
+          <span class="card-img-count"><i class="fa fa-images"></i> 12</span>
+        </div>
+        <div class="card-body">
+          <p class="card-category">INSERISCI CATEGORIA</p>
+          <h3 class="card-title">INSERISCI TITOLO INSERZIONE 1</h3>
+          <p class="card-price">€ <span>INSERISCI PREZZO</span></p>
+          <div class="card-specs">
+            <span class="spec-tag"><i class="fa fa-ruler-combined"></i> SPEC 1</span>
+            <span class="spec-tag"><i class="fa fa-bed"></i> SPEC 2</span>
+            <span class="spec-tag"><i class="fa fa-bath"></i> SPEC 3</span>
           </div>
-          <div class="sidebar-section">
-            <div class="sidebar-section-label">Price Range (&euro;)</div>
-            <div class="filter-range">
-              <!-- MODIFICA: min/max price -->
-              <input type="number" placeholder="Min" id="fp-min"/>
-              <input type="number" placeholder="Max" id="fp-max"/>
-            </div>
+          <div class="card-footer">
+            <span class="card-dealer"><img class="card-dealer-avatar" src="https://ui-avatars.com/api/?name=D&background=0F1E34&color=fff" alt="Dealer" /> DEALER NAME</span>
+            <a href="listing-detail.html" class="btn-card-contact">View Details</a>
           </div>
-          <div class="sidebar-section">
-            <div class="sidebar-section-label">Year</div>
-            <div class="filter-range">
-              <!-- MODIFICA: year range -->
-              <input type="number" placeholder="From" id="fy-from" min="1900" max="2025"/>
-              <input type="number" placeholder="To"   id="fy-to"   min="1900" max="2025"/>
-            </div>
+        </div>
+      </article>
+
+      <!-- ═══ INSERZIONE 2 — modifica qui ═══ -->
+      <article class="listing-card" data-id="2">
+        <div class="card-image-wrap">
+          <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=80" alt="INSERISCI TITOLO INSERZIONE 2" loading="lazy" />
+          <span class="card-badge new">New</span>
+          <button class="card-fav" aria-label="Save to favourites"><i class="fa-regular fa-heart"></i></button>
+          <span class="card-location"><i class="fa fa-map-marker-alt"></i> INSERISCI LUOGO</span>
+          <span class="card-img-count"><i class="fa fa-images"></i> 8</span>
+        </div>
+        <div class="card-body">
+          <p class="card-category">INSERISCI CATEGORIA</p>
+          <h3 class="card-title">INSERISCI TITOLO INSERZIONE 2</h3>
+          <p class="card-price">€ <span>INSERISCI PREZZO</span></p>
+          <div class="card-specs">
+            <span class="spec-tag"><i class="fa fa-tachometer-alt"></i> SPEC 1</span>
+            <span class="spec-tag"><i class="fa fa-car"></i> SPEC 2</span>
+            <span class="spec-tag"><i class="fa fa-gas-pump"></i> SPEC 3</span>
           </div>
-          <div class="sidebar-section">
-            <div class="sidebar-section-label">Country</div>
-            <select class="filter-select" id="fc">
-              <!-- MODIFICA: aggiungi/rimuovi paesi -->
-              <option value="">All Countries</option>
-              <option>Italy</option><option>France</option><option>Monaco</option>
-              <option>Spain</option><option>Switzerland</option>
-              <option>United Kingdom</option><option>Germany</option>
-              <option>United Arab Emirates</option><option>United States</option>
-              <option>Other</option>
-            </select>
+          <div class="card-footer">
+            <span class="card-dealer"><img class="card-dealer-avatar" src="https://ui-avatars.com/api/?name=D&background=0F1E34&color=fff" alt="Dealer" /> DEALER NAME</span>
+            <a href="listing-detail.html" class="btn-card-contact">View Details</a>
           </div>
-          <div class="sidebar-section">
-            <div class="sidebar-section-label">Features</div>
-            <div class="filter-checkbox">
-              <!-- MODIFICA: aggiorna le feature per categoria -->
-              <label><input type="checkbox" value="pool"/> Swimming Pool</label>
-              <label><input type="checkbox" value="sea_view"/> Sea View</label>
-              <label><input type="checkbox" value="garage"/> Private Garage</label>
-              <label><input type="checkbox" value="garden"/> Garden / Park</label>
-              <label><input type="checkbox" value="helipad"/> Helipad</label>
-              <label><input type="checkbox" value="beach"/> Beach Access</label>
-            </div>
+        </div>
+      </article>
+
+      <!-- ═══ INSERZIONE 3 — modifica qui ═══ -->
+      <article class="listing-card" data-id="3">
+        <div class="card-image-wrap">
+          <img src="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=600&q=80" alt="INSERISCI TITOLO INSERZIONE 3" loading="lazy" />
+          <button class="card-fav" aria-label="Save to favourites"><i class="fa-regular fa-heart"></i></button>
+          <span class="card-location"><i class="fa fa-map-marker-alt"></i> INSERISCI LUOGO</span>
+          <span class="card-img-count"><i class="fa fa-images"></i> 15</span>
+        </div>
+        <div class="card-body">
+          <p class="card-category">INSERISCI CATEGORIA</p>
+          <h3 class="card-title">INSERISCI TITOLO INSERZIONE 3</h3>
+          <p class="card-price">€ <span>INSERISCI PREZZO</span></p>
+          <div class="card-specs">
+            <span class="spec-tag"><i class="fa fa-water"></i> SPEC 1</span>
+            <span class="spec-tag"><i class="fa fa-ship"></i> SPEC 2</span>
+            <span class="spec-tag"><i class="fa fa-anchor"></i> SPEC 3</span>
           </div>
-          <div class="sidebar-section">
-            <div class="sidebar-section-label">Condition</div>
-            <select class="filter-select">
-              <!-- MODIFICA: condizioni -->
-              <option value="">Any Condition</option>
-              <option>New</option><option>Like New</option>
-              <option>Pre-owned</option><option>Classic / Vintage</option>
-            </select>
+          <div class="card-footer">
+            <span class="card-dealer"><img class="card-dealer-avatar" src="https://ui-avatars.com/api/?name=D&background=0F1E34&color=fff" alt="Dealer" /> DEALER NAME</span>
+            <a href="listing-detail.html" class="btn-card-contact">View Details</a>
           </div>
-          <div class="sidebar-section">
-            <div class="sidebar-section-label">Size / Length</div>
-            <div class="filter-range">
-              <!-- MODIFICA: unita di misura -->
-              <input type="number" placeholder="Min m&sup2;"/>
-              <input type="number" placeholder="Max m&sup2;"/>
-            </div>
+        </div>
+      </article>
+
+      <!-- ═══ INSERZIONE 4 — modifica qui ═══ -->
+      <article class="listing-card" data-id="4">
+        <div class="card-image-wrap">
+          <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80" alt="INSERISCI TITOLO INSERZIONE 4" loading="lazy" />
+          <span class="card-badge featured">Featured</span>
+          <button class="card-fav" aria-label="Save to favourites"><i class="fa-regular fa-heart"></i></button>
+          <span class="card-location"><i class="fa fa-map-marker-alt"></i> INSERISCI LUOGO</span>
+          <span class="card-img-count"><i class="fa fa-images"></i> 10</span>
+        </div>
+        <div class="card-body">
+          <p class="card-category">INSERISCI CATEGORIA</p>
+          <h3 class="card-title">INSERISCI TITOLO INSERZIONE 4</h3>
+          <p class="card-price">€ <span>INSERISCI PREZZO</span></p>
+          <div class="card-specs">
+            <span class="spec-tag"><i class="fa fa-plane"></i> SPEC 1</span>
+            <span class="spec-tag"><i class="fa fa-users"></i> SPEC 2</span>
+            <span class="spec-tag"><i class="fa fa-route"></i> SPEC 3</span>
           </div>
-          <button class="btn-apply-filters" onclick="alert('Filters applied — connect to your data source.')"><i class="fa fa-sliders-h"></i> Apply Filters</button>
-        </aside>
-
-        <!-- RESULTS -->
-        <div>
-          <div class="listings-top-bar">
-            <p class="listings-count">Showing <strong>1&ndash;8</strong> of <strong>8</strong></p>
-            <div class="listings-sort">
-              <label style="font-size:.82rem;color:var(--color-muted)">Sort:</label>
-              <select>
-                <option>Price: High to Low</option>
-                <option>Price: Low to High</option>
-                <option>Newest First</option>
-                <option>Most Viewed</option>
-              </select>
-            </div>
+          <div class="card-footer">
+            <span class="card-dealer"><img class="card-dealer-avatar" src="https://ui-avatars.com/api/?name=D&background=0F1E34&color=fff" alt="Dealer" /> DEALER NAME</span>
+            <a href="listing-detail.html" class="btn-card-contact">View Details</a>
           </div>
+        </div>
+      </article>
 
-          <div class="listings-grid-4">
+      <!-- ═══ INSERZIONE 5 — modifica qui ═══ -->
+      <article class="listing-card" data-id="5">
+        <div class="card-image-wrap">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="INSERISCI TITOLO INSERZIONE 5" loading="lazy" />
+          <button class="card-fav" aria-label="Save to favourites"><i class="fa-regular fa-heart"></i></button>
+          <span class="card-location"><i class="fa fa-map-marker-alt"></i> INSERISCI LUOGO</span>
+          <span class="card-img-count"><i class="fa fa-images"></i> 7</span>
+        </div>
+        <div class="card-body">
+          <p class="card-category">INSERISCI CATEGORIA</p>
+          <h3 class="card-title">INSERISCI TITOLO INSERZIONE 5</h3>
+          <p class="card-price">€ <span>INSERISCI PREZZO</span></p>
+          <div class="card-specs">
+            <span class="spec-tag"><i class="fa fa-clock"></i> SPEC 1</span>
+            <span class="spec-tag"><i class="fa fa-certificate"></i> SPEC 2</span>
+            <span class="spec-tag"><i class="fa fa-gem"></i> SPEC 3</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-dealer"><img class="card-dealer-avatar" src="https://ui-avatars.com/api/?name=D&background=0F1E34&color=fff" alt="Dealer" /> DEALER NAME</span>
+            <a href="listing-detail.html" class="btn-card-contact">View Details</a>
+          </div>
+        </div>
+      </article>
 
-            <!-- ═ INSERZIONE A1 ═ -->
-            <article class="listing-card" onclick="nav('detail')">
-              <div class="card-image-wrap">
-                <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=500&q=80" alt="INSERISCI TITOLO" loading="lazy"/>
-                <span class="card-badge featured">Featured</span>
-                <button class="card-fav" onclick="event.stopPropagation()"><i class="fa-regular fa-heart"></i></button>
-                <span class="card-location"><i class="fa fa-map-marker-alt"></i> INSERISCI LUOGO</span>
-              </div>
-              <div class="card-body">
-                <p class="card-category">CATEGORIA</p>
-                <h3 class="card-title">INSERISCI TITOLO</h3>
-                <p class="card-price">&euro; INSERISCI PREZZO</p>
-                <div class="card-specs"><span class="spec-tag"><i class="fa fa-ruler-combined"></i> SPEC 1</span><span class="spec-tag"><i class="fa fa-bed"></i> SPEC 2</span><span class="spec-tag"><i class="fa fa-bath"></i> SPEC 3</span></div>
-                <div class="card-footer"><span class="card-dealer"><img class="card-dealer-avatar" src="https://ui-avatars.com/api/?name=D&background=C9A84C&color=fff" alt=""/> DEALER</span><span class="btn-card-contact">Details</span></div>
-              </div>
-            </article>
+      <!-- ═══ INSERZIONE 6 — modifica qui ═══ -->
+      <article class="listing-card" data-id="6">
+        <div class="card-image-wrap">
+          <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&q=80" alt="INSERISCI TITOLO INSERZIONE 6" loading="lazy" />
+          <span class="card-badge new">New</span>
+          <button class="card-fav" aria-label="Save to favourites"><i class="fa-regular fa-heart"></i></button>
+          <span class="card-location"><i class="fa fa-map-marker-alt"></i> INSERISCI LUOGO</span>
+          <span class="card-img-count"><i class="fa fa-images"></i> 20</span>
+        </div>
+        <div class="card-body">
+          <p class="card-category">INSERISCI CATEGORIA</p>
+          <h3 class="card-title">INSERISCI TITOLO INSERZIONE 6</h3>
+          <p class="card-price">€ <span>INSERISCI PREZZO</span></p>
+          <div class="card-specs">
+            <span class="spec-tag"><i class="fa fa-tree"></i> SPEC 1</span>
+            <span class="spec-tag"><i class="fa fa-swimming-pool"></i> SPEC 2</span>
+            <span class="spec-tag"><i class="fa fa-ruler-combined"></i> SPEC 3</span>
+          </div>
+          <div class="card-footer">
+            <span class="card-dealer"><img class="card-dealer-avatar" src="https://ui-avatars.com/api/?name=D&background=0F1E34&color=fff" alt="Dealer" /> DEALER NAME</span>
+            <a href="listing-detail.html" class="btn-card-contact">View Details</a>
+          </div>
+        </div>
+      </article>
 
-            <!-- ═ INSERZIONE A2 ═ -->
-            <article class="listing-card" onclick="nav('detail')">
-              <div class="card-image-wrap">
-                <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=500&q=80" alt="INSERISCI TITOLO" loading="lazy"/>
-                <span class="card-badge new2">New</span>
-                <button class="card-fav" onclick="event.stopPropagation()"><i class="fa-regular fa-heart"></i></button>
-                <span class="card-location"><i class="fa fa-map-marker-alt"></i> INSERISCI LUOGO</span>
-              </div>
-              <div class="card-body">
-                <p class="card-category">CATEGORIA</p>
-                <h3 class="card-title">INSERISCI TITOLO</h3>
-                <p class="card-price">&euro; INSERISCI PREZZO</p>
-                <div class="card-specs"><span class="spec-tag"><i class="fa fa-tachometer-alt"></i> SPEC 1</span><span class="spec-tag"><i class="fa fa-car"></i> SPEC 2</span><span class="spec-tag"><i class="fa fa-gas-pump"></i> SPEC 3</span></div>
-                <div class="card-footer"><span class="card-dealer"><img class="card-dealer-avatar" src="https://ui-avatars.com/api/?name=D&background=C9A84C&color=fff" alt=""/> DEALER</span><span class="btn-card-contact">Details</span></div>
-              </div>
-            </article>
+    </div><!-- /listings-grid -->
 
-            <!-- ═ INSERZIONE A3 ═ -->
-            <article class="listing-card" onclick="nav('detail')">
-              <div class="card-image-wrap">
-                <img src="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=500&q=80" alt="INSERISCI TITOLO" loading="lazy"/>
-                <button class="card-fav" onclick="event.stopPropagation()"><i class="fa-regular fa-heart"></i></button>
-                <span class="card-location"><i class="fa fa-map-marker-alt"></i> INSERISCI LUOGO</span>
-              </div>
-              <div class="card-body">
-                <p class="card-category">CATEGORIA</p>
-                <h3 class="card-title">INSERISCI TITOLO</h3>
-                <p class="card-price">&euro; INSERISCI PREZZO</p>
-                <div class="card-specs"><span class="spec-tag"><i class="fa fa-water"></i> SPEC 1</span><span class="spec-tag"><i class="fa fa-ship"></i> SPEC 2</span><span class="spec-tag"><i class="fa fa-anchor"></i> SPEC 3</span></div>
-                <div class="card-footer"><span class="card-dealer"><img class="card-dealer-avatar" src="https://ui-avatars.com/api/?name=D&background=C9A84C&color=fff" alt=""/> DEALER</span><span class="btn-card-contact">Details</span></div>
-              </div>
-            </article>
+    <div class="section-cta-wrap">
+      <a href="listings.html" class="btn-outline" data-i18n="view_all">View All Listings <i class="fa fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
 
-            <!-- ═ INSERZIONE A4 ═ -->
-            <article class="listing-card" onclick="nav('detail')">
-              <div class="card-image-wrap">
-                <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=500&q=80" alt="INSERISCI TITOLO" loading="lazy"/>
-                <button class="card-fav" onclick="event.stopPropagation()"><i class="fa-regular fa-heart"></i></button>
-                <span class="card-location"><i class="fa fa-map-marker-alt"></i> INSERISCI LUOGO</span>
-              </div>
-              <div class="card-body">
-                <p class="card-category">CATEGORIA</p>
-                <h3 class="card-title">INSERISCI TITOLO</h3>
-                <p class="card-price">&euro; INSERISCI PREZZO</p>
-                <div class="card-specs"><span class="spec-tag"><i class="fa fa-plane"></i> SPEC 1</span><span class="spec-tag"><i class="fa fa-users"></i> SPEC 2</span><span class="spec-tag"><i class="fa fa-route"></i> SPEC 3</span></div>
-                <div class="card-footer"><span class="card-dealer"><img class="card-dealer-avatar" src="https://ui-avatars.com/api/?name=D&background=C9A84C&color=fff" alt=""/> DEALER</span><span class="btn-card-contact">Details</span></div>
-              </div>
-            </article>
+<!-- ══════════════════════════════════════════════════════
+     BROWSE BY CATEGORY
+══════════════════════════════════════════════════════ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-eyebrow" data-i18n="categories_label">Browse by Category</p>
+      <h2 class="section-title" data-i18n="categories_title">Every Luxury, One Destination</h2>
+    </div>
 
-            <!-- ═ INSERZIONE A5 ═ -->
-            <article class="listing-card" onclick="nav('detail')">
-              <div class="card-image-wrap">
-                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=500&q=80" alt="INSERISCI TITOLO" loading="lazy"/>
-                <span class="card-badge featured">Featured</span>
-                <button class="card-fav" onclick="event.stopPropagation()"><i class="fa-regular fa-heart"></i></button>
-                <span class="card-location"><i class="fa fa-map-marker-alt"></i> INSERISCI LUOGO</span>
-              </div>
-              <div class="card-body">
-                <p class="card-category">CATEGORIA</p>
-                <h3 class="card-title">INSERISCI TITOLO</h3>
-                <p class="card-price">&euro; INSERISCI PREZZO</p>
-                <div class="card-specs"><span class="spec-tag"><i class="fa fa-ruler-combined"></i> SPEC 1</span><span class="spec-tag"><i class="fa fa-bed"></i> SPEC 2</span><span class="spec-tag"><i class="fa fa-swimming-pool"></i> SPEC 3</span></div>
-                <div class="card-footer"><span class="card-dealer"><img class="card-dealer-avatar" src="https://ui-avatars.com/api/?name=D&background=C9A84C&color=fff" alt=""/> DEALER</span><span class="btn-card-contact">Details</span></div>
-              </div>
-            </article>
+    <div class="categories-grid">
+      <a href="listings.html?cat=cars" class="category-card">
+        <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&q=80" alt="Luxury Cars" loading="lazy" />
+        <div class="category-card-overlay">
+          <div class="category-icon"><i class="fa fa-car"></i></div>
+          <div class="category-name" data-i18n="cat_cars">Luxury Cars</div>
+          <div class="category-count">2,800+ listings</div>
+        </div>
+      </a>
 
-            <!-- ═ INSERZIONE A6 ═ -->
-            <article class="listing-card" onclick="nav('detail')">
-              <div class="card-image-wrap">
-                <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=500&q=80" alt="INSERISCI TITOLO" loading="lazy"/>
-                <span class="card-badge new2">New</span>
-                <button class="card-fav" onclick="event.stopPropagation()"><i class="fa-regular fa-heart"></i></button>
-                <span class="card-location"><i class="fa fa-map-marker-alt"></i> INSERISCI LUOGO</span>
-              </div>
-              <div class="card-body">
-                <p class="card-category">CATEGORIA</p>
-                <h3 class="card-title">INSERISCI TITOLO</h3>
-                <p class="card-price">&euro; INSERISCI PREZZO</p>
-                <div class="card-specs"><span class="spec-tag"><i class="fa fa-umbrella-beach"></i> SPEC 1</span><span class="spec-tag"><i class="fa fa-tree"></i> SPEC 2</span><span class="spec-tag"><i class="fa fa-ruler-combined"></i> SPEC 3</span></div>
-                <div class="card-footer"><span class="card-dealer"><img class="card-dealer-avatar" src="https://ui-avatars.com/api/?name=D&background=C9A84C&color=fff" alt=""/> DEALER</span><span class="btn-card-contact">Details</span></div>
-              </div>
-            </article>
+      <a href="listings.html?cat=yachts" class="category-card">
+        <img src="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=800&q=80" alt="Yachts" loading="lazy" />
+        <div class="category-card-overlay">
+          <div class="category-icon"><i class="fa fa-ship"></i></div>
+          <div class="category-name" data-i18n="cat_yachts">Yachts</div>
+          <div class="category-count">1,100+ listings</div>
+        </div>
+      </a>
 
-            <!-- ═ INSERZIONE A7 ═ -->
-            <article class="listing-card" onclick="nav('detail')">
-              <div class="card-image-wrap">
-                <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=500&q=80" alt="INSERISCI TITOLO" loading="lazy"/>
-                <button class="card-fav" onclick="event.stopPropagation()"><i class="fa-regular fa-heart"></i></button>
-                <span class="card-location"><i class="fa fa-map-marker-alt"></i> INSERISCI LUOGO</span>
-              </div>
-              <div class="card-body">
-                <p class="card-category">CATEGORIA</p>
-                <h3 class="card-title">INSERISCI TITOLO</h3>
-                <p class="card-price">&euro; INSERISCI PREZZO</p>
-                <div class="card-specs"><span class="spec-tag"><i class="fa fa-tachometer-alt"></i> SPEC 1</span><span class="spec-tag"><i class="fa fa-horse-head"></i> SPEC 2</span><span class="spec-tag"><i class="fa fa-gas-pump"></i> SPEC 3</span></div>
-                <div class="card-footer"><span class="card-dealer"><img class="card-dealer-avatar" src="https://ui-avatars.com/api/?name=D&background=C9A84C&color=fff" alt=""/> DEALER</span><span class="btn-card-contact">Details</span></div>
-              </div>
-            </article>
+      <a href="listings.html?cat=jets" class="category-card">
+        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80" alt="Private Jets" loading="lazy" />
+        <div class="category-card-overlay">
+          <div class="category-icon"><i class="fa fa-plane"></i></div>
+          <div class="category-name" data-i18n="cat_jets">Private Jets</div>
+          <div class="category-count">320+ listings</div>
+        </div>
+      </a>
 
-            <!-- ═ INSERZIONE A8 ═ -->
-            <article class="listing-card" onclick="nav('detail')">
-              <div class="card-image-wrap">
-                <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=500&q=80" alt="INSERISCI TITOLO" loading="lazy"/>
-                <button class="card-fav" onclick="event.stopPropagation()"><i class="fa-regular fa-heart"></i></button>
-                <span class="card-location"><i class="fa fa-map-marker-alt"></i> INSERISCI LUOGO</span>
-              </div>
-              <div class="card-body">
-                <p class="card-category">CATEGORIA</p>
-                <h3 class="card-title">INSERISCI TITOLO</h3>
-                <p class="card-price">&euro; INSERISCI PREZZO</p>
-                <div class="card-specs"><span class="spec-tag"><i class="fa fa-tree"></i> SPEC 1</span><span class="spec-tag"><i class="fa fa-swimming-pool"></i> SPEC 2</span><span class="spec-tag"><i class="fa fa-home"></i> SPEC 3</span></div>
-                <div class="card-footer"><span class="card-dealer"><img class="card-dealer-avatar" src="https://ui-avatars.com/api/?name=D&background=C9A84C&color=fff" alt=""/> DEALER</span><span class="btn-card-contact">Details</span></div>
-              </div>
-            </article>
+      <a href="listings.html?cat=realestate" class="category-card">
+        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80" alt="Real Estate" loading="lazy" />
+        <div class="category-card-overlay">
+          <div class="category-icon"><i class="fa fa-building"></i></div>
+          <div class="category-name" data-i18n="cat_realestate">Real Estate</div>
+          <div class="category-count">6,100+ listings</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
 
-            <!-- Aggiungi altre inserzioni copiando il blocco sopra -->
+<!-- ══════════════════════════════════════════════════════
+     HOW IT WORKS
+══════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-eyebrow" data-i18n="how_label">How It Works</p>
+      <h2 class="section-title" data-i18n="how_title">Simple. Elegant. Effortless.</h2>
+      <p class="section-desc">Whether you're buying or selling, our platform connects the world's finest objects with those who appreciate them.</p>
+    </div>
 
-          </div><!-- /listings-grid-4 -->
-
-          <nav class="pagination">
-            <button class="page-btn"><i class="fa fa-chevron-left"></i></button>
-            <button class="page-btn active">1</button>
-            <button class="page-btn">2</button>
-            <button class="page-btn">3</button>
-            <span style="display:flex;align-items:center;padding:0 8px;color:var(--color-muted)">&hellip;</span>
-            <button class="page-btn">12</button>
-            <button class="page-btn"><i class="fa fa-chevron-right"></i></button>
-          </nav>
-        </div><!-- /results -->
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3 data-i18n="how_step1_h">Browse &amp; Discover</h3>
+        <p data-i18n="how_step1_p">Explore thousands of curated listings across every luxury category, filtered by location, price, and specifications.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3 data-i18n="how_step2_h">Connect Directly</h3>
+        <p data-i18n="how_step2_p">Contact verified dealers and private sellers directly. No middlemen, no hidden fees — pure luxury at your fingertips.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3 data-i18n="how_step3_h">Own with Confidence</h3>
+        <p data-i18n="how_step3_p">Every listing is verified. Benefit from our concierge support, legal guidance, and post-sale assistance worldwide.</p>
       </div>
     </div>
   </div>
-</div><!-- /page-listings -->
+</section>
 
-<!-- ====================================================
-     PAGE: DETAIL
-==================================================== -->
-<div id="page-detail" class="page">
-  <div style="background:var(--color-white);border-bottom:1px solid var(--color-border);padding:12px 0">
-    <div class="container">
-      <nav class="breadcrumb" style="color:var(--color-muted)">
-        <a onclick="nav('home')" style="color:var(--color-muted);cursor:pointer">Home</a><span class="sep2">/</span>
-        <!-- MODIFICA: categoria corretta -->
-        <a onclick="nav('listings')" style="color:var(--color-muted);cursor:pointer">CATEGORIA</a><span class="sep2">/</span>
-        <span style="color:var(--color-text)">INSERISCI TITOLO INSERZIONE</span>
-      </nav>
-    </div>
-  </div>
-
-  <main class="section" style="padding-top:32px">
-    <div class="container">
-      <div class="detail-layout">
-
-        <!-- LEFT: Gallery + Tabs -->
-        <div>
-          <div class="gallery-main" id="gal-main">
-            <!-- MODIFICA: immagine principale -->
-            <img id="gal-main-img" src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=85" alt="Main gallery image"/>
-            <button class="gallery-expand" onclick="openLightbox(galIdx)" aria-label="Fullscreen"><i class="fa fa-expand"></i></button>
-          </div>
-          <!-- THUMBNAILS — modifica src delle 5 immagini -->
-          <div class="gallery-thumbs" id="gal-thumbs">
-            <div class="gallery-thumb active" onclick="setGalleryImg(0)"><img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=300&q=70" alt="1"/></div>
-            <div class="gallery-thumb" onclick="setGalleryImg(1)"><img src="https://images.unsplash.com/photo-1600607687644-c7171b41c2e7?w=300&q=70" alt="2"/></div>
-            <div class="gallery-thumb" onclick="setGalleryImg(2)"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=300&q=70" alt="3"/></div>
-            <div class="gallery-thumb" onclick="setGalleryImg(3)"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=300&q=70" alt="4"/></div>
-            <div class="gallery-thumb" onclick="setGalleryImg(4)"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=300&q=70" alt="5"/></div>
-          </div>
-
-          <!-- TABS -->
-          <div class="detail-tabs">
-            <button class="detail-tab active" onclick="showDetTab('desc',this)">Description</button>
-            <button class="detail-tab" onclick="showDetTab('specs',this)">Specifications</button>
-            <button class="detail-tab" onclick="showDetTab('contact',this)">Contact</button>
-            <button class="detail-tab" onclick="showDetTab('loc',this)">Location</button>
-          </div>
-
-          <!-- TAB: Description -->
-          <div id="det-desc" class="detail-tab-content active">
-            <div class="detail-description">
-              <!--
-                MODIFICA: inserisci la descrizione completa dell'inserzione.
-              -->
-              <p>INSERISCI QUI LA DESCRIZIONE COMPLETA DELL'INSERZIONE. Descrivi le caratteristiche principali, la storia, i dettagli unici e tutto ci&ograve; che rende questo oggetto esclusivo e desiderabile.</p>
-              <p>SECONDO PARAGRAFO &mdash; caratteristiche architettoniche / tecniche / storiche. Materiali, anno di costruzione / produzione, restauri, ecc.</p>
-              <p>TERZO PARAGRAFO &mdash; contesto, posizione, lifestyle. Cosa rende questa propriet&agrave; / veicolo / oggetto unico nel suo genere?</p>
-            </div>
-          </div>
-
-          <!-- TAB: Specifications -->
-          <div id="det-specs" class="detail-tab-content">
-            <!--
-              MODIFICA: riempi la tabella con le specifiche reali.
-              Aggiungi o rimuovi righe secondo necessita.
-            -->
-            <table class="specs-table">
-              <tbody>
-                <tr><td>Reference / ID</td>          <td>INSERISCI RIFERIMENTO</td></tr>
-                <tr><td>Year</td>                    <td>INSERISCI ANNO</td></tr>
-                <tr><td>Condition</td>               <td>INSERISCI CONDIZIONE</td></tr>
-                <tr><td>Country</td>                 <td>INSERISCI PAESE</td></tr>
-                <tr><td>City / Region</td>           <td>INSERISCI CITT&Agrave;</td></tr>
-                <tr><td>Spec 1 Label</td>            <td>INSERISCI VALORE</td></tr>
-                <tr><td>Spec 2 Label</td>            <td>INSERISCI VALORE</td></tr>
-                <tr><td>Spec 3 Label</td>            <td>INSERISCI VALORE</td></tr>
-                <tr><td>Spec 4 Label</td>            <td>INSERISCI VALORE</td></tr>
-                <tr><td>Spec 5 Label</td>            <td>INSERISCI VALORE</td></tr>
-                <tr><td>Spec 6 Label</td>            <td>INSERISCI VALORE</td></tr>
-                <!-- Esempi per categorie specifiche (decommentare) -->
-                <!-- CASA: <tr><td>Total Area</td><td>XXX m&sup2;</td></tr> -->
-                <!-- AUTO:  <tr><td>Engine</td><td>X.X L / V8</td></tr>     -->
-                <!-- YACHT: <tr><td>LOA</td><td>XX m</td></tr>              -->
-                <!-- JET:   <tr><td>Range</td><td>X,XXX km</td></tr>        -->
-              </tbody>
-            </table>
-          </div>
-
-          <!-- TAB: Contact Form -->
-          <div id="det-contact" class="detail-tab-content">
-            <p style="color:var(--color-muted);font-size:.9rem;margin-bottom:24px">Send a message to the seller. You'll receive a reply within 24 hours.</p>
-            <form class="contact-form" onsubmit="event.preventDefault();this.innerHTML='<p style=&quot;color:var(--color-gold);font-size:1.1rem;padding:20px 0&quot;>&#10003; Message sent! The dealer will contact you shortly.</p>'">
-              <div class="form-row">
-                <div class="form-group"><label>Full Name *</label><input type="text" placeholder="Your full name" required/></div>
-                <div class="form-group"><label>Email *</label><input type="email" placeholder="your@email.com" required/></div>
-              </div>
-              <div class="form-row">
-                <div class="form-group"><label>Phone</label><input type="tel" placeholder="+1 234 567 890"/></div>
-                <div class="form-group"><label>Budget</label>
-                  <select><option value="">Select range</option><option>Under &euro;500K</option><option>&euro;500K&ndash;&euro;1M</option><option>&euro;1M&ndash;&euro;5M</option><option>&euro;5M&ndash;&euro;10M</option><option>&euro;10M+</option></select>
-                </div>
-              </div>
-              <div class="form-group"><label>Message *</label><textarea placeholder="I am interested in this listing. Please provide more information..." required style="min-height:120px"></textarea></div>
-              <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
-                <input type="checkbox" id="cf-priv" required style="accent-color:var(--color-gold);width:15px;height:15px"/>
-                <label for="cf-priv" style="font-size:.8rem;color:var(--color-muted)">I agree to the <a href="#" style="color:var(--color-gold)">Privacy Policy</a>.</label>
-              </div>
-              <button type="submit" class="btn-contact-main" style="border:none"><i class="fa fa-paper-plane"></i> Send Message</button>
-            </form>
-          </div>
-
-          <!-- TAB: Location -->
-          <div id="det-loc" class="detail-tab-content">
-            <!--
-              MODIFICA: sostituisci con iframe Google Maps reale.
-              <iframe src="https://maps.google.com/maps?q=COORDINATE&output=embed" width="100%" height="340" frameborder="0" style="border:0;border-radius:12px"></iframe>
-            -->
-            <div style="background:var(--color-border);border-radius:var(--r-md);height:340px;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px">
-              <div>
-                <i class="fa fa-map-marker-alt" style="font-size:2.5rem;color:var(--color-gold);margin-bottom:16px;display:block"></i>
-                <p style="font-family:var(--font-serif);font-size:1.1rem;margin-bottom:8px">INSERISCI INDIRIZZO / CITT&Agrave;</p>
-                <p style="color:var(--color-muted);font-size:.85rem">Sostituisci con iframe Google Maps</p>
-              </div>
-            </div>
-          </div>
-        </div><!-- /left col -->
-
-        <!-- RIGHT: Info Card -->
-        <div>
-          <div class="detail-info-card">
-            <!-- MODIFICA: badge, titolo, luogo, prezzo -->
-            <span class="detail-badge">INSERISCI CATEGORIA</span>
-            <h1 class="detail-title" style="font-size:1.5rem">INSERISCI TITOLO COMPLETO INSERZIONE</h1>
-            <p class="detail-location"><i class="fa fa-map-marker-alt" style="color:var(--color-gold)"></i> INSERISCI CITT&Agrave;, PAESE</p>
-            <div class="detail-price">&euro; <span>INSERISCI PREZZO</span> <small>NOTA (es. IVA incl.)</small></div>
-
-            <!-- MINI SPECS — modifica i 4 valori chiave -->
-            <div class="detail-spec-mini">
-              <div class="spec-mini-item"><div class="spec-label">LABEL 1</div><div class="spec-val">VALORE 1</div></div>
-              <div class="spec-mini-item"><div class="spec-label">LABEL 2</div><div class="spec-val">VALORE 2</div></div>
-              <div class="spec-mini-item"><div class="spec-label">LABEL 3</div><div class="spec-val">VALORE 3</div></div>
-              <div class="spec-mini-item"><div class="spec-label">LABEL 4</div><div class="spec-val">VALORE 4</div></div>
-            </div>
-
-            <button class="btn-contact-main" onclick="showDetTab('contact',null)"><i class="fa fa-envelope"></i> Contact Seller</button>
-            <!-- MODIFICA: inserisci numero WhatsApp reale -->
-            <a href="https://wa.me/INSERISCI_NUMERO?text=Interested+in+this+listing" target="_blank" rel="noopener" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-
-            <!-- DEALER INFO — modifica nome, anno, citta -->
-            <div class="dealer-info-row">
-              <img class="dealer-avatar-lg" src="https://ui-avatars.com/api/?name=D&background=C9A84C&color=fff&size=88" alt="Dealer"/>
-              <div>
-                <div class="dealer-name">INSERISCI NOME DEALER</div>
-                <div class="dealer-since">Member since ANNO &middot; CITT&Agrave;</div>
-                <div style="margin-top:4px"><span style="color:var(--color-gold);font-size:.75rem">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <span style="font-size:.72rem;color:var(--color-muted)">Verified Dealer</span></div>
-              </div>
-            </div>
-
-            <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--color-border);display:flex;align-items:center;gap:12px">
-              <span style="font-size:.78rem;color:var(--color-muted)">Share:</span>
-              <a href="#" title="WhatsApp" style="color:var(--color-muted);font-size:1rem" onmouseover="this.style.color='#25D366'" onmouseout="this.style.color=''"><i class="fab fa-whatsapp"></i></a>
-              <a href="#" title="X" style="color:var(--color-muted);font-size:1rem" onmouseover="this.style.color='#000'" onmouseout="this.style.color=''"><i class="fab fa-x-twitter"></i></a>
-              <a href="#" title="LinkedIn" style="color:var(--color-muted);font-size:1rem" onmouseover="this.style.color='#0077B5'" onmouseout="this.style.color=''"><i class="fab fa-linkedin-in"></i></a>
-              <button onclick="navigator.clipboard&&navigator.clipboard.writeText(window.location.href).then(()=>alert('Link copied!'))" style="color:var(--color-muted);font-size:1rem;background:none;border:none;cursor:pointer"><i class="fa fa-link"></i></button>
-            </div>
-          </div>
-        </div>
-
-      </div><!-- /detail-layout -->
-
-      <!-- SIMILAR LISTINGS -->
-      <div style="margin-top:64px">
-        <div class="section-header" style="text-align:left;margin-bottom:32px">
-          <p class="section-eyebrow">More Listings</p>
-          <h2 class="section-title">You May Also Like</h2>
-        </div>
-        <div class="listings-grid">
-          <!-- ═ SIMILE 1 ═ -->
-          <article class="listing-card" onclick="nav('detail')">
-            <div class="card-image-wrap"><img src="https://images.unsplash.com/photo-1600607687644-c7171b41c2e7?w=500&q=80" alt="Simile 1" loading="lazy"/><button class="card-fav" onclick="event.stopPropagation()"><i class="fa-regular fa-heart"></i></button><span class="card-location"><i class="fa fa-map-marker-alt"></i> LUOGO</span></div>
-            <div class="card-body"><p class="card-category">CATEGORIA</p><h3 class="card-title">INSERISCI TITOLO SIMILE 1</h3><p class="card-price">&euro; PREZZO</p><div class="card-specs"><span class="spec-tag"><i class="fa fa-ruler-combined"></i> SPEC</span><span class="spec-tag"><i class="fa fa-bed"></i> SPEC</span></div><div class="card-footer"><span class="card-dealer"><img class="card-dealer-avatar" src="https://ui-avatars.com/api/?name=D&background=C9A84C&color=fff" alt=""/> DEALER</span><span class="btn-card-contact">Details</span></div></div>
-          </article>
-          <!-- ═ SIMILE 2 ═ -->
-          <article class="listing-card" onclick="nav('detail')">
-            <div class="card-image-wrap"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=500&q=80" alt="Simile 2" loading="lazy"/><button class="card-fav" onclick="event.stopPropagation()"><i class="fa-regular fa-heart"></i></button><span class="card-location"><i class="fa fa-map-marker-alt"></i> LUOGO</span></div>
-            <div class="card-body"><p class="card-category">CATEGORIA</p><h3 class="card-title">INSERISCI TITOLO SIMILE 2</h3><p class="card-price">&euro; PREZZO</p><div class="card-specs"><span class="spec-tag"><i class="fa fa-ruler-combined"></i> SPEC</span><span class="spec-tag"><i class="fa fa-bed"></i> SPEC</span></div><div class="card-footer"><span class="card-dealer"><img class="card-dealer-avatar" src="https://ui-avatars.com/api/?name=D&background=C9A84C&color=fff" alt=""/> DEALER</span><span class="btn-card-contact">Details</span></div></div>
-          </article>
-          <!-- ═ SIMILE 3 ═ -->
-          <article class="listing-card" onclick="nav('detail')">
-            <div class="card-image-wrap"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=500&q=80" alt="Simile 3" loading="lazy"/><button class="card-fav" onclick="event.stopPropagation()"><i class="fa-regular fa-heart"></i></button><span class="card-location"><i class="fa fa-map-marker-alt"></i> LUOGO</span></div>
-            <div class="card-body"><p class="card-category">CATEGORIA</p><h3 class="card-title">INSERISCI TITOLO SIMILE 3</h3><p class="card-price">&euro; PREZZO</p><div class="card-specs"><span class="spec-tag"><i class="fa fa-ruler-combined"></i> SPEC</span><span class="spec-tag"><i class="fa fa-bed"></i> SPEC</span></div><div class="card-footer"><span class="card-dealer"><img class="card-dealer-avatar" src="https://ui-avatars.com/api/?name=D&background=C9A84C&color=fff" alt=""/> DEALER</span><span class="btn-card-contact">Details</span></div></div>
-          </article>
-        </div>
+<!-- ══════════════════════════════════════════════════════
+     STATS
+══════════════════════════════════════════════════════ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="stats-row">
+      <div class="stat-item">
+        <span class="num">€ 2.4B+</span>
+        <span class="label">Estimated Value Listed</span>
       </div>
-
-    </div>
-  </main>
-</div><!-- /page-detail -->
-
-<!-- ====================================================
-     PAGE: PRICING
-==================================================== -->
-<div id="page-pricing" class="page">
-  <section style="background:var(--color-black);padding:72px 0;text-align:center;color:var(--color-white)">
-    <div class="container">
-      <p class="section-eyebrow" style="color:var(--color-gold);text-align:center;margin-bottom:12px">For Dealers &amp; Private Sellers</p>
-      <h2 style="font-family:var(--font-serif);font-size:clamp(2rem,4vw,3rem);font-weight:500;margin-bottom:14px">Simple, Transparent Pricing</h2>
-      <p style="color:rgba(255,255,255,.65);max-width:520px;margin:0 auto">Start for free. Scale as you grow. No hidden fees, no long-term lock-ins.</p>
-      <div style="display:flex;align-items:center;gap:14px;justify-content:center;margin-top:28px">
-        <span style="font-size:.875rem;color:rgba(255,255,255,.65)">Monthly</span>
-        <label class="toggle"><input type="checkbox" id="pr-toggle"/><span class="toggle-slider"></span></label>
-        <span style="font-size:.875rem;color:rgba(255,255,255,.65)">Annual <span id="save-badge" style="display:none;background:var(--color-gold);color:var(--color-black);font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:2px;margin-left:4px">SAVE 17%</span></span>
+      <div class="stat-item">
+        <span class="num">140+</span>
+        <span class="label">Countries Represented</span>
       </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="pricing-grid">
-
-        <!-- TRIAL -->
-        <div class="pricing-card">
-          <div class="pricing-plan-name">Trial</div>
-          <div class="pricing-price" data-monthly="0">Free</div>
-          <div class="pricing-period"><span data-period>for 3 months</span></div>
-          <p class="pricing-desc">The perfect way to test the platform with zero commitment. 5 listings, no credit card required.</p>
-          <ul class="pricing-features">
-            <li><i class="fa fa-check"></i> 5 active listings</li>
-            <li><i class="fa fa-check"></i> Standard visibility</li>
-            <li><i class="fa fa-check"></i> LUL watermark on images</li>
-            <li><i class="fa fa-check"></i> Basic dealer profile</li>
-            <li><i class="fa fa-check"></i> Email support</li>
-            <li class="disabled"><i class="fa fa-times"></i> Analytics dashboard</li>
-            <li class="disabled"><i class="fa fa-times"></i> Featured placement</li>
-            <li class="disabled"><i class="fa fa-times"></i> API inventory feed</li>
-          </ul>
-          <button class="btn-plan" onclick="document.getElementById('trial-anchor').scrollIntoView({behavior:'smooth'})">Start Free Trial</button>
-        </div>
-
-        <!-- STARTER -->
-        <div class="pricing-card">
-          <div class="pricing-plan-name">Starter</div>
-          <div class="pricing-price" data-monthly="0">Free</div>
-          <div class="pricing-period"><span data-period>Forever</span></div>
-          <p class="pricing-desc">For individual sellers and small boutique dealers. Get your first listing live today at no cost.</p>
-          <ul class="pricing-features">
-            <li><i class="fa fa-check"></i> 1 active listing</li>
-            <li><i class="fa fa-check"></i> Standard visibility</li>
-            <li><i class="fa fa-check"></i> LUL co-branded badge</li>
-            <li><i class="fa fa-check"></i> Dealer profile page</li>
-            <li><i class="fa fa-check"></i> Contact form</li>
-            <li class="disabled"><i class="fa fa-times"></i> Analytics</li>
-            <li class="disabled"><i class="fa fa-times"></i> Featured placement</li>
-            <li class="disabled"><i class="fa fa-times"></i> Referral bonus</li>
-          </ul>
-          <button class="btn-plan">Get Started Free</button>
-        </div>
-
-        <!-- PROFESSIONAL -->
-        <div class="pricing-card featured">
-          <span class="pricing-card-recommended">Most Popular</span>
-          <div class="pricing-plan-name" style="color:var(--color-gold)">Professional</div>
-          <div class="pricing-price">&euro;<span data-monthly="149">149</span></div>
-          <div class="pricing-period"><span data-period>/ month</span></div>
-          <p class="pricing-desc">For established dealers ready to grow their reach and track performance with advanced analytics.</p>
-          <ul class="pricing-features">
-            <li><i class="fa fa-check"></i> 25 active listings</li>
-            <li><i class="fa fa-check"></i> <strong>Featured</strong> placement in search</li>
-            <li><i class="fa fa-check"></i> No watermark</li>
-            <li><i class="fa fa-check"></i> Analytics dashboard (basic)</li>
-            <li><i class="fa fa-check"></i> Co-branded dealer page</li>
-            <li><i class="fa fa-check"></i> Priority email &amp; chat support</li>
-            <li><i class="fa fa-check"></i> Referral bonus credits</li>
-            <li class="disabled"><i class="fa fa-times"></i> API inventory feed</li>
-          </ul>
-          <button class="btn-plan g" onclick="document.getElementById('trial-anchor').scrollIntoView({behavior:'smooth'})">Start 30-Day Free Trial</button>
-        </div>
-
-        <!-- ELITE -->
-        <div class="pricing-card">
-          <div class="pricing-plan-name">Elite</div>
-          <div class="pricing-price">&euro;<span data-monthly="349">349</span></div>
-          <div class="pricing-period"><span data-period>/ month</span></div>
-          <p class="pricing-desc">For premium dealers who want maximum exposure, dedicated support and full platform access.</p>
-          <ul class="pricing-features">
-            <li><i class="fa fa-check"></i> <strong>Unlimited</strong> listings</li>
-            <li><i class="fa fa-check"></i> Top placement &mdash; always first</li>
-            <li><i class="fa fa-check"></i> Advanced analytics + reports</li>
-            <li><i class="fa fa-check"></i> Dedicated Account Manager</li>
-            <li><i class="fa fa-check"></i> API inventory feed (free)</li>
-            <li><i class="fa fa-check"></i> Co-branded &amp; promo campaigns</li>
-            <li><i class="fa fa-check"></i> Referral bonus credits</li>
-            <li><i class="fa fa-check"></i> Early access to new features</li>
-          </ul>
-          <button class="btn-plan d" onclick="document.getElementById('trial-anchor').scrollIntoView({behavior:'smooth'})">Start 30-Day Free Trial</button>
-        </div>
-
-        <!-- ENTERPRISE -->
-        <div class="pricing-card">
-          <div class="pricing-plan-name">Enterprise</div>
-          <div class="pricing-price" style="font-size:1.8rem">Custom</div>
-          <div class="pricing-period">Tailored to your needs</div>
-          <p class="pricing-desc">For networks and large-scale operators who need white-label solutions and API integrations.</p>
-          <ul class="pricing-features">
-            <li><i class="fa fa-check"></i> Everything in Elite</li>
-            <li><i class="fa fa-check"></i> White-label branding option</li>
-            <li><i class="fa fa-check"></i> Revenue share (5&ndash;10%)</li>
-            <li><i class="fa fa-check"></i> Full API &amp; inventory sync</li>
-            <li><i class="fa fa-check"></i> Multi-dealer sub-accounts</li>
-            <li><i class="fa fa-check"></i> Custom SLA &amp; legal support</li>
-            <li><i class="fa fa-check"></i> Dedicated tech onboarding</li>
-            <li><i class="fa fa-check"></i> Quarterly business reviews</li>
-          </ul>
-          <button class="btn-plan" onclick="document.getElementById('trial-anchor').scrollIntoView({behavior:'smooth'})">Contact Sales</button>
-        </div>
-
-      </div><!-- /pricing-grid -->
-
-      <!-- EXTRAS -->
-      <div class="pricing-extras">
-        <div class="pricing-extra"><div class="pricing-extra-icon"><i class="fa fa-gift"></i></div><h3>Referral Bonus</h3><p>Earn listing credits for every dealer you invite. Credits never expire.</p></div>
-        <div class="pricing-extra"><div class="pricing-extra-icon"><i class="fa fa-plug"></i></div><h3>Free API Integration</h3><p>Sync your inventory automatically. Free API feeds for Elite and Enterprise plans.</p></div>
-        <div class="pricing-extra"><div class="pricing-extra-icon"><i class="fa fa-chart-line"></i></div><h3>Advanced Analytics</h3><p>Track views, enquiries, favourites and conversion rates on each listing.</p></div>
-        <div class="pricing-extra"><div class="pricing-extra-icon"><i class="fa fa-handshake"></i></div><h3>Revenue Share</h3><p>On Enterprise, benefit from a transparent 5&ndash;10% commission-based model.</p></div>
-        <div class="pricing-extra"><div class="pricing-extra-icon"><i class="fa fa-star"></i></div><h3>Co-Branded Promos</h3><p>Get featured in LUL newsletters, social spotlights and seasonal campaigns.</p></div>
-        <div class="pricing-extra"><div class="pricing-extra-icon"><i class="fa fa-users"></i></div><h3>Exclusive Community</h3><p>Join our private dealer network with market insights and networking events.</p></div>
+      <div class="stat-item">
+        <span class="num">3,500+</span>
+        <span class="label">Verified Dealers</span>
       </div>
-    </div>
-  </section>
-
-  <!-- COMPARISON TABLE -->
-  <section class="section section-alt">
-    <div class="container">
-      <div class="section-header">
-        <p class="section-eyebrow">Compare Plans</p>
-        <h2 class="section-title">Everything at a Glance</h2>
-      </div>
-      <div class="comparison-table-wrap">
-        <table class="comparison-table">
-          <thead>
-            <tr>
-              <th>Feature</th><th>Trial</th><th>Starter</th>
-              <th class="featured-col">Professional</th>
-              <th>Elite</th><th>Enterprise</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="category-row"><td colspan="6">Listings</td></tr>
-            <tr><td>Active Listings</td><td>5</td><td>1</td><td><strong>25</strong></td><td>Unlimited</td><td>Unlimited</td></tr>
-            <tr><td>Images per Listing</td><td>8</td><td>8</td><td><strong>30</strong></td><td>50</td><td>50</td></tr>
-            <tr><td>Video Upload</td><td class="cross">&mdash;</td><td class="cross">&mdash;</td><td><strong>1/listing</strong></td><td>3/listing</td><td>Unlimited</td></tr>
-            <tr class="category-row"><td colspan="6">Visibility</td></tr>
-            <tr><td>Search Placement</td><td>Standard</td><td>Standard</td><td><strong>Featured</strong></td><td>Top</td><td>Top</td></tr>
-            <tr><td>Homepage Feature</td><td class="cross">&mdash;</td><td class="cross">&mdash;</td><td>Occasional</td><td class="check">&#10003;</td><td class="check">&#10003;</td></tr>
-            <tr><td>LUL Watermark</td><td>Yes</td><td>Yes</td><td><strong>No</strong></td><td>No</td><td>No</td></tr>
-            <tr class="category-row"><td colspan="6">Analytics &amp; Tools</td></tr>
-            <tr><td>Analytics Dashboard</td><td class="cross">&mdash;</td><td class="cross">&mdash;</td><td>Basic</td><td>Advanced</td><td>Custom</td></tr>
-            <tr><td>API Feed</td><td class="cross">&mdash;</td><td class="cross">&mdash;</td><td class="cross">&mdash;</td><td class="check">&#10003; Free</td><td class="check">&#10003; Full</td></tr>
-            <tr class="category-row"><td colspan="6">Support</td></tr>
-            <tr><td>Support Channel</td><td>Email</td><td>Email</td><td>Email+Chat</td><td>Priority+Phone</td><td>Dedicated Manager</td></tr>
-            <tr><td>Referral Bonus</td><td class="cross">&mdash;</td><td class="cross">&mdash;</td><td class="check">&#10003;</td><td class="check">&#10003;</td><td class="check">&#10003;</td></tr>
-            <tr><td>Revenue Share</td><td class="cross">&mdash;</td><td class="cross">&mdash;</td><td class="cross">&mdash;</td><td class="cross">&mdash;</td><td>5&ndash;10%</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- TRIAL FORM -->
-  <section class="section" id="trial-anchor">
-    <div class="container">
-      <div class="trial-form-section">
-        <p class="section-eyebrow" style="color:var(--color-gold);margin-bottom:12px">No Credit Card Required</p>
-        <h2>Start Your Free Trial Today</h2>
-        <p>Tell us about yourself and we'll set up your dealer account within 24 hours.</p>
-        <form class="trial-form" onsubmit="event.preventDefault();this.innerHTML='<p style=&quot;color:var(--color-gold);font-size:1.1rem&quot;>&#10003; Request received! We&apos;ll be in touch within 24 hours.</p>'">
-          <input type="text"  placeholder="Your full name"       required/>
-          <input type="email" placeholder="Work email address"   required/>
-          <input type="text"  placeholder="Company / Brand name" required/>
-          <select style="flex:1;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);border-radius:var(--r-sm);padding:12px 16px;font-size:.875rem;color:rgba(255,255,255,.7);outline:none;min-width:0">
-            <option value="">Interested in&hellip;</option>
-            <option>Trial (3 months free)</option>
-            <option>Starter (always free)</option>
-            <option>Professional</option>
-            <option>Elite</option>
-            <option>Enterprise / Custom</option>
-          </select>
-          <button type="submit"><i class="fa fa-paper-plane"></i> Send Request</button>
-        </form>
-        <p style="color:rgba(255,255,255,.35);font-size:.78rem;margin-top:16px">We'll never share your data with third parties.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="section section-alt">
-    <div class="container" style="max-width:720px">
-      <div class="section-header"><p class="section-eyebrow">FAQ</p><h2 class="section-title">Frequently Asked Questions</h2></div>
-      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Can I upgrade or downgrade at any time?<i class="fa fa-plus faq-icon"></i></div><div class="faq-answer">Yes. Change your plan anytime from your dealer dashboard. Upgrades take effect immediately; downgrades at the end of the billing period.</div></div>
-      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Is there a long-term contract?<i class="fa fa-plus faq-icon"></i></div><div class="faq-answer">No. All plans are month-to-month. Cancel anytime with no penalty. Annual billing saves 17% but is also cancellable.</div></div>
-      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">How does the referral bonus work?<i class="fa fa-plus faq-icon"></i></div><div class="faq-answer">Each dealer gets a unique referral link. When a new dealer activates a paid plan using your link, you receive listing credits equivalent to one month of their plan. Credits never expire.</div></div>
-      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">What is the revenue share model?<i class="fa fa-plus faq-icon"></i></div><div class="faq-answer">Available on Enterprise, revenue share means you pay a 5&ndash;10% commission on successfully facilitated sales, with no monthly subscription fee. Best for high-value, low-volume inventory.</div></div>
-      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">How does the API inventory feed work?<i class="fa fa-plus faq-icon"></i></div><div class="faq-answer">On Elite and Enterprise, connect your inventory management system via our RESTful API or XML/CSV feed. Listings sync automatically. Full docs and onboarding call included.</div></div>
-      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">What payment methods do you accept?<i class="fa fa-plus faq-icon"></i></div><div class="faq-answer">All major credit/debit cards (Visa, Mastercard, Amex), SEPA bank transfer, and PayPal. Annual invoices available for Enterprise clients.</div></div>
-    </div>
-  </section>
-</div><!-- /page-pricing -->
-
-<!-- ====================================================
-     PAGE: ANALYTICS DASHBOARD (Owner Only)
-==================================================== -->
-<div id="page-analytics" class="page">
-  <!-- Auth Gate -->
-  <div id="auth-gate" style="display:none;position:fixed;inset:0;background:var(--color-black);z-index:99999;align-items:center;justify-content:center">
-    <div style="background:var(--color-white);border-radius:var(--r-lg);padding:48px;max-width:400px;width:90%;text-align:center;box-shadow:var(--sh-lg)">
-      <div style="width:48px;height:48px;background:var(--color-gold);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-family:var(--font-serif);font-size:1.3rem;font-weight:700;color:var(--color-black)">L</div>
-      <h2 style="font-family:var(--font-serif);font-size:1.4rem;margin-bottom:6px">Owner Dashboard</h2>
-      <p style="color:var(--color-muted);font-size:.875rem;margin-bottom:28px">Enter your access password to continue.</p>
-      <!-- MODIFICA: cambia la password nel JS sotto -->
-      <input type="password" id="gate-pw" placeholder="Password" style="width:100%;border:1px solid var(--color-border);border-radius:var(--r-sm);padding:12px 16px;font-size:.9rem;outline:none;margin-bottom:12px;transition:border-color .2s" onkeydown="if(event.key==='Enter')checkGate()"/>
-      <button onclick="checkGate()" style="width:100%;background:var(--color-gold);color:var(--color-black);border:none;border-radius:var(--r-sm);padding:12px;font-weight:600;font-size:.9rem;cursor:pointer">Access Dashboard</button>
-      <p id="gate-err" style="color:#C0392B;font-size:.8rem;margin-top:10px;display:none">Incorrect password.</p>
-      <p style="color:var(--color-muted);font-size:.75rem;margin-top:20px">Default password: <code style="color:var(--color-gold)">lul2025</code> &mdash; change it in the JS.</p>
-    </div>
-  </div>
-
-  <!-- Dashboard header -->
-  <div style="background:var(--color-black);padding:32px 0;border-bottom:1px solid rgba(255,255,255,.08)">
-    <div class="container">
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
-        <div>
-          <h2 style="font-family:var(--font-serif);color:var(--color-white);font-size:1.6rem;font-weight:500">Analytics Overview</h2>
-          <p id="an-updated" style="color:rgba(255,255,255,.5);font-size:.875rem;margin-top:4px">Loading data&hellip;</p>
-        </div>
-        <div style="display:flex;gap:12px;flex-wrap:wrap">
-          <button id="btn-export" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.15);padding:9px 18px;border-radius:var(--r-sm);font-size:.82rem;font-weight:500;cursor:pointer"><i class="fa fa-download"></i> Export JSON</button>
-          <button id="btn-clear" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);color:#e85d5d;border:1px solid rgba(232,93,93,.3);padding:9px 18px;border-radius:var(--r-sm);font-size:.82rem;cursor:pointer"><i class="fa fa-trash"></i> Clear Data</button>
-          <button onclick="nav('home')" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.15);padding:9px 18px;border-radius:var(--r-sm);font-size:.82rem;cursor:pointer"><i class="fa fa-arrow-left"></i> Back to Site</button>
-        </div>
+      <div class="stat-item">
+        <span class="num">98%</span>
+        <span class="label">Dealer Satisfaction Rate</span>
       </div>
     </div>
   </div>
+</section>
 
-  <div class="section" style="padding-top:32px">
-    <div class="container">
-
-      <!-- KPI Cards -->
-      <div class="kpi-grid">
-        <div class="kpi-card"><div class="kpi-label">Total Sessions</div><div class="kpi-value" id="kpi-sess">&mdash;</div><div class="kpi-delta">Updated live</div><i class="fa fa-users kpi-icon"></i></div>
-        <div class="kpi-card"><div class="kpi-label">Pageviews</div><div class="kpi-value" id="kpi-pv">&mdash;</div><div class="kpi-delta">Updated live</div><i class="fa fa-eye kpi-icon"></i></div>
-        <div class="kpi-card"><div class="kpi-label">Avg. Session Duration</div><div class="kpi-value" id="kpi-dur">&mdash;</div><div class="kpi-delta">Across all sessions</div><i class="fa fa-clock kpi-icon"></i></div>
-        <div class="kpi-card"><div class="kpi-label">Cookie Consent Rate</div><div class="kpi-value" id="kpi-ck">&mdash;</div><div class="kpi-delta">% accepted all cookies</div><i class="fa fa-cookie-bite kpi-icon"></i></div>
+<!-- ══════════════════════════════════════════════════════
+     DEALER CTA BANNER
+══════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="dealer-banner">
+      <div class="dealer-banner-text">
+        <h2 data-i18n="dealer_h">Are you a <span>luxury dealer</span>?<br>Start listing today — free.</h2>
+        <p data-i18n="dealer_p">Join thousands of elite dealers worldwide. Start with a free trial, grow your reach, and connect with high-net-worth buyers across 140+ countries. No commitment. No credit card.</p>
       </div>
-
-      <!-- Main charts: line + consent -->
-      <div class="charts-main" style="margin-bottom:20px">
-        <div class="chart-card"><h3><i class="fa fa-chart-line" style="color:var(--color-gold);margin-right:8px"></i>Pageviews &mdash; Last 30 Days</h3><canvas id="ch-pv"></canvas></div>
-        <div class="chart-card"><h3><i class="fa fa-cookie" style="color:var(--color-gold);margin-right:8px"></i>Cookie Consent</h3><canvas id="ch-ck"></canvas></div>
+      <div class="dealer-banner-actions">
+        <a href="pricing.html" class="btn-primary"><i class="fa fa-rocket"></i> <span data-i18n="dealer_cta">Start Free Trial</span></a>
+        <a href="pricing.html" class="btn-secondary" data-i18n="dealer_plans">View Plans</a>
       </div>
-
-      <!-- Row 3 charts -->
-      <div class="charts-row3" style="margin-bottom:20px">
-        <div class="chart-card"><h3><i class="fa fa-mobile-alt" style="color:var(--color-gold);margin-right:8px"></i>Devices</h3><canvas id="ch-dev"></canvas></div>
-        <div class="chart-card"><h3><i class="fa fa-file-alt" style="color:var(--color-gold);margin-right:8px"></i>Top Pages</h3><canvas id="ch-pg"></canvas></div>
-        <div class="chart-card"><h3><i class="fa fa-globe" style="color:var(--color-gold);margin-right:8px"></i>Browsers</h3><canvas id="ch-br"></canvas></div>
-      </div>
-
-      <!-- Countries -->
-      <div style="margin-bottom:20px"><div class="chart-card"><h3><i class="fa fa-map" style="color:var(--color-gold);margin-right:8px"></i>Top Countries</h3><canvas id="ch-co" style="max-height:220px"></canvas></div></div>
-
-      <!-- Raw Events Table -->
-      <div class="chart-card" style="margin-bottom:20px">
-        <h3 style="margin-bottom:16px"><i class="fa fa-table" style="color:var(--color-gold);margin-right:8px"></i>Recent Events (last 20)</h3>
-        <div style="overflow-x:auto">
-          <table style="width:100%;border-collapse:collapse;font-size:.8rem" id="ev-table">
-            <thead><tr style="background:var(--color-bg)">
-              <th style="padding:10px 12px;text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.5px;color:var(--color-muted);font-weight:600">Timestamp</th>
-              <th style="padding:10px 12px;text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.5px;color:var(--color-muted);font-weight:600">Type</th>
-              <th style="padding:10px 12px;text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.5px;color:var(--color-muted);font-weight:600">Page</th>
-              <th style="padding:10px 12px;text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.5px;color:var(--color-muted);font-weight:600">Device</th>
-              <th style="padding:10px 12px;text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.5px;color:var(--color-muted);font-weight:600">Browser</th>
-              <th style="padding:10px 12px;text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.5px;color:var(--color-muted);font-weight:600">Consent</th>
-            </tr></thead>
-            <tbody id="ev-tbody"></tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- How it works info box -->
-      <div style="background:var(--color-white);border-radius:var(--r-lg);padding:32px;border:1px solid var(--color-border)">
-        <h3 style="font-family:var(--font-serif);font-size:1.1rem;margin-bottom:16px;display:flex;align-items:center;gap:10px"><i class="fa fa-question-circle" style="color:var(--color-gold)"></i> How does this work?</h3>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;font-size:.875rem;color:var(--color-muted);line-height:1.7">
-          <div><strong style="color:var(--color-text);display:block;margin-bottom:4px"><i class="fa fa-database" style="color:var(--color-gold);margin-right:6px"></i>Data Storage</strong>Analytics events are stored in <code>localStorage</code> under key <code>lul_analytics</code>. For production, redirect <code>trackEvent()</code> to a backend endpoint.</div>
-          <div><strong style="color:var(--color-text);display:block;margin-bottom:4px"><i class="fa fa-chart-bar" style="color:var(--color-gold);margin-right:6px"></i>Demo Data</strong>If no real events exist, the dashboard auto-seeds 180 demo events spread over 30 days so you can preview all charts immediately.</div>
-          <div><strong style="color:var(--color-text);display:block;margin-bottom:4px"><i class="fa fa-lock" style="color:var(--color-gold);margin-right:6px"></i>Password Gate</strong>Default password: <code>lul2025</code>. Change the constant <code>DASH_PWD</code> in the JavaScript section below. For production, use server-side auth.</div>
-          <div><strong style="color:var(--color-text);display:block;margin-bottom:4px"><i class="fa fa-download" style="color:var(--color-gold);margin-right:6px"></i>Export</strong>Click "Export JSON" to download all collected analytics as a JSON file for offline analysis or import into other tools.</div>
-        </div>
-      </div>
-
     </div>
   </div>
-</div><!-- /page-analytics -->
+</section>
 
-<!-- ====================================================
-     FOOTER (shared, always visible)
-==================================================== -->
-<footer class="site-footer" id="site-footer">
+<!-- ══════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════ -->
+<footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
 
+      <!-- Brand -->
       <div class="footer-brand">
-        <a onclick="nav('home')" class="header-logo" style="margin-bottom:16px;cursor:pointer">
+        <a href="index.html" class="header-logo" style="margin-bottom:16px">
           <div class="logo-mark">L</div>
-          <div><span class="logo-text">LUL</span><span class="logo-tagline">Luxury Unique Listings</span></div>
+          <div>
+            <span class="logo-text">LUL</span>
+            <span class="logo-tagline">Luxury Unique Listings</span>
+          </div>
         </a>
-        <p>The world's most exclusive marketplace for luxury real estate, vehicles, yachts, private jets and fine collectibles.</p>
+        <p data-i18n="footer_desc">The world's most exclusive marketplace for luxury cars, yachts, private jets, and real estate.</p>
         <div class="footer-social">
-          <!-- MODIFICA: inserisci gli href reali dei tuoi social -->
           <a href="#" class="social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
           <a href="#" class="social-btn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-          <a href="#" class="social-btn" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+          <a href="#" class="social-btn" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
           <a href="#" class="social-btn" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         </div>
       </div>
 
+      <!-- Explore -->
       <div class="footer-col">
         <h4>Explore</h4>
         <ul>
-          <li><a onclick="nav('listings','homes')">Homes &amp; Estates</a></li>
-          <li><a onclick="nav('listings','cars')">Luxury Cars</a></li>
-          <li><a onclick="nav('listings','yachts')">Yachts</a></li>
-          <li><a onclick="nav('listings','jets')">Private Jets</a></li>
-          <li><a onclick="nav('listings','villas')">Villas</a></li>
-          <li><a onclick="nav('listings','watches')">Watches</a></li>
-          <li><a onclick="nav('listings','jewellery')">Jewellery</a></li>
+          <li><a href="listings.html?cat=cars" data-i18n="cat_cars">Luxury Cars</a></li>
+          <li><a href="listings.html?cat=yachts" data-i18n="cat_yachts">Yachts</a></li>
+          <li><a href="listings.html?cat=jets" data-i18n="cat_jets">Private Jets</a></li>
+          <li><a href="listings.html?cat=realestate" data-i18n="cat_realestate">Real Estate</a></li>
         </ul>
       </div>
 
+      <!-- Company -->
       <div class="footer-col">
-        <h4>Company</h4>
+        <h4 data-i18n="footer_company">Company</h4>
         <ul>
-          <li><a href="#">About LUL</a></li>
-          <li><a onclick="nav('pricing')">For Dealers</a></li>
-          <li><a href="#">Careers</a></li>
-          <li><a href="#">Press</a></li>
-          <li><a href="#">Blog</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#" data-i18n="footer_about">About LUL</a></li>
+          <li><a href="pricing.html" data-i18n="footer_dealers">For Dealers</a></li>
+          <li><a href="#" data-i18n="footer_careers">Careers</a></li>
+          <li><a href="#" data-i18n="footer_press">Press</a></li>
+          <li><a href="#" data-i18n="footer_blog">Blog</a></li>
+          <li><a href="#" data-i18n="footer_privacy">Privacy Policy</a></li>
+          <li><a href="#" data-i18n="footer_terms">Terms of Service</a></li>
         </ul>
       </div>
 
-      <!-- ═══ CONTATTI — modifica qui con i tuoi dati reali ═══ -->
+      <!-- ═══ CONTATTI — modifica qui ═══ -->
       <div class="footer-col">
         <h4>Contact Us</h4>
-        <div class="fci">
+        <div class="footer-contact-item">
           <i class="fa fa-phone"></i>
           <!-- MODIFICA: inserisci il tuo numero di telefono -->
           <a href="tel:+00000000000">[INSERISCI NUMERO DI TELEFONO]</a>
         </div>
-        <div class="fci">
+        <div class="footer-contact-item">
           <i class="fa fa-envelope"></i>
           <!-- MODIFICA: inserisci la tua email di lavoro -->
           <a href="mailto:info@example.com">[INSERISCI EMAIL DI LAVORO]</a>
         </div>
-        <div class="fci">
+        <div class="footer-contact-item">
           <i class="fab fa-whatsapp"></i>
           <!-- MODIFICA: inserisci il numero WhatsApp -->
           <a href="https://wa.me/00000000000">[INSERISCI NUMERO WHATSAPP]</a>
         </div>
-        <div class="fci">
+        <div class="footer-contact-item">
           <i class="fab fa-instagram"></i>
           <!-- MODIFICA: inserisci l'handle Instagram -->
           <a href="#">[INSERISCI HANDLE INSTAGRAM]</a>
         </div>
-        <div class="fci">
+        <div class="footer-contact-item">
           <i class="fa fa-map-marker-alt"></i>
-          <!-- MODIFICA: inserisci il tuo indirizzo -->
+          <!-- MODIFICA: inserisci l'indirizzo -->
           <address style="font-style:normal">[INSERISCI INDIRIZZO UFFICIO]</address>
         </div>
       </div>
@@ -2844,574 +533,112 @@ input, select, textarea { font-family: inherit; }
     </div><!-- /footer-grid -->
 
     <div class="footer-bottom">
-      <span data-i18n="footer_copy">&copy; 2025 LUL &mdash; Luxury Unique Listings. All rights reserved.</span>
+      <span data-i18n="footer_copy">© 2025 LUL — Luxury Unique Listings. All rights reserved.</span>
       <div class="footer-bottom-links">
         <a href="#">Privacy</a>
         <a href="#">Cookies</a>
         <a href="#">Terms</a>
-        <a onclick="nav('analytics')" style="cursor:pointer;opacity:.4;font-size:.72rem">&#9679;</a>
+        <a href="#">Sitemap</a>
       </div>
     </div>
   </div>
 </footer>
 
-<script>
-/* ============================================================
-   LUL — Complete Application JavaScript
-   SPA Router | Cookies | i18n | Language Switcher |
-   Gallery | Analytics (Chart.js)
-============================================================ */
+<!-- ══════════════════════════════════════════════════════
+     AUTH MODAL (Sign In / Sign Up)
+══════════════════════════════════════════════════════ -->
+<div id="auth-modal" role="dialog" aria-modal="true">
+  <div class="auth-modal-box">
+    <button class="auth-close" aria-label="Close"><i class="fa fa-times"></i></button>
+    <div class="auth-tabs">
+      <button class="auth-tab-btn active" data-tab="signin" data-i18n="auth_signin">Sign In</button>
+      <button class="auth-tab-btn" data-tab="signup" data-i18n="auth_signup">Create Account</button>
+    </div>
 
-/* ── Constants ─────────────────────────────────────────── */
-const STORAGE_KEY   = 'lul_consent';
-const ANALYTICS_KEY = 'lul_analytics';
-const DASH_PWD      = 'lul2025';   /* MODIFICA: cambia la password dashboard */
-const MAX_EVENTS    = 600;
+    <!-- Sign In Form -->
+    <form class="auth-form active" data-form="signin">
+      <div class="auth-field">
+        <label data-i18n="auth_email">Email address</label>
+        <input type="email" required data-i18n-ph="auth_email" placeholder="Email address" />
+      </div>
+      <div class="auth-field">
+        <label data-i18n="auth_password">Password</label>
+        <input type="password" required placeholder="••••••••" />
+      </div>
+      <a href="#" class="auth-forgot" data-i18n="auth_forgot">Forgot password?</a>
+      <button type="submit" class="auth-submit" data-i18n="auth_btn_signin">Sign In</button>
+      <div class="auth-divider"><span data-i18n="auth_or">or continue with</span></div>
+      <div class="auth-social">
+        <button type="button" class="auth-social-btn"><i class="fab fa-google"></i> Google</button>
+        <button type="button" class="auth-social-btn"><i class="fab fa-apple"></i> Apple</button>
+      </div>
+      <p class="auth-switch"><span data-i18n="auth_no_account">Don't have an account?</span> <a href="#" class="auth-switch-signup" data-i18n="auth_signup">Create Account</a></p>
+    </form>
 
-/* ── Utilities ─────────────────────────────────────────── */
-function uuid(){
-  return 'xxxx-4xxx-yxxx'.replace(/[xy]/g,c=>{
-    const r=Math.random()*16|0;return(c==='x'?r:(r&0x3|0x8)).toString(16);
-  });
-}
-function getOrCreateSid(){
-  let s=sessionStorage.getItem('lul_sid');
-  if(!s){s=uuid();sessionStorage.setItem('lul_sid',s);}
-  return s;
-}
-function parseDevice(ua){
-  if(/mobile/i.test(ua))return'mobile';
-  if(/tablet|ipad/i.test(ua))return'tablet';
-  return'desktop';
-}
-function parseBrowser(ua){
-  if(/firefox/i.test(ua))return'Firefox';
-  if(/edg/i.test(ua))return'Edge';
-  if(/chrome/i.test(ua))return'Chrome';
-  if(/safari/i.test(ua))return'Safari';
-  return'Other';
-}
+    <!-- Sign Up Form -->
+    <form class="auth-form" data-form="signup">
+      <div class="auth-field">
+        <label data-i18n="auth_name">Full name</label>
+        <input type="text" required data-i18n-ph="auth_name" placeholder="Full name" />
+      </div>
+      <div class="auth-field">
+        <label data-i18n="auth_email">Email address</label>
+        <input type="email" required data-i18n-ph="auth_email" placeholder="Email address" />
+      </div>
+      <div class="auth-field">
+        <label data-i18n="auth_password">Password</label>
+        <input type="password" required placeholder="••••••••" />
+      </div>
+      <div class="auth-field">
+        <label data-i18n="auth_confirm_pw">Confirm password</label>
+        <input type="password" required placeholder="••••••••" />
+      </div>
+      <button type="submit" class="auth-submit" data-i18n="auth_btn_signup">Create Account</button>
+      <div class="auth-divider"><span data-i18n="auth_or">or continue with</span></div>
+      <div class="auth-social">
+        <button type="button" class="auth-social-btn"><i class="fab fa-google"></i> Google</button>
+        <button type="button" class="auth-social-btn"><i class="fab fa-apple"></i> Apple</button>
+      </div>
+      <p class="auth-switch"><span data-i18n="auth_has_account">Already have an account?</span> <a href="#" class="auth-switch-signin" data-i18n="auth_signin">Sign In</a></p>
+    </form>
+  </div>
+</div>
 
-/* ── Analytics Storage ─────────────────────────────────── */
-function getEvents(){try{return JSON.parse(localStorage.getItem(ANALYTICS_KEY)||'[]');}catch{return[];}}
-function saveEvents(ev){try{localStorage.setItem(ANALYTICS_KEY,JSON.stringify(ev));}catch{}}
-function trackEvent(type,extra){
-  const c=getConsent();
-  if(!c||c.level==='none')return;
-  const ev=getEvents();
-  if(ev.length>=MAX_EVENTS)ev.splice(0,50);
-  const ua=navigator.userAgent;
-  ev.push({
-    id:uuid(),sid:getOrCreateSid(),type,
-    page:window.location.hash||'#home',
-    ref:document.referrer||'direct',
-    device:parseDevice(ua),browser:parseBrowser(ua),
-    lang:navigator.language||'?',
-    ts:new Date().toISOString(),
-    consent:c.level,...(extra||{})
-  });
-  saveEvents(ev);
-}
-const _t0=Date.now();
-window.addEventListener('beforeunload',()=>{
-  trackEvent('session_end',{duration:Math.round((Date.now()-_t0)/1000)});
-});
-document.addEventListener('click',e=>{
-  const el=e.target.closest('a,button,[data-track]');
-  if(!el)return;
-  const lbl=(el.dataset.track||el.innerText||'').trim().substring(0,40);
-  trackEvent('click',{label:lbl});
-});
+<!-- ══════════════════════════════════════════════════════
+     COOKIE LEARN MORE MODAL
+══════════════════════════════════════════════════════ -->
+<div id="cookie-learn-more" role="dialog" aria-modal="true">
+  <div class="cookie-lm-box">
+    <button class="cookie-lm-close" aria-label="Close"><i class="fa fa-times"></i></button>
+    <h2 data-i18n="cookie_title">Cookie Policy</h2>
+    <p class="cookie-lm-intro" data-i18n="cookie_intro">We use cookies and similar technologies to enhance your experience on our platform. Below you will find details about the types of cookies we use and their purposes.</p>
 
-/* ── Consent ────────────────────────────────────────────── */
-function getConsent(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY));}catch{return null;}}
-function setConsent(level,prefs){
-  const c={level,prefs,ts:new Date().toISOString()};
-  localStorage.setItem(STORAGE_KEY,JSON.stringify(c));
-  trackEvent('consent_set',{level});
-}
+    <div class="cookie-lm-section">
+      <h3><i class="fa fa-lock"></i> <span data-i18n="cookie_essential_h">Essential Cookies</span></h3>
+      <p data-i18n="cookie_essential_p">These cookies are necessary for the website to function properly. They enable core functionalities such as session management, security, and language preferences. They cannot be disabled.</p>
+    </div>
 
-/* ── Cookie Banner ─────────────────────────────────────── */
-function initCookieBanner(){
-  const banner=document.getElementById('cookie-banner');
-  const modal =document.getElementById('cookie-modal');
-  if(!banner)return;
-  if(getConsent()){return;}
-  setTimeout(()=>banner.classList.add('visible'),700);
-  banner.querySelector('.btn-cookie-all')?.addEventListener('click',()=>{
-    setConsent('all',{analytics:true});hideBanner();trackEvent('pageview');
-  });
-  banner.querySelector('.btn-cookie-tech')?.addEventListener('click',()=>{
-    setConsent('technical',{analytics:false});hideBanner();
-  });
-  banner.querySelector('.btn-cookie-customize')?.addEventListener('click',()=>{
-    modal?.classList.add('open');
-  });
-  modal?.querySelector('.btn-modal-save')?.addEventListener('click',()=>{
-    const tog=modal.querySelector('#toggle-analytics');
-    const a=tog?.checked||false;
-    setConsent(a?'all':'technical',{analytics:a});
-    modal.classList.remove('open');hideBanner();
-    if(a)trackEvent('pageview');
-  });
-  modal?.querySelector('.btn-modal-cancel')?.addEventListener('click',()=>modal.classList.remove('open'));
-  modal?.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('open');});
-}
-function hideBanner(){
-  const b=document.getElementById('cookie-banner');
-  if(b){b.style.transform='translateY(100%)';setTimeout(()=>b.remove(),400);}
-}
+    <div class="cookie-lm-section">
+      <h3><i class="fa fa-chart-bar"></i> <span data-i18n="cookie_analytics_h">Analytics Cookies</span></h3>
+      <p data-i18n="cookie_analytics_p">We use analytics cookies to collect anonymous data about how visitors use our site — including pages visited, session duration, device type, and browser information. This data helps us improve the platform experience and understand user behaviour. We use tools such as Google Analytics.</p>
+    </div>
 
-/* ── SPA ROUTER ─────────────────────────────────────────── */
-const CAT_LABELS={
-  homes:'Homes & Estates',cars:'Luxury Cars',yachts:'Yachts',
-  jets:'Private Jets',villas:'Villas',watches:'Watches',
-  jewellery:'Jewellery',other:'Collectibles'
-};
-let chartsBuilt=false;
+    <div class="cookie-lm-section">
+      <h3><i class="fa fa-bullhorn"></i> <span data-i18n="cookie_marketing_h">Marketing Cookies</span></h3>
+      <p data-i18n="cookie_marketing_p">Marketing cookies are used to deliver targeted advertisements and measure the effectiveness of advertising campaigns. They help us understand which promotions and channels are most effective in reaching our audience. These cookies may be set by third-party advertising partners.</p>
+    </div>
 
-function nav(page,cat){
-  // Hide all pages
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  // Show target
-  const target=document.getElementById('page-'+page);
-  if(target)target.classList.add('active');
-  // Update hash
-  window.location.hash=cat?page+'-'+cat:page;
-  // Scroll top
-  window.scrollTo({top:0,behavior:'smooth'});
-  // Update nav active state
-  updateNavActive(page);
-  // Category page title
-  if(page==='listings'&&cat){
-    const lbl=CAT_LABELS[cat]||'Listings';
-    const h=document.getElementById('cat-h2');
-    const bc=document.getElementById('cat-bc');
-    if(h)h.textContent=lbl;
-    if(bc)bc.textContent=lbl;
-    document.title=lbl+' — LUL';
-  } else if(page==='home'){
-    document.title='LUL — Luxury Unique Listings';
-  } else if(page==='pricing'){
-    document.title='Dealer Plans — LUL';
-  }
-  // Analytics: gate + build charts
-  if(page==='analytics'){
-    checkAnalyticsGate();
-    if(sessionStorage.getItem('lul_dash')==='1'&&!chartsBuilt){
-      setTimeout(buildCharts,200);
-    }
-  }
-  // Track pageview
-  trackEvent('pageview',{cat:cat||null});
-  // Mobile menu close
-  document.getElementById('mob-menu')?.classList.remove('open');
-}
+    <div class="cookie-lm-section">
+      <h3><i class="fa fa-share-alt"></i> <span data-i18n="cookie_social_h">Social Media Cookies</span></h3>
+      <p data-i18n="cookie_social_p">These cookies are set by social media services that we have added to the site, enabling you to share our content with your networks. They are capable of tracking your browser across other sites and building a profile of your interests.</p>
+    </div>
 
-function updateNavActive(page){
-  document.querySelectorAll('.h-nav a').forEach(a=>{
-    a.classList.remove('active');
-  });
-}
+    <button class="cookie-lm-close-btn" data-i18n="cookie_close">Close</button>
+  </div>
+</div>
 
-// Hash routing on load
-window.addEventListener('DOMContentLoaded',()=>{
-  const h=window.location.hash.replace('#','');
-  if(h){
-    const parts=h.split('-');
-    nav(parts[0],parts[1]);
-  } else {
-    nav('home');
-  }
-});
-
-/* ── Hero tab category ─────────────────────────────────── */
-let heroTabCat='homes';
-function setHeroTab(btn,cat){
-  document.querySelectorAll('.hero-tab').forEach(t=>t.classList.remove('active'));
-  btn.classList.add('active');
-  heroTabCat=cat;
-}
-
-/* ── Mobile Menu ────────────────────────────────────────── */
-document.getElementById('mob-toggle')?.addEventListener('click',()=>{
-  document.getElementById('mob-menu')?.classList.add('open');
-});
-document.getElementById('mob-close')?.addEventListener('click',()=>{
-  document.getElementById('mob-menu')?.classList.remove('open');
-});
-
-/* ── Sticky Header Shadow ──────────────────────────────── */
-window.addEventListener('scroll',()=>{
-  const h=document.querySelector('.site-header');
-  if(h)h.style.boxShadow=scrollY>8?'0 2px 20px rgba(0,0,0,.28)':'none';
-},{passive:true});
-
-/* ── Language Switcher ──────────────────────────────────── */
-const LANGUAGES={
-  en:{flag:'🇬🇧',label:'EN',name:'English'},
-  it:{flag:'🇮🇹',label:'IT',name:'Italiano'},
-  fr:{flag:'🇫🇷',label:'FR',name:'Français'},
-  de:{flag:'🇩🇪',label:'DE',name:'Deutsch'},
-  es:{flag:'🇪🇸',label:'ES',name:'Español'},
-  ru:{flag:'🇷🇺',label:'RU',name:'Русский'}
-};
-const I18N={
-  en:{nav_homes:'Homes',nav_cars:'Cars',nav_yachts:'Yachts',nav_jets:'Private Jets',nav_villas:'Villas',nav_watches:'Watches',nav_jewellery:'Jewellery',nav_other:'Other',publish:'List with Us',login:'Sign In',hero_eyebrow:"The World's Finest Listings",hero_h1_1:'Discover the Art of',hero_h1_em:'Exceptional Living',hero_sub:'Curated luxury real estate, vehicles, yachts, jets and collectibles from elite dealers worldwide.',search_ph:'Search by make, model, location…',btn_search:'Search',cat_homes:'Homes & Estates',cat_cars:'Luxury Cars',cat_yachts:'Yachts',cat_jets:'Private Jets',cat_villas:'Villas',cat_watches:'Watches',cat_jewellery:'Jewellery',cat_other:'Collectibles',featured_label:'Featured Listings',featured_title:'Handpicked for Discerning Buyers',categories_label:'Browse by Category',categories_title:'Every Luxury, One Destination',how_label:'How It Works',how_title:'Simple. Elegant. Effortless.',footer_copy:'© 2025 LUL — Luxury Unique Listings. All rights reserved.'},
-  it:{nav_homes:'Case',nav_cars:'Auto',nav_yachts:'Yacht',nav_jets:'Jet Privati',nav_villas:'Ville',nav_watches:'Orologi',nav_jewellery:'Gioielli',nav_other:'Altro',publish:'Pubblica Inserzione',login:'Accedi',hero_eyebrow:'I Migliori Listing al Mondo',hero_h1_1:"Scopri l'Arte del",hero_h1_em:'Vivere Eccellente',hero_sub:"Immobili di lusso, veicoli, yacht, jet e collezioni da dealer d'élite in tutto il mondo.",search_ph:'Cerca per marca, modello, luogo…',btn_search:'Cerca',cat_homes:'Case & Tenute',cat_cars:'Auto di Lusso',cat_yachts:'Yacht',cat_jets:'Jet Privati',cat_villas:'Ville',cat_watches:'Orologi',cat_jewellery:'Gioielli',cat_other:'Oggetti da Collezione',featured_label:'Inserzioni in Evidenza',featured_title:'Selezionate per Acquirenti Esigenti',categories_label:'Sfoglia per Categoria',categories_title:"Ogni Lusso, Un'Unica Destinazione",how_label:'Come Funziona',how_title:'Semplice. Elegante. Senza Sforzo.',footer_copy:'© 2025 LUL — Luxury Unique Listings. Tutti i diritti riservati.'},
-  fr:{nav_homes:'Maisons',nav_cars:'Voitures',nav_yachts:'Yachts',nav_jets:'Jets Privés',nav_villas:'Villas',nav_watches:'Montres',nav_jewellery:'Bijoux',nav_other:'Autre',publish:'Publier une annonce',login:'Connexion',hero_eyebrow:'Les Meilleures Annonces du Monde',hero_h1_1:"Découvrez l'Art de",hero_h1_em:'Vivre Exceptionnellement',hero_sub:"Immobilier de luxe, véhicules, yachts, jets et objets de collection de revendeurs d'élite.",search_ph:'Rechercher par marque, modèle, lieu…',btn_search:'Rechercher',cat_homes:'Maisons & Domaines',cat_cars:'Voitures de Luxe',cat_yachts:'Yachts',cat_jets:'Jets Privés',cat_villas:'Villas',cat_watches:'Montres',cat_jewellery:'Bijoux',cat_other:'Objets de Collection',featured_label:'Annonces en Vedette',featured_title:'Sélectionnées pour des Acheteurs Exigeants',categories_label:'Parcourir par Catégorie',categories_title:'Chaque Luxe, Une Destination',how_label:'Comment Ça Marche',how_title:'Simple. Élégant. Effortless.',footer_copy:'© 2025 LUL — Luxury Unique Listings. Tous droits réservés.'},
-  de:{nav_homes:'Häuser',nav_cars:'Autos',nav_yachts:'Yachten',nav_jets:'Privatjets',nav_villas:'Villen',nav_watches:'Uhren',nav_jewellery:'Schmuck',nav_other:'Sonstiges',publish:'Inserat aufgeben',login:'Anmelden',hero_eyebrow:'Die Besten Listings der Welt',hero_h1_1:'Entdecken Sie die Kunst des',hero_h1_em:'Außergewöhnlichen Lebens',hero_sub:'Luxusimmobilien, Fahrzeuge, Yachten, Jets und Sammlerstücke von Elite-Händlern weltweit.',search_ph:'Nach Marke, Modell, Ort suchen…',btn_search:'Suchen',cat_homes:'Häuser & Güter',cat_cars:'Luxusautos',cat_yachts:'Yachten',cat_jets:'Privatjets',cat_villas:'Villen',cat_watches:'Uhren',cat_jewellery:'Schmuck',cat_other:'Sammlerstücke',featured_label:'Empfohlene Inserate',featured_title:'Handverlesen für Anspruchsvolle Käufer',categories_label:'Nach Kategorie Durchsuchen',categories_title:'Jeder Luxus, Ein Ziel',how_label:'So Funktioniert Es',how_title:'Einfach. Elegant. Mühelos.',footer_copy:'© 2025 LUL — Luxury Unique Listings. Alle Rechte vorbehalten.'},
-  es:{nav_homes:'Casas',nav_cars:'Coches',nav_yachts:'Yates',nav_jets:'Jets Privados',nav_villas:'Villas',nav_watches:'Relojes',nav_jewellery:'Joyería',nav_other:'Otro',publish:'Publicar Anuncio',login:'Iniciar Sesión',hero_eyebrow:'Los Mejores Listings del Mundo',hero_h1_1:'Descubre el Arte de',hero_h1_em:'Vivir Excepcionalmente',hero_sub:'Inmuebles de lujo, vehículos, yates, jets y coleccionables de distribuidores de élite.',search_ph:'Buscar por marca, modelo, lugar…',btn_search:'Buscar',cat_homes:'Casas y Fincas',cat_cars:'Coches de Lujo',cat_yachts:'Yates',cat_jets:'Jets Privados',cat_villas:'Villas',cat_watches:'Relojes',cat_jewellery:'Joyería',cat_other:'Coleccionables',featured_label:'Anuncios Destacados',featured_title:'Seleccionados para Compradores Exigentes',categories_label:'Explorar por Categoría',categories_title:'Todo el Lujo, Un Solo Destino',how_label:'Cómo Funciona',how_title:'Simple. Elegante. Sin Esfuerzo.',footer_copy:'© 2025 LUL — Luxury Unique Listings. Todos los derechos reservados.'},
-  ru:{nav_homes:'Дома',nav_cars:'Авто',nav_yachts:'Яхты',nav_jets:'Частные Джеты',nav_villas:'Виллы',nav_watches:'Часы',nav_jewellery:'Украшения',nav_other:'Другое',publish:'Разместить объявление',login:'Войти',hero_eyebrow:'Лучшие объявления в мире',hero_h1_1:'Откройте для себя Искусство',hero_h1_em:'Исключительной Жизни',hero_sub:'Элитная недвижимость, автомобили, яхты, джеты и коллекционные предметы.',search_ph:'Поиск по марке, модели, месту…',btn_search:'Поиск',cat_homes:'Дома и Поместья',cat_cars:'Люксовые Авто',cat_yachts:'Яхты',cat_jets:'Частные Джеты',cat_villas:'Виллы',cat_watches:'Часы',cat_jewellery:'Украшения',cat_other:'Коллекционное',featured_label:'Избранные Объявления',featured_title:'Подобрано для Взыскательных Покупателей',categories_label:'Обзор по Категориям',categories_title:'Каждая Роскошь — Одно Место',how_label:'Как Это Работает',how_title:'Просто. Элегантно. Без Усилий.',footer_copy:'© 2025 LUL — Luxury Unique Listings. Все права защищены.'}
-};
-
-let currentLang=localStorage.getItem('lul_lang')||'en';
-
-function applyLang(lang){
-  if(!LANGUAGES[lang])lang='en';
-  currentLang=lang;
-  localStorage.setItem('lul_lang',lang);
-  document.documentElement.lang=lang;
-  const t=I18N[lang]||I18N.en;
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const k=el.dataset.i18n;if(t[k])el.textContent=t[k];
-  });
-  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
-    const k=el.dataset.i18nPh;if(t[k])el.placeholder=t[k];
-  });
-  const lb=document.getElementById('lang-btn');
-  if(lb){
-    lb.querySelector('.lang-flag').textContent=LANGUAGES[lang].flag;
-    lb.querySelector('.lang-code').textContent=LANGUAGES[lang].label;
-  }
-  document.querySelectorAll('.lang-option').forEach(o=>
-    o.classList.toggle('sel',o.dataset.lang===lang)
-  );
-}
-
-function initLangSwitcher(){
-  const btn=document.getElementById('lang-btn');
-  const dd =document.getElementById('lang-dd');
-  if(!btn||!dd)return;
-  dd.innerHTML=Object.entries(LANGUAGES).map(([c,i])=>
-    `<div class="lang-option${c===currentLang?' sel':''}" data-lang="${c}" onclick="applyLang('${c}');document.getElementById('lang-dd').classList.remove('open');document.getElementById('lang-btn').classList.remove('open')">
-      <span>${i.flag}</span><span>${i.name}</span>
-      <small style="color:var(--color-muted);margin-left:auto">${i.label}</small>
-    </div>`
-  ).join('');
-  btn.addEventListener('click',e=>{
-    e.stopPropagation();
-    dd.classList.toggle('open');btn.classList.toggle('open');
-  });
-  document.addEventListener('click',()=>{
-    dd.classList.remove('open');btn.classList.remove('open');
-  });
-}
-
-/* ── Gallery (detail page) ─────────────────────────────── */
-let galIdx=0;
-const galImages=[];
-
-function initGallery(){
-  const thumbs=document.querySelectorAll('.gallery-thumb');
-  const main  =document.getElementById('gal-main-img');
-  if(!thumbs.length||!main)return;
-  galImages.length=0;
-  thumbs.forEach(t=>galImages.push(t.querySelector('img')?.src||''));
-  setGalleryImg(0);
-}
-
-function setGalleryImg(i){
-  if(i<0)i=galImages.length-1;
-  if(i>=galImages.length)i=0;
-  galIdx=i;
-  const m=document.getElementById('gal-main-img');
-  if(m)m.src=galImages[i];
-  document.querySelectorAll('.gallery-thumb').forEach((t,j)=>
-    t.classList.toggle('active',j===i)
-  );
-}
-
-/* ── Lightbox ───────────────────────────────────────────── */
-function openLightbox(idx){
-  const lb=document.getElementById('lightbox');
-  const img=document.getElementById('lb-img');
-  if(!lb||!img)return;
-  galIdx=idx;
-  img.src=galImages[idx]||'';
-  lb.classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closeLightbox(){
-  document.getElementById('lightbox')?.classList.remove('open');
-  document.body.style.overflow='';
-}
-document.getElementById('lb-close')?.addEventListener('click',closeLightbox);
-document.getElementById('lightbox')?.addEventListener('click',e=>{
-  if(e.target.id==='lightbox')closeLightbox();
-});
-document.getElementById('lb-prev')?.addEventListener('click',()=>{
-  setGalleryImg(galIdx-1);
-  document.getElementById('lb-img').src=galImages[galIdx];
-});
-document.getElementById('lb-next')?.addEventListener('click',()=>{
-  setGalleryImg(galIdx+1);
-  document.getElementById('lb-img').src=galImages[galIdx];
-});
-document.addEventListener('keydown',e=>{
-  const lb=document.getElementById('lightbox');
-  if(!lb?.classList.contains('open'))return;
-  if(e.key==='Escape')closeLightbox();
-  if(e.key==='ArrowLeft'){setGalleryImg(galIdx-1);document.getElementById('lb-img').src=galImages[galIdx];}
-  if(e.key==='ArrowRight'){setGalleryImg(galIdx+1);document.getElementById('lb-img').src=galImages[galIdx];}
-});
-
-/* ── Detail Tabs ────────────────────────────────────────── */
-function showDetTab(id,btn){
-  document.querySelectorAll('.detail-tab-content').forEach(c=>c.classList.remove('active'));
-  document.querySelectorAll('.detail-tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById('det-'+id)?.classList.add('active');
-  if(btn)btn.classList.add('active');
-  else {
-    document.querySelectorAll('.detail-tab').forEach(t=>{
-      if(t.getAttribute('onclick')?.includes("'"+id+"'"))t.classList.add('active');
-    });
-  }
-}
-
-/* ── FAQ Accordion ──────────────────────────────────────── */
-function toggleFaq(q){
-  const item=q.closest('.faq-item');
-  const wasOpen=item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
-  if(!wasOpen)item.classList.add('open');
-}
-
-/* ── Pricing Toggle ─────────────────────────────────────── */
-document.getElementById('pr-toggle')?.addEventListener('change',function(){
-  const ann=this.checked;
-  document.querySelectorAll('[data-monthly]').forEach(el=>{
-    const m=parseFloat(el.dataset.monthly);
-    if(!m){el.textContent='Free';return;}
-    el.textContent=ann?'€'+(Math.round(m*10)):('€'+m);
-  });
-  document.querySelectorAll('[data-period]').forEach(el=>{
-    if(el.textContent.includes('month')||el.textContent.includes('year')){
-      el.textContent=ann?'/ year':'/ month';
-    }
-  });
-  const b=document.getElementById('save-badge');
-  if(b)b.style.display=ann?'inline':'none';
-});
-
-/* ── Analytics Auth Gate ────────────────────────────────── */
-function checkAnalyticsGate(){
-  const gate=document.getElementById('auth-gate');
-  if(!gate)return;
-  if(sessionStorage.getItem('lul_dash')==='1'){
-    gate.style.display='none';
-    if(!chartsBuilt)setTimeout(buildCharts,200);
-  } else {
-    gate.style.display='flex';
-  }
-}
-function checkGate(){
-  const pw=document.getElementById('gate-pw')?.value;
-  const err=document.getElementById('gate-err');
-  if(pw===DASH_PWD){
-    sessionStorage.setItem('lul_dash','1');
-    document.getElementById('auth-gate').style.display='none';
-    if(!chartsBuilt)setTimeout(buildCharts,200);
-  } else {
-    if(err)err.style.display='block';
-    const inp=document.getElementById('gate-pw');
-    if(inp)inp.style.borderColor='#C0392B';
-  }
-}
-document.getElementById('gate-pw')?.addEventListener('keydown',e=>{
-  if(e.key==='Enter')checkGate();
-});
-
-/* ── Scroll Animations ──────────────────────────────────── */
-function initScrollAnim(){
-  if(!('IntersectionObserver' in window))return;
-  const obs=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        e.target.style.opacity='1';
-        e.target.style.transform='translateY(0)';
-        obs.unobserve(e.target);
-      }
-    });
-  },{threshold:.1});
-  document.querySelectorAll('.listing-card,.category-card,.step,.pricing-card,.kpi-card').forEach(el=>{
-    el.style.opacity='0';
-    el.style.transform='translateY(20px)';
-    el.style.transition='opacity .5s ease,transform .5s ease';
-    obs.observe(el);
-  });
-}
-
-/* ── Analytics Export/Clear ─────────────────────────────── */
-document.getElementById('btn-export')?.addEventListener('click',()=>{
-  const data=getEvents();
-  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
-  const a=document.createElement('a');
-  a.href=URL.createObjectURL(blob);
-  a.download='lul-analytics-'+new Date().toISOString().split('T')[0]+'.json';
-  a.click();
-});
-document.getElementById('btn-clear')?.addEventListener('click',()=>{
-  if(confirm('Clear all analytics data? This cannot be undone.')){
-    localStorage.removeItem(ANALYTICS_KEY);
-    location.reload();
-  }
-});
-
-/* ── Build Charts ───────────────────────────────────────── */
-function buildCharts(){
-  if(chartsBuilt)return;
-  chartsBuilt=true;
-
-  const GOLD='#C9A84C',GOLDT='rgba(201,168,76,.15)',DARK='#1A1A1A';
-  Chart.defaults.font.family="'Inter',sans-serif";
-  Chart.defaults.color='#6B6B6B';
-
-  // Seed demo data if empty
-  let ev=getEvents();
-  if(ev.length<5){
-    const pages=['#home','#listings','#detail','#pricing','#analytics'];
-    const devs=['desktop','mobile','tablet'];
-    const brs=['Chrome','Safari','Firefox','Edge'];
-    const countries=['Italy','Germany','France','Spain','UK','Switzerland','USA','UAE'];
-    const now=Date.now();
-    ev=[];
-    for(let i=0;i<180;i++){
-      const d=Math.floor(Math.random()*30);
-      const ts=new Date(now-d*86400000-Math.random()*86400000);
-      ev.push({
-        id:'demo'+i,sid:'s'+Math.floor(i/3),
-        type:Math.random()>.4?'pageview':'click',
-        page:pages[Math.floor(Math.random()*pages.length)],
-        device:devs[Math.floor(Math.random()*devs.length)],
-        browser:brs[Math.floor(Math.random()*brs.length)],
-        country:countries[Math.floor(Math.random()*countries.length)],
-        ts:ts.toISOString(),duration:Math.floor(Math.random()*240+10),
-        consent:Math.random()>.3?'all':'technical'
-      });
-    }
-    saveEvents(ev);
-  }
-
-  const pvs=ev.filter(e=>e.type==='pageview');
-  const sessions=new Set(ev.map(e=>e.sid)).size;
-  const avgDur=Math.round(ev.filter(e=>e.duration).reduce((s,e)=>s+(e.duration||0),0)/Math.max(ev.filter(e=>e.duration).length,1));
-  const ckAll=ev.filter(e=>e.consent==='all').length;
-
-  const setK=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v;};
-  setK('kpi-sess',sessions.toLocaleString());
-  setK('kpi-pv',pvs.length.toLocaleString());
-  setK('kpi-dur',avgDur+'s');
-  setK('kpi-ck',Math.round(ckAll/Math.max(ev.length,1)*100)+'%');
-  const lu=document.getElementById('an-updated');
-  if(lu)lu.textContent='Last updated: '+new Date().toLocaleString();
-
-  // 1. Pageviews line chart
-  (()=>{
-    const ctx=document.getElementById('ch-pv');if(!ctx)return;
-    const labels=[],data=[];const today=new Date();
-    for(let i=29;i>=0;i--){
-      const d=new Date(today);d.setDate(d.getDate()-i);
-      const k=d.toISOString().split('T')[0];
-      labels.push(d.toLocaleDateString('en',{month:'short',day:'numeric'}));
-      data.push(pvs.filter(e=>e.ts?.startsWith(k)).length);
-    }
-    new Chart(ctx,{type:'line',data:{labels,datasets:[{label:'Pageviews',data,borderColor:GOLD,backgroundColor:GOLDT,borderWidth:2,fill:true,tension:.4,pointRadius:3,pointBackgroundColor:GOLD}]},options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'rgba(0,0,0,.05)'}},x:{grid:{display:false},ticks:{maxTicksLimit:8}}}}});
-  })();
-
-  // 2. Cookie consent doughnut
-  (()=>{
-    const ctx=document.getElementById('ch-ck');if(!ctx)return;
-    const all=ev.filter(e=>e.consent==='all').length;
-    const tech=ev.filter(e=>e.consent==='technical').length;
-    const none=ev.filter(e=>e.consent==='none').length;
-    new Chart(ctx,{type:'doughnut',data:{labels:['All cookies','Technical only','Refused'],datasets:[{data:[all,tech,none],backgroundColor:[GOLD,'#888','#ddd'],borderWidth:0}]},options:{responsive:true,cutout:'65%',plugins:{legend:{position:'bottom',labels:{padding:16,font:{size:12}}}}}});
-  })();
-
-  // 3. Devices doughnut
-  (()=>{
-    const ctx=document.getElementById('ch-dev');if(!ctx)return;
-    const c={desktop:0,mobile:0,tablet:0};
-    ev.forEach(e=>{if(c[e.device]!==undefined)c[e.device]++;});
-    new Chart(ctx,{type:'doughnut',data:{labels:['Desktop','Mobile','Tablet'],datasets:[{data:Object.values(c),backgroundColor:[DARK,GOLD,'#b0b0b0'],borderWidth:0}]},options:{responsive:true,cutout:'65%',plugins:{legend:{position:'bottom',labels:{padding:16,font:{size:12}}}}}});
-  })();
-
-  // 4. Top pages horizontal bar
-  (()=>{
-    const ctx=document.getElementById('ch-pg');if(!ctx)return;
-    const c={};
-    pvs.forEach(e=>{const p=e.page||'#home';c[p]=(c[p]||0)+1;});
-    const s=Object.entries(c).sort((a,b)=>b[1]-a[1]).slice(0,6);
-    new Chart(ctx,{type:'bar',data:{labels:s.map(([p])=>p.replace('#','')||'home'),datasets:[{label:'Views',data:s.map(([,v])=>v),backgroundColor:GOLD,borderRadius:4}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,grid:{color:'rgba(0,0,0,.05)'}},y:{grid:{display:false}}}}});
-  })();
-
-  // 5. Browsers bar
-  (()=>{
-    const ctx=document.getElementById('ch-br');if(!ctx)return;
-    const c={};ev.forEach(e=>{if(e.browser)c[e.browser]=(c[e.browser]||0)+1;});
-    const s=Object.entries(c).sort((a,b)=>b[1]-a[1]);
-    new Chart(ctx,{type:'bar',data:{labels:s.map(([b])=>b),datasets:[{data:s.map(([,v])=>v),backgroundColor:[GOLD,'#888','#b0b0b0',DARK],borderRadius:4}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'rgba(0,0,0,.05)'}},x:{grid:{display:false}}}}});
-  })();
-
-  // 6. Countries bar
-  (()=>{
-    const ctx=document.getElementById('ch-co');if(!ctx)return;
-    const c={};ev.forEach(e=>{if(e.country)c[e.country]=(c[e.country]||0)+1;});
-    const s=Object.entries(c).sort((a,b)=>b[1]-a[1]).slice(0,8);
-    new Chart(ctx,{type:'bar',data:{labels:s.map(([c])=>c),datasets:[{data:s.map(([,v])=>v),backgroundColor:GOLD,borderRadius:4}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'rgba(0,0,0,.05)'}},x:{grid:{display:false},ticks:{maxRotation:30}}}}});
-  })();
-
-  // Events table
-  const tbody=document.getElementById('ev-tbody');
-  if(tbody){
-    const recent=[...ev].slice(-20).reverse();
-    if(!recent.length){tbody.innerHTML='<tr><td colspan="6" style="text-align:center;padding:24px;color:var(--color-muted)">No events yet.</td></tr>';return;}
-    tbody.innerHTML=recent.map(e=>{
-      const ts=e.ts?new Date(e.ts).toLocaleString():'—';
-      const tc=e.type==='pageview'?'#2D7D4B':e.type==='click'?'#C9A84C':'#888';
-      return `<tr style="border-bottom:1px solid var(--color-border)">
-        <td style="padding:10px 12px">${ts}</td>
-        <td style="padding:10px 12px"><span style="color:${tc};font-weight:500">${e.type||'—'}</span></td>
-        <td style="padding:10px 12px">${(e.page||'').replace('#','')}</td>
-        <td style="padding:10px 12px">${e.device||'—'}</td>
-        <td style="padding:10px 12px">${e.browser||'—'}</td>
-        <td style="padding:10px 12px">${e.consent||'—'}</td>
-      </tr>`;
-    }).join('');
-  }
-}
-
-/* ── DOMContentLoaded init ──────────────────────────────── */
-document.addEventListener('DOMContentLoaded',()=>{
-  initCookieBanner();
-  applyLang(currentLang);
-  initLangSwitcher();
-  initGallery();
-  initScrollAnim();
-  // Start consent-based pageview
-  const c=getConsent();
-  if(c?.level==='all')trackEvent('pageview');
-});
-
-/* ── Expose public for inline onclick calls ─────────────── */
-window.nav=nav;
-window.setHeroTab=setHeroTab;
-window.setGalleryImg=setGalleryImg;
-window.openLightbox=openLightbox;
-window.showDetTab=showDetTab;
-window.toggleFaq=toggleFaq;
-window.checkGate=checkGate;
-window.applyLang=applyLang;
-</script>
+<!-- Scripts -->
+<script src="js/cookies.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>
